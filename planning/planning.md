@@ -31,5 +31,5 @@ POST /api/jobs/:id      =>To apply or modify the resume based on the joblisting'
 * Add:: 
 post /api/jobs/:id/apply => To apply for job
 
-* Delete:
-
+## ERD 
+![ERD](/planning/ERD.png)
