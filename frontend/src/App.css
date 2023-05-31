@@ -1,0 +1,9 @@
+.section {
+  text-align: center;
+  padding: 150px;
+}
+
+.header {
+  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
+  color: #fff;
+}
