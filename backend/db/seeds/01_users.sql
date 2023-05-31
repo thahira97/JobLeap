@@ -5,4 +5,4 @@ INSERT INTO users (name, email, password)
 VALUES ('Harry', 'harry@gmail.com', 'icecream');
 
 INSERT INTO users (name, email, password)
-VALUES ('Potter', 'pot@gmail.com', 'candy');
+VALUES ('Nick', 'nick@gmail.com', 'candy');

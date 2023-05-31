@@ -4,8 +4,9 @@ CREATE TABLE resumes (
   user_id INTEGER NOT NULL REFERENCES users(id),
   present_job VARCHAR NOT NULL,
   location VARCHAR NOT NULL,
-  summary VARCHAR NOT NULL,
+  summary VARCHAR(255) NOT NULL,
   user_img VARCHAR,
+  skills VARCHAR(255) NOT NULL,
   phone_number VARCHAR NOT NULL,
   is_original BOOLEAN
 );
