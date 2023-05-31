@@ -6,7 +6,11 @@ import Footer from "../components/Footer";
 const JobSearch = (props) => {
   return <div>
     <Nav />
-    HELLO
+    <div className="job-search">
+      <div className="top-container">  
+      <img src="/uploads/user2.jpg" />
+        </div>
+    </div>
     <Footer />
   </div>
 };

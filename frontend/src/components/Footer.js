@@ -2,7 +2,7 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <div class="footer">
+    <div className="footer">
       <small>&copy; 2023 JobLeap. All rights reserved.</small>
     </div>
   );
