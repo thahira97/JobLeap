@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import "./Button.css";
 import JobDescription from "./JobDescription";
+import Backdrop from "./Backdrop";
 const Button = (props) => {
 
   const [description, setDescription] = useState(false)
@@ -11,8 +12,11 @@ const Button = (props) => {
     setDescription(true)
   }
 
-  return <div className="button-comp">
+  return (
+  <React.Fragment>
+    <div className="button-comp">
     <button type="button" class="btn btn-outline-primary" onClick={clickHandler}>Read more</button>
+    {description && <Backdrop />}
     {description && <JobDescription 
          title={props.title}
          name={props.name}
@@ -23,5 +27,7 @@ const Button = (props) => {
          flextime={props.flextime}
           />}
   </div>
+  </React.Fragment>
+  )
 };
 export default Button;
