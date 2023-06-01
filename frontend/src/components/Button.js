@@ -12,11 +12,15 @@ const Button = (props) => {
     setDescription(true)
   }
 
+  const closeDescription = (event)=> {
+    setDescription(false)
+  }
+
   return (
   <React.Fragment>
     <div className="button-comp">
     <button type="button" class="btn btn-outline-primary" onClick={clickHandler}>Read more</button>
-    {description && <Backdrop />}
+    {description && <Backdrop onClick={closeDescription} />}
     {description && <JobDescription 
          title={props.title}
          name={props.name}
