@@ -29,6 +29,8 @@ const JobLists = (props) => {
               summary={job.summary}
               description={job.description}
               salary={job.salary}
+              schedule={job.schedule}
+              flextime={job.flexTime}
               posteddate={job.datePosted}
             />
           );

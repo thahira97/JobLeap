@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import Search from "./Search";
 import "./JobSearch.css";
 import FilterSearch from "./FilterSearch";
 import JobLists from "./JobLists";
@@ -18,6 +17,8 @@ const dummyData = [
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
+    schedule: "Full-time",
+    flexTime: "Remote",
     datePosted: "19/3/2023",
   },
   {
@@ -31,6 +32,8 @@ const dummyData = [
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
+    schedule: "Full-time",
+    flexTime: "On-site",
     datePosted: "19/3/2023",
   },
   {
@@ -44,6 +47,8 @@ const dummyData = [
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
+    schedule: "Part-time",
+    flexTime: "Hybrid",
     datePosted: "19/3/2023",
   },
   {
@@ -57,6 +62,8 @@ const dummyData = [
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
+    schedule: "Internship",
+    flexTime: "Remote",
     datePosted: "19/3/2023",
   },
 ];
