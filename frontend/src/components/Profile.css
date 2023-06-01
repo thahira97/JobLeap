@@ -16,3 +16,8 @@ p{
   margin-top: 8px;
   height: 170px;
 }
+
+.outline{
+  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
+  height:5px;
+}
