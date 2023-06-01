@@ -8,7 +8,7 @@ const FilterSearch = (props) => {
         <form>
           <div className="row">
           <div className="col">
-            <select className="btn btn-primary btn-lg"  aria-label="Default select example">
+            <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected >Date-Posted</option>
   <option value="1">Yesterday</option>
   <option value="2">Past-week</option>
@@ -17,7 +17,7 @@ const FilterSearch = (props) => {
 </select>
             </div>
             <div className="col">
-            <select className="btn btn-primary btn-lg"  aria-label="Default select example">
+            <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected >Schedule</option>
   <option value="1">Full-time</option>
   <option value="2">Part-time</option>
@@ -25,7 +25,7 @@ const FilterSearch = (props) => {
 </select>
             </div>
             <div className="col">
-            <select className="btn btn-primary btn-lg"  aria-label="Default select example">
+            <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected>On-site/remote</option>
   <option value="1">On-site</option>
   <option value="2">Remote</option>
@@ -33,7 +33,7 @@ const FilterSearch = (props) => {
 </select>
             </div>
             <div className="col">
-            <select className="btn btn-primary btn-lg"  aria-label="Default select example">
+            <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected>Salary</option>
   <option value="1">$40,000+</option>
   <option value="2">$60,000+</option>
@@ -42,7 +42,7 @@ const FilterSearch = (props) => {
 </select>
             </div>
             <div className="col">
-              <button type="button" className="btn btn-primary btn-lg">Search</button>
+              <button type="button" className="btn btn-primary">Search</button>
             </div>
           </div>
         </form>

@@ -20,8 +20,8 @@
   background: #ffd900;
 }
 
-job-item__content {
-  padding: 0;
+.job-item__content {
+  max-width: 300px;
 }
 
 .job-item__image {
@@ -46,4 +46,14 @@ job-item__content {
 
 .job-item__info  {
   margin: 0;
+}
+
+.company-name {
+  font-size: larger;
+  color: #0079FF;
+  overflow-wrap: break-word;
+}
+
+.company-summary {
+  overflow-wrap: break-word;
 }
