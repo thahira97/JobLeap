@@ -1,0 +1,20 @@
+.search-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(72, 68, 68);
+  border-radius: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 4rem;
+  padding: 30px;
+} 
+.btn.btn-primary.btn-lg {
+  font-size: medium;
+  background-color: red; 
+  color: white; 
+}
+
+.btn.btn-primary.btn-lg:hover {
+  background-color: darkred; 
+}
