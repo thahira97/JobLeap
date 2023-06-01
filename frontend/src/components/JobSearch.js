@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Search from "./Search";
 import "./JobSearch.css";
 import FilterSearch from "./FilterSearch";
+import JobLists from "./JobLists";
 
 const JobSearch = (props) => {
   return (
@@ -18,6 +19,7 @@ const JobSearch = (props) => {
         </div>
         <div className="middle-container">
           <FilterSearch />
+          <JobLists />
         </div>
       </div>
       <Footer />
