@@ -4,7 +4,7 @@ import "./JobItem.css";
 import Card from "./Card";
 import Avatar from "./Avatar"
 import Button from "./Button";
-import JobDescription from "./JobDescription";
+
 
 const JobItem = (props) => {
   return <li className="job-items">
@@ -19,16 +19,14 @@ const JobItem = (props) => {
       <p>{props.salary}</p>
       <p>Date Posted: {props.posteddate}</p>
       <p className="company-summary">{props.summary}</p>
-      <Button />
-
-       <JobDescription 
-         title={props.title}
-         name={props.name}
-         description={props.description}
-         salary={props.salary}
-         location={props.location}
-         schedule={props.schedule}
-         flextime={props.flextime}
+      <Button 
+          title={props.title}
+          name={props.name}
+          salary={props.salary}
+          description={props.description}
+          location={props.location}
+          schedule={props.schedule}
+          flextime={props.flextime}
           />
     </div>
    </Card>
