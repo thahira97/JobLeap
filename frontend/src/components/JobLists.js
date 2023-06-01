@@ -15,23 +15,24 @@ const JobLists = (props) => {
     );
   }
   return (
-    <div className="job-lists">
-      <p className="job-header">Recommended jobs</p>
-      {props.jobs.map((job) => {
-        return (
-          <JobItem
-            key={job.id}
-            id={job.id}
-            image={job.compImg}
-            title={job.title}
-            location={job.location}
-            description={job.description}
-            salary={job.salary}
-            posteddate={job.datePosted}
-          />
-        );
-      })}
-    </div>
+    <React.Fragment>
+      <ul className="job-lists">
+        {props.jobs.map((job) => {
+          return (
+            <JobItem
+              key={job.id}
+              id={job.id}
+              image={job.compImg}
+              title={job.title}
+              location={job.location}
+              description={job.description}
+              salary={job.salary}
+              posteddate={job.datePosted}
+            />
+          );
+        })}
+      </ul>
+    </React.Fragment>
   );
 };
 

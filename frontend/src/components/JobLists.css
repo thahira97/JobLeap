@@ -1,6 +1,10 @@
 .job-lists {
-  justify-content: center;
-  margin-top: 10px;
+  width: 80%;
+  margin: 10px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .job-header {
  font-size: 2rem;

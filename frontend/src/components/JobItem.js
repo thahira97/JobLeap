@@ -11,11 +11,10 @@ const JobItem = (props) => {
      <Avatar image={props.image} alt={props.title} />
     </div>
     <div className="job-item__info">
-      <h2>{props.title}</h2>
-      <h2>{props.location}</h2>
-      <h2>{props.description}</h2>
-      <h2>{props.salary}</h2>
-      <h2>{props.posteddate}</h2>
+      <p>{props.title}</p>
+      <p>{props.location}</p>
+      <p>{props.salary}</p>
+      <p>{props.posteddate}</p>
     </div>
    </Card>
   </li>;
