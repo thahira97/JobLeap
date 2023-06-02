@@ -7,6 +7,7 @@ import {
 import Home from "./components/Home";
 import JobSearch from "./components/JobSearch";
 import "./App.css";
+import Profile from "./components/Profile";
 
 function App() {
   return (
