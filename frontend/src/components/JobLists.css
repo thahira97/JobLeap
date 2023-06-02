@@ -1,10 +1,10 @@
 .job-lists {
-  width: 80%;
+  /* width: 80%; */
   margin: 10px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .job-header {
  font-size: 2rem;
