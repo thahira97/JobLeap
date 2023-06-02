@@ -12,13 +12,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-router-dom": "5.3.4",
     "react-scripts": "5.0.1",
-=======
-    "react-router-dom": "^6.11.2",
-    "react-scripts": "^5.0.1",
->>>>>>> feature/signup-login
     "react-transition-group": "^4.4.5",
     "web-vitals": "^2.1.4"
   },
