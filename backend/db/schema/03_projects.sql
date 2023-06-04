@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS projects CASCADE;
 CREATE TABLE projects (
   id SERIAL PRIMARY KEY NOT NULL,
-  resume_id INTEGER NOT NULL REFERENCES resume(id),
+  resume_id INTEGER NOT NULL REFERENCES resumes(id),
   name VARCHAR(255) NOT NULL,
   project_img VARCHAR(255) NOT NULL,
   project_description VARCHAR(255) NOT NULL

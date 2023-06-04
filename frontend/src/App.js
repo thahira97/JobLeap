@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
+import axios from 'axios';
 import Home from "./components/Home";
 import JobSearch from "./components/JobSearch";
 import "./App.css";

@@ -1,12 +1,16 @@
-const PORT = process.env.PORT || 8080
-const express = require('express')
-const app = express()
+const PORT = process.env.PORT || 8080;
+const express = require("express");
+const bodyParser = require("body-parser");
 
-app.get('/', (req, res) => {
-  res.status(200).send("Express")
-})
+const jobsRoutes = require("./routes/jobs-routes");
 
-app.listen(PORT, ()=> {
-  console.log(`Server listening on port ${PORT}`)
-})
+const app = express();
 
+///////////////
+//MIDDLEWARE///
+///////////////
+app.use('/api/jobs',jobsRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
