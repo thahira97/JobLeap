@@ -6,46 +6,46 @@ function Profile() {
   return (
     <div>
       <Nav />
-      <div class="container">
-        <div class="outline"></div>
-        <div class="row">
-          <div class="col-3">
-            <div class="card border-0">
-              <div class="card-body">
-                <img src="1-profile.jpg" class="img-thumbnail" alt="..."></img>
+      <div className="container">
+        <div className="outline"></div>
+        <div className="row">
+          <div className="col-3">
+            <div className="card border-0">
+              <div className="card-body">
+                <img src="1-profile.jpg" className="img-thumbnail" alt="..."></img>
                 <h4>About me</h4>
-                <p class="card-text">
+                <p className="card-text">
                   Experienced software engineer with expertise in web
                   development
                 </p>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body">
+            <div className="card border-0">
+              <div className="card-body">
                 <h5>Location</h5>
-                <p class="card-text">Toronto Ontario</p>
+                <p className="card-text">Toronto Ontario</p>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body">
+            <div className="card border-0">
+              <div className="card-body">
                 <h5>Skills</h5>
-                <p class="card-text">
+                <p className="card-text">
                 C++, JavaScript, Python, Node
                 </p>
               </div>
             </div>
           </div>          
-          <div class="col-9">
-            <div class="card border-0">
-              <div class="card-body title">
+          <div className="col-9">
+            <div className="card border-0">
+              <div className="card-body title">
                 <h1> John Doe</h1>
                 <h4>Software Engineer</h4>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body ">
-                <h5 class="expirience"> Expirience</h5>
-                <p class="card-text expirience">
+            <div className="card border-0">
+              <div className="card-body ">
+                <h5 className="expirience"> Expirience</h5>
+                <p className="card-text expirience">
                   Spark Digital 2014-2021
                   <br></br>
                   Quantum Group 2008-2014
@@ -54,10 +54,10 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body ">
-                <h5 class="expirience"> Projects</h5>
-                <p class="card-text expirience">
+            <div className="card border-0">
+              <div className="card-body ">
+                <h5 className="expirience"> Projects</h5>
+                <p className="card-text expirience">
                   E-commerce Website
                   <br></br>
                   Developed a responsive e-commerce website using React and Node.js, integrating payment gateways and user authentication
@@ -68,10 +68,10 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body ">
-                <h5 class="expirience">Education</h5>
-                <p class="card-text expirience">
+            <div className="card border-0">
+              <div className="card-body ">
+                <h5 className="expirience">Education</h5>
+                <p className="card-text expirience">
                   Concordia Univeristy 
                   Bachelor's of Engineering 2001-2004
                   <br></br>
@@ -84,7 +84,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div class="outline"></div>
+        <div className="outline"></div>
       </div>
       <Footer />
     </div>

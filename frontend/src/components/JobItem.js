@@ -27,6 +27,7 @@ const JobItem = (props) => {
       <p><i className="fa-solid fa-calendar-days"style={iconStyles}></i> {props.posteddate}</p>
       <p className="company-summary">{props.summary}</p>
       <Button 
+          key={props.id}
           title={props.title}
           name={props.name}
           salary={props.salary}

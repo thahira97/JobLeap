@@ -22,6 +22,7 @@ const Button = (props) => {
     <button type="button" class="btn btn-outline-primary" onClick={clickHandler}>Read more</button>
     {description && <Backdrop onClick={closeDescription} />}
     {description && <JobDescription 
+         key={props.id}
          title={props.title}
          name={props.name}
          description={props.description}

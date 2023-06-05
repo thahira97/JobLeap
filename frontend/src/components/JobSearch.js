@@ -1,9 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import "./JobSearch.css";
 import FilterSearch from "./FilterSearch";
 import JobLists from "./JobLists";
+import axios from 'axios';
 
 const dummyData = [
   {
@@ -37,7 +39,7 @@ const dummyData = [
     datePosted: "19/3/2023",
   },
   {
-    id: 1,
+    id: 2,
     companyName: "Innova Post Credit ",
     compImg:
       "https://media.licdn.com/dms/image/D560BAQHNYCRROlQDaA/company-logo_100_100/0/1685627291785?e=1693440000&v=beta&t=tjR82CgFzlBsl2CgnN_0Nh092C5sVrl3_tSvkVeYfOQ",
@@ -91,7 +93,7 @@ const dummyData = [
     datePosted: "19/3/2023",
   },
   {
-    id: 1,
+    id: 3,
     companyName: "Nokia",
     compImg:
       "https://media.licdn.com/dms/image/C4E0BAQGL8hpduEqGKQ/company-logo_100_100/0/1677420438777?e=1693440000&v=beta&t=Q7Dvgtt5pdmHEWuoDDjfDrFB5Vn2OVY7EyJEpW7Lu7o",
@@ -121,7 +123,7 @@ const dummyData = [
     datePosted: "19/3/2023",
   },
   {
-    id: 1,
+    id: 4,
     companyName: "Walmart",
     compImg:
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
@@ -136,7 +138,7 @@ const dummyData = [
     datePosted: "19/3/2023",
   },
   {
-    id: 1,
+    id: 5,
     companyName: "Walmart",
     compImg:
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
@@ -152,6 +154,27 @@ const dummyData = [
   },
 ];
 const JobSearch = (props) => {
+
+  useEffect(() => {
+    axios.get("/api/jobs")
+      .then((response) => {
+        for (const row of response.data){
+          if (row.job_title === props.data.title ){
+            console.log(row)
+            return row
+          }
+          else {
+            console.log("NO MATCH")
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log("DATA",props.data.title)
+  
   return (
     <div>
       <Nav />
