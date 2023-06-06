@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { 
+import {
   BrowserRouter as Router,
   Route,
   Switch,
@@ -15,7 +15,6 @@ import "./App.css";
 import React from "react";
 
 function App() {
-
   const [inputVal, setInputVal] = useState({
     title: "",
     location: "",
@@ -25,23 +24,24 @@ function App() {
     const value = event.target.value;
 
     setInputVal((prev) => {
-      return { ...prev, [name]: value };
+      const inputVal = { ...prev, [name]: value };
+      window.localStorage.setItem("INPUT_VAL", JSON.stringify(inputVal));
+      return inputVal;
     });
-    window.localStorage.setItem('INPUT_VAL', JSON.stringify(inputVal))
-    
   };
   const submitHandler = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <Router>
       <Switch>
         <Route path="/" exact>
-          <Home  
-            onChange={changeHandler} 
-            onSubmit={submitHandler} 
-            data={inputVal}/>
+          <Home
+            onChange={changeHandler}
+            onSubmit={submitHandler}
+            data={inputVal}
+          />
         </Route>
         <Route path="/jobs" exact>
           <JobSearch data={inputVal} />

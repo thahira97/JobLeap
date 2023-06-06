@@ -189,9 +189,6 @@ useEffect(() => {
 }, [props.data.title, props]);
 
 
-
-
-
   return (
     <div>
       <Nav />
