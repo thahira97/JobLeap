@@ -27,10 +27,11 @@ function App() {
     setInputVal((prev) => {
       return { ...prev, [name]: value };
     });
+    window.localStorage.setItem('INPUT_VAL', JSON.stringify(inputVal))
+    
   };
   const submitHandler = (event) => {
     event.preventDefault()
-    console.log(inputVal)
   }
 
   return (

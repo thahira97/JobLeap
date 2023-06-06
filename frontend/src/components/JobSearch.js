@@ -156,19 +156,42 @@ const dummyData = [
 const JobSearch = (props) => {
 
 const [job, setJob]= useState([])
+  
 
-  useEffect(() => {
-    axios.get("/api/jobs")
+
+useEffect(() => {
+  const inputValue = JSON.parse(window.localStorage.getItem('INPUT_VAL')).title;
+
+  axios.get("/api/jobs")
     .then((response) => {
-      const filteredData = response.data.filter((row) => row.job_title === props.data.title);
-      setJob(filteredData);
-      console.log(filteredData)
+      const availableJobs = response.data.map((row) => row.job_title);
+      
+      if (availableJobs.includes(inputValue)) {
+        const filteredData = response.data.filter((row) => row.job_title === props.data.title && row.job_title === inputValue);
+        
+        if (filteredData.length > 0) {
+          window.localStorage.setItem('JOBS_USER_SEARCHES_FOR', JSON.stringify(filteredData));
+          setJob(filteredData);
+        } else {
+          const existingData = JSON.parse(window.localStorage.getItem('JOBS_USER_SEARCHES_FOR'));
+          if (existingData) {
+            setJob(existingData);
+          }
+        }
+      } else {
+        window.localStorage.removeItem('JOBS_USER_SEARCHES_FOR');
+        setJob([]);
+      }
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-   console.log("++++++++", job)
+    .catch((error) => {
+      console.log(error);
+    });
+}, [props.data.title, props]);
+
+
+
+
+
   return (
     <div>
       <Nav />

@@ -9,6 +9,17 @@ const FilterSearch = (props) => {
           <div className="row">
           <div className="col">
             <select className="btn btn-outline--light"  aria-label="Default select example">
+  <option selected >Location</option>
+  <option value="1">Toronto</option>
+  <option value="2">Ottawa</option>
+  <option value="3">Windsor</option>
+  <option value="4">Thunder Bay</option>
+  <option value="5">Burlington</option>
+  
+</select>
+            </div>
+          <div className="col">
+            <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected >Date-Posted</option>
   <option value="1">Past 24 hrs</option>
   <option value="2">Past-week</option>
