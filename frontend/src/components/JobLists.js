@@ -22,16 +22,16 @@ const JobLists = (props) => {
             <JobItem
               key={job.id}
               id={job.id}
-              name={job.companyName}
-              image={job.compImg}
-              title={job.title}
+              name={job.company_name}
+              image={job.company_image}
+              title={job.job_title}
               location={job.location}
-              summary={job.summary}
-              description={job.description}
+              summary={job.job_summary}
+              description={job.job_description}
               salary={job.salary}
               schedule={job.schedule}
-              flextime={job.flexTime}
-              posteddate={job.datePosted}
+              flextime={job.flex_time}
+              posteddate={job.date_posted}
             />
           );
         })}

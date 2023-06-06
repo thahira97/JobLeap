@@ -155,26 +155,20 @@ const dummyData = [
 ];
 const JobSearch = (props) => {
 
+const [job, setJob]= useState([])
+
   useEffect(() => {
     axios.get("/api/jobs")
-      .then((response) => {
-        for (const row of response.data){
-          if (row.job_title === props.data.title ){
-            console.log(row)
-            return row
-          }
-          else {
-            console.log("NO MATCH")
-          }
-        }
-      })
+    .then((response) => {
+      const filteredData = response.data.filter((row) => row.job_title === props.data.title);
+      setJob(filteredData);
+      console.log(filteredData)
+    })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  console.log("DATA",props.data.title)
-  
+   console.log("++++++++", job)
   return (
     <div>
       <Nav />
@@ -186,7 +180,7 @@ const JobSearch = (props) => {
         </div>
         <FilterSearch />
         <div className="job-container">
-          <JobLists jobs={dummyData} />
+          <JobLists jobs={job} />
         </div>
       </div>
       <Footer />
