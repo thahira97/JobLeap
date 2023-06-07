@@ -51,7 +51,7 @@ function Nav() {
                 <a className="nav-link" href="/">My applications</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">My profile</a>
+               <Link to="/user" className="nav-link">My profile</Link> 
               </li>
             </ul>
             :
