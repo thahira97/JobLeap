@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import "./JobSearch.css";
 import FilterSearch from "./FilterSearch";
 import JobLists from "./JobLists";
-import axios from 'axios';
+import axios from "axios";
 
 const dummyData = [
   {
@@ -15,7 +15,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C560BAQF57ipqWkZvpQ/company-logo_100_100/0/1656617304605?e=1693440000&v=beta&t=ejKr_lBSJiX3mOSwtM1UnXGUmNXkxMuFtu7snOfar1E",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -30,7 +31,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -45,9 +47,9 @@ const dummyData = [
       "https://media.licdn.com/dms/image/D560BAQHNYCRROlQDaA/company-logo_100_100/0/1685627291785?e=1693440000&v=beta&t=tjR82CgFzlBsl2CgnN_0Nh092C5sVrl3_tSvkVeYfOQ",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
-    description:
-      `WHAT YOU’LL GET OUT OF IT:
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    description: `WHAT YOU’LL GET OUT OF IT:
 
       $17-$22 Per Hour + Additional Bonus’
       Bi-weekly payroll company events
@@ -99,7 +101,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C4E0BAQGL8hpduEqGKQ/company-logo_100_100/0/1677420438777?e=1693440000&v=beta&t=Q7Dvgtt5pdmHEWuoDDjfDrFB5Vn2OVY7EyJEpW7Lu7o",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps).Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps).Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -114,7 +117,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -129,7 +133,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -144,7 +149,8 @@ const dummyData = [
       "https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1693440000&v=beta&t=DokNoPXWD9qbhQHkugkQwB_AA5UmwMSnxBcMkVaarSA",
     title: "Full-Stack Developer",
     location: "Calgary",
-    summary:"Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
+    summary:
+      "Full stack-developers have a range of responsibilities from shaping and implementing digital products.",
     description:
       "Full stack-developers have a range of responsibilities from shaping and implementing digital products to ensuring that we stay on the leading edge of technology.Our developers take an important role in developing the solution's complete architecture and delivery, and are responsible for creating and maintaining the integration and deployment pipeline (DevOps)",
     salary: "$80,000",
@@ -154,40 +160,64 @@ const dummyData = [
   },
 ];
 const JobSearch = (props) => {
+  const [job, setJob] = useState([]);
 
-const [job, setJob]= useState([])
-  
+  useEffect(() => {
+    const inputValueTitle = JSON.parse(
+      window.localStorage.getItem("INPUT_VAL")
+    ).title;
+    const inputValueLocation = JSON.parse(
+      window.localStorage.getItem("INPUT_VAL")
+    ).location;
 
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/jobs");
 
-useEffect(() => {
-  const inputValue = JSON.parse(window.localStorage.getItem('INPUT_VAL')).title;
+        const filteredData = response.data.filter((row) => {
+          if (props.data.title && props.data.location) {
+            return (
+              row.job_title === props.data.title &&
+              row.location === props.data.location
+            );
+          } else {
+            return (
+              row.job_title === inputValueTitle &&
+              row.location === inputValueLocation
+            );
+          }
+        });
 
-  axios.get("/api/jobs")
-    .then((response) => {
-      const availableJobs = response.data.map((row) => row.job_title);
-      
-      if (availableJobs.includes(inputValue)) {
-        const filteredData = response.data.filter((row) => row.job_title === props.data.title && row.job_title === inputValue);
-        
-        if (filteredData.length > 0) {
-          window.localStorage.setItem('JOBS_USER_SEARCHES_FOR', JSON.stringify(filteredData));
+        if (
+          filteredData.length === 0 &&
+          props.data.title &&
+          props.data.location
+        ) {
+          window.localStorage.removeItem("JOBS_USER_SEARCHES_FOR");
+          setJob([]);
+        } else if (filteredData.length > 0) {
+          window.localStorage.setItem(
+            "JOBS_USER_SEARCHES_FOR",
+            JSON.stringify(filteredData)
+          );
           setJob(filteredData);
         } else {
-          const existingData = JSON.parse(window.localStorage.getItem('JOBS_USER_SEARCHES_FOR'));
-          if (existingData) {
+          const existingData = JSON.parse(
+            window.localStorage.getItem("JOBS_USER_SEARCHES_FOR")
+          );
+          if (existingData && existingData.length > 0) {
             setJob(existingData);
+          } else {
+            setJob([]);
           }
         }
-      } else {
-        window.localStorage.removeItem('JOBS_USER_SEARCHES_FOR');
-        setJob([]);
+      } catch (error) {
+        console.log(error);
       }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, [props.data.title, props]);
+    };
 
+    fetchData();
+  }, [props.data.title, props.data.location]);
 
   return (
     <div>

@@ -24,6 +24,7 @@ function App() {
     const value = event.target.value;
 
     setInputVal((prev) => {
+      window.localStorage.removeItem("INPUT_VAL")
       const inputVal = { ...prev, [name]: value };
       window.localStorage.setItem("INPUT_VAL", JSON.stringify(inputVal));
       return inputVal;
