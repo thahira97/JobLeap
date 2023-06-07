@@ -10,5 +10,5 @@ CREATE TABLE job_listings (
   location VARCHAR(255) NOT NULL,
   schedule VARCHAR(255) NOT NULL,
   flex_time VARCHAR(255) NOT NULL,
-  date_posted TIMESTAMP
+  date_posted VARCHAR(255) NOT NULL
 );
