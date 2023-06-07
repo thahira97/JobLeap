@@ -1,59 +1,86 @@
 import React from "react";
+import { useState } from "react";
 import "./FilterSearch.css";
 
 const FilterSearch = (props) => {
+  const [locationState, setLocationState] = useState("");
+  const [dateState, setDateState] = useState("");
+  const [scheduleState, setScheduleState] = useState("");
+  const [flexTimeState, setFlexTimeState] = useState("");
+  const [salaryState, setSalaryState] = useState("");
+
+  const selectedOption = (event) => {
+    setLocationState(event.target.value)
+  }
   return (
     <div className="search-filter">
       <div className="container text-center">
         <form>
           <div className="row">
-          <div className="col">
-            <select className="btn btn-outline--light"  aria-label="Default select example">
-  <option selected >Location</option>
-  <option value="1">Toronto</option>
-  <option value="2">Hamilton</option>
-  <option value="3">Windsor</option>
-  <option value="4">Thunder Bay</option>
-  <option value="5">Oakville</option>
-  
-</select>
-            </div>
-          <div className="col">
-            <select className="btn btn-outline--light"  aria-label="Default select example">
-  <option selected >Date-Posted</option>
-  <option value="1">Past 24 hrs</option>
-  <option value="2">Past-week</option>
-  <option value="3">Past-month</option>
-  
-</select>
+            <div className="col">
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+                value={locationState}
+                onChange={selectedOption}
+              >
+                <option >Location</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Hamilton">Hamilton</option>
+                <option value="Windsor">Windsor</option>
+                <option value="Thunder Bay">Thunder Bay</option>
+                <option value="Oakville">Oakville</option>
+              </select>
             </div>
             <div className="col">
-            <select className="btn btn-outline--light"  aria-label="Default select example">
-  <option selected >Schedule</option>
-  <option value="1">Full-time</option>
-  <option value="2">Part-time</option>
-  <option value="3">Internship</option>
-</select>
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+              >
+                <option >Date-Posted</option>
+                <option value="Past 24 hrs">Past 24 hrs</option>
+                <option value="Past-week">Past-week</option>
+                <option value="Past-month">Past-month</option>
+              </select>
             </div>
             <div className="col">
-            <select className="btn btn-outline--light"  aria-label="Default select example">
-  <option selected>On-site/remote</option>
-  <option value="1">On-site</option>
-  <option value="2">Remote</option>
-  <option value="3">Hybrid</option>
-</select>
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+              >
+                <option>Schedule</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Internship">Internship</option>
+              </select>
             </div>
             <div className="col">
-            <select className="btn btn-outline--light"  aria-label="Default select example">
-  <option selected>Salary</option>
-  <option value="1">$40,000+</option>
-  <option value="2">$60,000+</option>
-  <option value="3">$80,000+</option>
-  <option value="4">$90,000+</option>
-</select>
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+              >
+                <option>On-site/remote</option>
+                <option value="On-site<">On-site</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
             </div>
             <div className="col">
-              <button type="button" className="btn btn-primary">Search</button>
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+              >
+                <option>Salary</option>
+                <option value="$40,000+">$40,000+</option>
+                <option value="$60,000+">$60,000+</option>
+                <option value="$80,000+">$80,000+</option>
+                <option value="$90,000+">$90,000+</option>
+              </select>
+            </div>
+            <div className="col">
+              <button type="button" className="btn btn-primary">
+                Search
+              </button>
             </div>
           </div>
         </form>
