@@ -11,10 +11,10 @@ const FilterSearch = (props) => {
             <select className="btn btn-outline--light"  aria-label="Default select example">
   <option selected >Location</option>
   <option value="1">Toronto</option>
-  <option value="2">Ottawa</option>
+  <option value="2">Hamilton</option>
   <option value="3">Windsor</option>
   <option value="4">Thunder Bay</option>
-  <option value="5">Burlington</option>
+  <option value="5">Oakville</option>
   
 </select>
             </div>
