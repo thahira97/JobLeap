@@ -1,30 +1,52 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./FilterSearch.css";
 
 const FilterSearch = (props) => {
-  // const [locationState, setLocationState] = useState("");
-  // const [dateState, setDateState] = useState("");
-  // const [scheduleState, setScheduleState] = useState("");
-  // const [flexTimeState, setFlexTimeState] = useState("");
-  // const [salaryState, setSalaryState] = useState("");
-  const [selectedState, setSelectedState] = useState({
+  const defaultState = {
     location: "",
     datePosted: "",
     schedule: "",
     flexTime: "",
-    salary: ""
-  })
+    salary: "",
+  };
+  const [selectedState, setSelectedState] = useState(defaultState);
+  const [filteredState, setFilteredState] = useState("");
 
   const selectedOptionHandler = (event) => {
-   const name = event.target.name;
-   const value = event.target.value;
+    const name = event.target.name;
+    const value = event.target.value;
 
-   setSelectedState((prev)=>{
-    return {...prev, [name]: value}
-   })
-  }
- 
+    setSelectedState((selectedState) => {
+      return { ...selectedState, [name]: value };
+    });
+  };
+  useEffect(() => {
+    if (
+      Object.values(selectedState).every(
+        (value) => value === "" || props.apiData.length === 0
+      )
+    ) {
+      setFilteredState([]);
+      return;
+    }
+    const refinedData = props.apiData.filter((job) => {
+      return (
+        (
+          selectedState.location === job.location) &&
+        (
+          selectedState.datePosted === job.datePosted) &&
+        (
+          selectedState.schedule === job.schedule) &&
+        (
+          selectedState.flexTime === job.flexTime) &&
+        ( selectedState.salary === job.salary)
+      );
+    });
+    setSelectedState(refinedData);
+    console.log("++++++++", selectedState);
+  }, [props.apiData, selectedState]);
 
   return (
     <div className="search-filter">
@@ -55,7 +77,7 @@ const FilterSearch = (props) => {
                 value={selectedState.datePosted}
                 onChange={selectedOptionHandler}
               >
-                <option value="" >Date-Posted</option>
+                <option value="">Date-Posted</option>
                 <option value="Past 24 hrs">Past 24 hrs</option>
                 <option value="Past-week">Past-week</option>
                 <option value="Past-month">Past-month</option>

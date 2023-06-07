@@ -161,6 +161,20 @@ const dummyData = [
 ];
 const JobSearch = (props) => {
   const [job, setJob] = useState([]);
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/jobs");
+        setApiData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const inputValueTitle = JSON.parse(
@@ -170,54 +184,44 @@ const JobSearch = (props) => {
       window.localStorage.getItem("INPUT_VAL")
     ).location;
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/jobs");
-
-        const filteredData = response.data.filter((row) => {
-          if (props.data.title && props.data.location) {
-            return (
-              row.job_title === props.data.title &&
-              row.location === props.data.location
-            );
-          } else {
-            return (
-              row.job_title === inputValueTitle &&
-              row.location === inputValueLocation
-            );
-          }
-        });
-
-        if (
-          filteredData.length === 0 &&
-          props.data.title &&
-          props.data.location
-        ) {
-          window.localStorage.removeItem("JOBS_USER_SEARCHES_FOR");
-          setJob([]);
-        } else if (filteredData.length > 0) {
-          window.localStorage.setItem(
-            "JOBS_USER_SEARCHES_FOR",
-            JSON.stringify(filteredData)
-          );
-          setJob(filteredData);
-        } else {
-          const existingData = JSON.parse(
-            window.localStorage.getItem("JOBS_USER_SEARCHES_FOR")
-          );
-          if (existingData && existingData.length > 0) {
-            setJob(existingData);
-          } else {
-            setJob([]);
-          }
-        }
-      } catch (error) {
-        console.log(error);
+    const filteredData = apiData.filter((row) => {
+      if (props.data.title && props.data.location) {
+        return (
+          row.job_title === props.data.title &&
+          row.location === props.data.location
+        );
+      } else {
+        return (
+          row.job_title === inputValueTitle &&
+          row.location === inputValueLocation
+        );
       }
-    };
+    });
 
-    fetchData();
-  }, [props.data.title, props.data.location]);
+    if (
+      filteredData.length === 0 &&
+      props.data.title &&
+      props.data.location
+    ) {
+      window.localStorage.removeItem("JOBS_USER_SEARCHES_FOR");
+      setJob([]);
+    } else if (filteredData.length > 0) {
+      window.localStorage.setItem(
+        "JOBS_USER_SEARCHES_FOR",
+        JSON.stringify(filteredData)
+      );
+      setJob(filteredData);
+    } else {
+      const existingData = JSON.parse(
+        window.localStorage.getItem("JOBS_USER_SEARCHES_FOR")
+      );
+      if (existingData && existingData.length > 0) {
+        setJob(existingData);
+      } else {
+        setJob([]);
+      }
+    }
+  }, [props.data.title, props.data.location, apiData]);
 
   return (
     <div>
@@ -228,7 +232,7 @@ const JobSearch = (props) => {
             <img src="jobsearch3.jpg" alt="..." />
           </div>
         </div>
-        <FilterSearch />
+        <FilterSearch apiData={apiData} />
         <div className="job-container">
           <JobLists jobs={job} />
         </div>
@@ -239,3 +243,4 @@ const JobSearch = (props) => {
 };
 
 export default JobSearch;
+
