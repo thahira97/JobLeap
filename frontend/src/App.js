@@ -8,9 +8,9 @@ import {
 import Home from "./components/Home";
 import JobSearch from "./components/JobSearch";
 import Profile from "./components/Profile";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import ForgotPassword from "./components/ForgotPassword";
+import Signup from "./components/Auth/Signup";
+import Login from "./components/Auth/Login";
+import ForgotPassword from "./components/Auth/ForgotPassword";
 import "./App.css";
 import React from "react";
 
