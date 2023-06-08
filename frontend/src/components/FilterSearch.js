@@ -4,50 +4,53 @@ import axios from "axios";
 import "./FilterSearch.css";
 
 const FilterSearch = (props) => {
-  const defaultState = {
-    location: "",
-    datePosted: "",
-    schedule: "",
-    flexTime: "",
-    salary: "",
-  };
-  const [selectedState, setSelectedState] = useState(defaultState);
-  const [filteredState, setFilteredState] = useState("");
+ 
 
-  const selectedOptionHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  // const defaultState = {
+  //   location: "",
+  //   datePosted: "",
+  //   schedule: "",
+  //   flexTime: "",
+  //   salary: "",
+  // };
 
-    setSelectedState((selectedState) => {
-      return { ...selectedState, [name]: value };
-    });
-  };
-  useEffect(() => {
-    if (
-      Object.values(selectedState).every(
-        (value) => value === "" || props.apiData.length === 0
-      )
-    ) {
-      setFilteredState([]);
-      return;
-    }
-    const refinedData = props.apiData.filter((job) => {
-      return (
-        (
-          selectedState.location === job.location) &&
-        (
-          selectedState.datePosted === job.datePosted) &&
-        (
-          selectedState.schedule === job.schedule) &&
-        (
-          selectedState.flexTime === job.flexTime) &&
-        ( selectedState.salary === job.salary)
-      );
-    });
-    setSelectedState(refinedData);
-    console.log("++++++++", selectedState);
-  }, [props.apiData, selectedState]);
+  // const [arrayList, setArrayList] = useState([]);
+  // const [filterValues, setFilterValues] = useState(defaultState);
+  // const [filteredList, setFilteredList] = useState([]);
 
+  // useEffect(() => {
+  //   setFilterValues(props.apiData);
+  //   setFilteredList(props.apiData);
+  // }, []);
+  
+  // const props.handleFilterChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFilterValues(prevState => ({
+  //     ...prevState,
+  //     [name]: value
+  //   }));
+  //   filterArray(filterValues); // Call the filterArray function with updated filter values
+  // };
+
+  // const filterArray = (filterValues) => {
+  //   let filteredArray = [...arrayList];
+  
+  //   Object.entries(filterValues).forEach(([filterName, filterValue]) => {
+  //     if (filterValue !== '') {
+  //       filteredArray = filteredArray.filter(item =>
+  //         item[filterName] === filterValue
+  //       );
+  //     }
+  //   });
+  
+  //   setFilteredList(filteredArray);
+  // };
+  
+  // const searchHandler= ()=> {
+  //   setFilteredState(selectedState)
+  //   console.log(filteredState)
+  // }
+  
   return (
     <div className="search-filter">
       <div className="container text-center">
@@ -58,14 +61,13 @@ const FilterSearch = (props) => {
                 className="btn btn-outline--light"
                 aria-label="Default select example"
                 name="location"
-                value={selectedState.location}
-                onChange={selectedOptionHandler}
+                value={props.filterValues.location}
+                onChange={props.handleFilterChange}
               >
                 <option value="">Location</option>
                 <option value="Toronto">Toronto</option>
                 <option value="Hamilton">Hamilton</option>
                 <option value="Windsor">Windsor</option>
-                <option value="Thunder Bay">Thunder Bay</option>
                 <option value="Oakville">Oakville</option>
               </select>
             </div>
@@ -73,14 +75,15 @@ const FilterSearch = (props) => {
               <select
                 className="btn btn-outline--light"
                 aria-label="Default select example"
-                name="datePosted"
-                value={selectedState.datePosted}
-                onChange={selectedOptionHandler}
+                name="date_posted"
+                value={props.filterValues.datePosted}
+                onChange={props.handleFilterChange}
               >
                 <option value="">Date-Posted</option>
-                <option value="Past 24 hrs">Past 24 hrs</option>
-                <option value="Past-week">Past-week</option>
-                <option value="Past-month">Past-month</option>
+                <option value="1 day ago">Past day</option>
+                <option value="3 days ago">Past 3 days</option>
+                <option value="1 week ago">Past week</option>
+                <option value="1 month ago">Past month</option>
               </select>
             </div>
             <div className="col">
@@ -88,12 +91,12 @@ const FilterSearch = (props) => {
                 className="btn btn-outline--light"
                 aria-label="Default select example"
                 name="schedule"
-                value={selectedState.schedule}
-                onChange={selectedOptionHandler}
+                value={props.filterValues.schedule}
+                onChange={props.handleFilterChange}
               >
                 <option>Schedule</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
+                <option value="Full-Time">Full-time</option>
+                <option value="Part-Time">Part-time</option>
                 <option value="Internship">Internship</option>
               </select>
             </div>
@@ -101,9 +104,9 @@ const FilterSearch = (props) => {
               <select
                 className="btn btn-outline--light"
                 aria-label="Default select example"
-                name="flexTime"
-                value={selectedState.flexTime}
-                onChange={selectedOptionHandler}
+                name="flex_time"
+                value={props.filterValues.flexTime}
+                onChange={props.handleFilterChange}
               >
                 <option>On-site/remote</option>
                 <option value="On-site<">On-site</option>
@@ -116,21 +119,20 @@ const FilterSearch = (props) => {
                 className="btn btn-outline--light"
                 aria-label="Default select example"
                 name="salary"
-                value={selectedState.salary}
-                onChange={selectedOptionHandler}
+                value={props.filterValues.salary}
+                onChange={props.handleFilterChange}
               >
                 <option>Salary</option>
-                <option value="$40,000+">$40,000+</option>
-                <option value="$60,000+">$60,000+</option>
-                <option value="$80,000+">$80,000+</option>
-                <option value="$90,000+">$90,000+</option>
+                <option value="$60,000">$60,000+</option>
+                <option value="$65,000">$80,000+</option>
+                <option value="$70,000">$90,000+</option>
               </select>
             </div>
-            <div className="col">
-              <button type="button" className="btn btn-primary">
+            {/* <div className="col">
+              <button type="button" className="btn btn-primary" onClick={searchHandler}>
                 Search
               </button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>
