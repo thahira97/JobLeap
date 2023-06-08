@@ -33,6 +33,9 @@ app.use('/api/jobs', jobsRoutes);
 const authRoutes = require('./routes/auth-routes');
 app.use('/api/auth', authRoutes);
 
+const resumesRoutes = require('./routes/resumes-routes');
+app.use('/api/resumes', resumesRoutes);
+
 ////////////////////////////////////////////////////////////
 // Listener
 ////////////////////////////////////////////////////////////

@@ -27,7 +27,7 @@ function Nav() {
               }
               {currentUser &&
               <li className="nav-item">
-               <Link to="/user" className="nav-link">My profile</Link> 
+               <Link to="/profile" className="nav-link">My profile</Link> 
               </li>
               }
             </ul>

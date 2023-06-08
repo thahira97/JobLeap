@@ -1,8 +1,34 @@
-import "./Profile.css";
+import { useState, useEffect, useContext } from "react";
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
+import { AuthContext } from '../context/authContext';
 import Nav from "./Nav";
 import Footer from "./Footer";
+import "./Profile.css";
 
 function Profile() {
+
+  const [resume, setResume] = useState({});
+  const { currentUser } = useContext(AuthContext);
+  const userID = currentUser.id;
+  const history = useHistory();
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/resumes/user/${userID}`);
+        if (res.data) {
+          setResume(res.data);
+        } else {
+          history.push("/profile/new");
+        }
+      } catch(err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [userID]);
+
   return (
     <div>
       <Nav />
@@ -15,8 +41,7 @@ function Profile() {
                 <img src="1-profile.jpg" className="img-thumbnail" alt="..."></img>
                 <h4>About me</h4>
                 <p className="card-text">
-                  Experienced software engineer with expertise in web
-                  development
+                  {resume.summary}
                 </p>
               </div>
             </div>
@@ -38,8 +63,8 @@ function Profile() {
           <div className="col-9">
             <div className="card border-0">
               <div className="card-body title">
-                <h1> John Doe</h1>
-                <h4>Software Engineer</h4>
+                <h1>{resume.name}</h1>
+                <h4>{resume.present_job}</h4>
               </div>
             </div>
             <div className="card border-0">
