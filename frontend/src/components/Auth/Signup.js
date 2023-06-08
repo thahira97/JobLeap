@@ -7,36 +7,33 @@ import './Auth.css';
 
 const Signup = () => {
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+  const [error, setError] = useState(null);
   const history = useHistory();
 
-  const signup = (event) => {
-    event.preventDefault();
-    axios.post('http://localhost:8080/signup', {
-      name: name,
-      email: email,
-      password: password
-    })
-    .then(res => {
-      if (res.data.Status === "Success") {
-        history.push("/login");
-      } else {
-        alert(res.data.Error);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  const handleChange = e => {
+    setInput(prev => ({...prev, [e.target.name]: e.target.value}))
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8080/api/auth/signup", input);
+      history.push("/login");
+    } catch(err) {
+      setError(err.response.data);
+    }
   };
 
   return (
     <div className="auth-page">
       <Nav />
       <div className="auth-container">
-        <form className="auth-form" onSubmit={signup}>
+        <form className="auth-form">
           <div className="form-header">
             <h3>Sign Up</h3>
             <p>Create an account and build your impressive resume today!</p>
@@ -46,8 +43,9 @@ const Signup = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Your Name"
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+              name="name"
+              onChange={handleChange}
               required
             />
           </div>
@@ -57,7 +55,8 @@ const Signup = () => {
               type="email"
               className="form-control"
               placeholder="name@email.com"
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              onChange={handleChange}
               required
             />
           </div>
@@ -67,13 +66,19 @@ const Signup = () => {
               type="password"
               className="form-control"
               placeholder="●●●●●●●●"
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              onChange={handleChange}
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
             Sign up
           </button>
+          {error &&
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+          }
         </form>
         <div className="switch-auth-page">
           Already have an account? <Link to="/login">Log in</Link>

@@ -1,8 +1,8 @@
 INSERT INTO users (name, email, password)
-VALUES ('Alice', 'alice@gmail.com', 'lollipop');
+VALUES ('Alice Smith', 'asmith@gmail.com', 'password');
 
 INSERT INTO users (name, email, password)
-VALUES ('Harry', 'harry@gmail.com', 'icecream');
+VALUES ('Harry Brown', 'hbrown@gmail.com', 'password');
 
 INSERT INTO users (name, email, password)
-VALUES ('Nick', 'nick@gmail.com', 'candy');
+VALUES ('Nick Johnson', 'njohnson@gmail.com', 'password');

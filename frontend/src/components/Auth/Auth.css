@@ -38,6 +38,13 @@
   margin-top: 16px;
 }
 
+.auth-page .alert {
+  margin-top: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
 .auth-page .switch-auth-page {
   margin-top: 32px;
   text-align: center;

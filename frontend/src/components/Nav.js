@@ -1,36 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
+import { AuthContext } from '../context/authContext';
 import './Nav.css';
 
 function Nav() {
-  
-  const [auth, setAuth] = useState(false);
-  // const [message, setMessage] = useState("");
-  const [name, setName] = useState("");
 
-  Axios.defaults.withCredentials = true;
-
-  useEffect(() => {
-    Axios.get('http://localhost:8080')
-    .then(res => {
-      if (res.data.Status === "Success") {
-        setAuth(true);
-        setName(res.data.name);
-      } else {
-        setAuth(false);
-        // setMessage(res.data.Error);
-      }
-    })
-  }, [])
-
-  const logout = () => {
-    Axios.get('http://localhost:8080/logout')
-    .then(res => {
-      window.location.reload(true); 
-    })
-    .catch(err => console.log(err));
-  };
+  const { currentUser, logout } = useContext(AuthContext);
 
   return (
     <nav className="navbar navbar-expand-lg" aria-label="Tenth navbar example">
@@ -41,38 +16,32 @@ function Nav() {
         </button>
 
         <div className="collapse navbar-collapse justify-content-md-center" id="navbar">
-          {
-            auth ?
             <ul className="navbar-nav">
               <li className="nav-item">
                 <a className="nav-link" href="/">Find jobs</a>
               </li>
+              {currentUser &&
               <li className="nav-item">
                 <a className="nav-link" href="/">My applications</a>
               </li>
+              }
+              {currentUser &&
               <li className="nav-item">
                <Link to="/user" className="nav-link">My profile</Link> 
               </li>
+              }
             </ul>
-            :
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/">Find jobs</a>
-              </li>
-            </ul>
-          }
         </div>
 
         <div className="d-flex">
-          
             {
-              auth ?
+              currentUser ?
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <span className="nav-link">Logged in as {name}</span>
+                  <span className="nav-link">Logged in as {currentUser.name}</span>
                 </li>
                 <li className="nav-item">
-                  <Link to="/logout" className="nav-link" onClick={logout}>Log out</Link>
+                  <Link to="/" className="nav-link" onClick={logout}>Log out</Link>
                 </li>
               </ul>
               :
