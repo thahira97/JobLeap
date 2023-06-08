@@ -56,6 +56,20 @@ const FilterSearch = (props) => {
       <div className="container text-center">
         <form>
           <div className="row">
+          <div className="col">
+              <select
+                className="btn btn-outline--light"
+                aria-label="Default select example"
+                name="job_title"
+                value={props.filterValues.jobTitle}
+                onChange={props.handleFilterChange}
+              >
+                <option value="">Job Title</option>
+                <option value="Full-Stack developer">Web developer</option>
+                <option value="Sales Associate">Sales Associate</option>
+                <option value="Administrative Assistant">Administrative Assistant</option>
+              </select>
+            </div>
             <div className="col">
               <select
                 className="btn btn-outline--light"
