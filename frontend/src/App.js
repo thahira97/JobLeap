@@ -13,6 +13,7 @@ import Resumes from "./components/Resumes";
 import Signup from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import ResumeSelect from "./components/ResumeSelect"
 import "./App.css";
 import React from "react";
 
@@ -63,6 +64,9 @@ function App() {
         </Route>
         <Route path="/forgot-password" exact>
           <ForgotPassword />
+        </Route>
+        <Route path="/resume/select" exact>
+          <ResumeSelect />
         </Route>
         <Route path="/resumes" exact>
           <Resumes />
