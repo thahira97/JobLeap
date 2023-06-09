@@ -1,6 +1,9 @@
 INSERT INTO education (resume_id, degree, university_name)
 VALUES (1, 'Bachelors of Engineering', 'Concordia Univeristy');
 
+INSERT INTO education (resume_id, degree, university_name)
+VALUES (1, 'Diploma in Web Development', 'Lighthouse Labs');
+
 INSERT INTO education (resume_id,degree, university_name)
 VALUES (2, 'Bachelors of Science', 'Toronto Univeristy');
 

@@ -1,0 +1,51 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  padding: 40px;
+}
+  
+.auth-form {
+  width: 400px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-page .auth-form .form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-page .auth-form .form-group {
+  margin-bottom: 24px;
+}
+
+.auth-page .auth-form label {
+  margin-bottom: 8px;
+}
+
+.auth-page .forgot-password {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.auth-page .btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.auth-page .alert {
+  margin-top: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.auth-page .switch-auth-page {
+  margin-top: 32px;
+  text-align: center;
+}

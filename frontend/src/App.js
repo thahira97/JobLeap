@@ -8,9 +8,11 @@ import {
 import Home from "./components/Home";
 import JobSearch from "./components/JobSearch";
 import Profile from "./components/Profile";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import ForgotPassword from "./components/ForgotPassword";
+import CreateProfile from "./components/CreateProfile";
+import Resumes from "./components/Resumes";
+import Signup from "./components/Auth/Signup";
+import Login from "./components/Auth/Login";
+import ForgotPassword from "./components/Auth/ForgotPassword";
 import "./App.css";
 import React from "react";
 
@@ -47,8 +49,11 @@ function App() {
         <Route path="/jobs" exact>
           <JobSearch data={inputVal} />
         </Route>
-        <Route path="/user" exact>
+        <Route path="/profile" exact>
           <Profile />
+        </Route>
+        <Route path="/profile/new" exact>
+          <CreateProfile />
         </Route>
         <Route path="/signup" exact>
           <Signup />
@@ -58,6 +63,9 @@ function App() {
         </Route>
         <Route path="/forgot-password" exact>
           <ForgotPassword />
+        </Route>
+        <Route path="/resumes" exact>
+          <Resumes />
         </Route>
         <Redirect to="/" />
       </Switch>

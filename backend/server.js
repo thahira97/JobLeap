@@ -1,22 +1,45 @@
-const PORT = process.env.PORT || 3000;
-const express = require("express");
+const express = require('express');
 const cors = require('cors');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
-const jobsRoutes = require("./routes/jobs-routes");
+////////////////////////////////////////////////////////////
+// Configuration
+////////////////////////////////////////////////////////////
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
+////////////////////////////////////////////////////////////
+// Middleware
+////////////////////////////////////////////////////////////
 
-///////////////
-//MIDDLEWARE///
-///////////////
+app.use(express.json());
+app.use(cors({
+  origin: ['http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
-app.use(cors());
-app.use(bodyParser.json())
-app.use('/api/jobs',jobsRoutes);
+////////////////////////////////////////////////////////////
+// Routes
+////////////////////////////////////////////////////////////
 
+const jobsRoutes = require('./routes/jobs-routes');
+app.use('/api/jobs', jobsRoutes);
+
+const authRoutes = require('./routes/auth-routes');
+app.use('/api/auth', authRoutes);
+
+const resumesRoutes = require('./routes/resumes-routes');
+app.use('/api/resumes', resumesRoutes);
+
+////////////////////////////////////////////////////////////
+// Listener
+////////////////////////////////////////////////////////////
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
