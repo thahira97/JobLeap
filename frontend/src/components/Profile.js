@@ -30,6 +30,16 @@ function Profile() {
     fetchData();
   }, [userID]);
 
+  const textResume = `Name: ${resume.name} \n
+  Title: ${resume.present_job} \n
+  About me: ${resume.summary} \n
+  Experience: ${resume.company} ${resume.start_date}${resume.end_date}\n
+  ${resume.description} \n
+  Skills: ${resume.skills} \n
+  Projects: ${resume.project_name} ${resume.project_description} \n
+  Education: ${resume.degree} ${resume.university_name}
+` 
+
   return (
     <div>
       <Nav />
@@ -73,9 +83,10 @@ function Profile() {
                 <h5 className="expirience"> Experience</h5>
                 <p className="card-text expirience">
                 {resume.company} {resume.start_date}-{resume.end_date}  
-        
-                  <br></br>
-                  TechHub 2005-2008
+                <div>
+                {resume.description}
+                </div>
+      
                 </p>
               </div>
             </div>

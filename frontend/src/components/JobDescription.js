@@ -1,15 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
+import { ResumeContext } from '../context/resumeContext';
 
 import "./JobDescription.css";
 import Card from "./Card";
 
 const JobDescription = (props) => {
+
+  const { jobDescription ,setJobDescription } = useContext(ResumeContext);
  
   const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
+  const [previousChats, setPreviousChats ] = useState([ ])
+
+
 
   const getMessages = async() => {
+    setJobDescription(props.description)
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -40,6 +47,9 @@ border: "1px",
 boxShadow: "none"
 }
 
+useEffect(() => {
+console.log("+++++",jobDescription)
+}, [jobDescription])
 console.log("MESSAGE",message)
 
 return <div className="job-description">

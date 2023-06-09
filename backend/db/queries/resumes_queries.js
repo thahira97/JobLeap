@@ -16,6 +16,7 @@ const getResume = (req, res) => {
   JOIN projects ON projects.resume_id = resumes.id
   WHERE users.id = $1`, [req.params.id], (err, data) => {
     if (err) return res.status(500).json(err);
+    console.log("iiiiiiiii",data.rows)
     return res.status(200).json(data.rows[0]);
   });
 };
