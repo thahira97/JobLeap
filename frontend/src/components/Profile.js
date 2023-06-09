@@ -18,6 +18,7 @@ function Profile() {
       try {
         const res = await axios.get(`http://localhost:8080/api/resumes/user/${userID}`);
         if (res.data) {
+          console.log(res.data)
           setResume(res.data);
         } else {
           history.push("/profile/new");
@@ -38,7 +39,7 @@ function Profile() {
           <div className="col-3">
             <div className="card border-0">
               <div className="card-body">
-                <img src="1-profile.jpg" className="img-thumbnail" alt="..."></img>
+                <img src={resume.user_img} className="img-thumbnail" alt={resume.name}></img>
                 <h4>About me</h4>
                 <p className="card-text">
                   {resume.summary}
@@ -48,14 +49,14 @@ function Profile() {
             <div className="card border-0">
               <div className="card-body">
                 <h5>Location</h5>
-                <p className="card-text">Toronto Ontario</p>
+                <p className="card-text">{resume.location}</p>
               </div>
             </div>
             <div className="card border-0">
               <div className="card-body">
                 <h5>Skills</h5>
                 <p className="card-text">
-                C++, JavaScript, Python, Node
+              {resume.skills}
                 </p>
               </div>
             </div>
@@ -69,11 +70,10 @@ function Profile() {
             </div>
             <div className="card border-0">
               <div className="card-body ">
-                <h5 className="expirience"> Expirience</h5>
+                <h5 className="expirience"> Experience</h5>
                 <p className="card-text expirience">
-                  Spark Digital 2014-2021
-                  <br></br>
-                  Quantum Group 2008-2014
+                {resume.company} {resume.start_date}-{resume.end_date}  
+        
                   <br></br>
                   TechHub 2005-2008
                 </p>
@@ -83,13 +83,11 @@ function Profile() {
               <div className="card-body ">
                 <h5 className="expirience"> Projects</h5>
                 <p className="card-text expirience">
-                  E-commerce Website
+                 {resume.project_name}
                   <br></br>
-                  Developed a responsive e-commerce website using React and Node.js, integrating payment gateways and user authentication
+                  {resume.project_description}
                   <br></br>  <br></br>
-                  Restaurant Application
-                  <br></br>
-                Developed a responsive restaurant application website using Java and python, allowing business' to reach a wide rage of customers. 
+                 <img src={resume.project_img} alt={resume.project_name} width="200px" />
                 </p>
               </div>
             </div>
@@ -97,13 +95,8 @@ function Profile() {
               <div className="card-body ">
                 <h5 className="expirience">Education</h5>
                 <p className="card-text expirience">
-                  Concordia Univeristy 
-                  Bachelor's of Engineering 2001-2004
-                  <br></br>
-                  Marianopolis
-                  Computer Science 2002-2004
-                  <br></br>
-                 Royal West Academy 1996-2003
+                 {resume.degree} - {resume.university_name}
+                   <br></br>
                 </p>
               </div>
             </div>

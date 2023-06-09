@@ -8,7 +8,13 @@ const getResumes = (req, res) => {
 };
 
 const getResume = (req, res) => {
-  db.query("SELECT resumes.*, name, email FROM users JOIN resumes ON users.id = resumes.user_id WHERE users.id = $1", [req.params.id], (err, data) => {
+  db.query(`SELECT resumes.*, education.*, experiences.*,projects.*, users.name, users.email
+  FROM resumes 
+  JOIN users ON resumes.user_id = users.id
+  JOIN experiences ON experiences.resume_id = resumes.id 
+  JOIN education ON education.resume_id = resumes.id 
+  JOIN projects ON projects.resume_id = resumes.id
+  WHERE users.id = $1`, [req.params.id], (err, data) => {
     if (err) return res.status(500).json(err);
     return res.status(200).json(data.rows[0]);
   });
