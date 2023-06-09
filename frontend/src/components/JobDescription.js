@@ -4,7 +4,25 @@ import "./JobDescription.css";
 import Card from "./Card";
 
 const JobDescription = (props) => {
-
+  const getMessages = async() => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        message: "hello, how are you?"
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    try {
+      const response = await fetch('http://localhost:8080/completions', options)
+      const data = await response.json()
+      console.log(data)
+    }
+    catch(error) {
+      console.log(error)
+    }
+  }
 const moneyIconStyle={
   color: "#5a8774",
 };
@@ -36,7 +54,7 @@ return <div className="job-description">
     <button class="btn btn-primary" type="submit">Apply using old resume</button>
     </div>
     <div className="modify-mutton">
-    <button class="btn btn-primary" type="submit">Modify resume</button>
+    <button class="btn btn-primary" type="submit" onClick={getMessages}>Modify resume</button>
     </div>
   </div>
 </div>
