@@ -7,6 +7,12 @@ CREATE TABLE resumes (
   summary VARCHAR NOT NULL,
   user_img VARCHAR,
   skills VARCHAR(255) NOT NULL,
+  position_company VARCHAR(255) NOT NULL,
+  years_worked VARCHAR(255) NOT NULL,
+  experience VARCHAR ,
   phone_number VARCHAR NOT NULL,
+  project_name VARCHAR(255) NOT NULL,
+  project_img VARCHAR,
+  project_description VARCHAR(255) NOT NULL,
   is_original BOOLEAN
 );

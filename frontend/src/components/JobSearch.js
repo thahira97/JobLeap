@@ -1,11 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import "./JobSearch.css";
 import FilterSearch from "./FilterSearch";
 import JobLists from "./JobLists";
 import axios from "axios";
+import { ResumeContext } from '../context/resumeContext';
 
 const dummyData = [
   {
@@ -161,6 +162,7 @@ const dummyData = [
 ];
 const JobSearch = (props) => {
   const [job, setJob] = useState([]);
+  const { myExperience } = useContext(ResumeContext);
 
   useEffect(() => {
     const inputValueTitle = JSON.parse(
@@ -169,7 +171,7 @@ const JobSearch = (props) => {
     const inputValueLocation = JSON.parse(
       window.localStorage.getItem("INPUT_VAL")
     ).location;
-
+    console.log("ghfjsgdfhjgsdhf",myExperience)
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/jobs");

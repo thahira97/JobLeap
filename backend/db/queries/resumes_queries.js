@@ -8,13 +8,14 @@ const getResumes = (req, res) => {
 };
 
 const getResume = (req, res) => {
-  db.query(`SELECT resumes.*, education.*, experiences.*,projects.*, users.name, users.email
-  FROM resumes 
+  db.query(`SELECT resumes.*, users.name, users.email, array_agg(DISTINCT education.univ_degree) AS education 
+  FROM resumes
   JOIN users ON resumes.user_id = users.id
-  JOIN experiences ON experiences.resume_id = resumes.id 
-  JOIN education ON education.resume_id = resumes.id 
-  JOIN projects ON projects.resume_id = resumes.id
-  WHERE users.id = $1`, [req.params.id], (err, data) => {
+  JOIN education ON education.resume_id = resumes.id
+  WHERE users.id = $1
+  GROUP BY resumes.id, users.id;
+  
+  `, [req.params.id], (err, data) => {
     if (err) return res.status(500).json(err);
     console.log("iiiiiiiii",data.rows)
     return res.status(200).json(data.rows[0]);

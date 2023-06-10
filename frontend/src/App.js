@@ -15,7 +15,6 @@ import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import "./App.css";
 import React from "react";
-import { ResumeContextProvider } from "./context/resumeContext";
 
 function App() {
   const [inputVal, setInputVal] = useState({
@@ -48,9 +47,7 @@ function App() {
           />
         </Route>
         <Route path="/jobs" exact>
-          <ResumeContextProvider>
           <JobSearch data={inputVal} />
-          </ResumeContextProvider>
         </Route>
         <Route path="/profile" exact>
           <Profile />
