@@ -35,20 +35,20 @@ function Profile() {
   useEffect(() => {
     const textResume = {
       aboutMe: resume.summary,
-      experience: resume.description,
+      experience: resume.experience,
       // skills: resume.skills,
       // project_description: resume.project_description,
     };
     setMyExperience(textResume);
   }, [
     resume.summary,
-    resume.description,
+    resume.experience,
     // resume.skills,
     // resume.project_description,
     setMyExperience,
   ]);
 
-console.log(myExperience)
+console.log("^^^^^^^",myExperience)
   
 const educationList = resume.education && resume.education.map((item, index) => (
   <div key={index}>{item}</div>

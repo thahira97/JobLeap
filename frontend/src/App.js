@@ -13,6 +13,7 @@ import Resumes from "./components/Resumes";
 import Signup from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import ModifiedResume from "./components/ModifiedResume";
 import "./App.css";
 import React from "react";
 
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/profile" exact>
           <Profile />
+        </Route>
+        <Route path="/modify-resume" exact>
+          <ModifiedResume />
         </Route>
         <Route path="/profile/new" exact>
           <CreateProfile />

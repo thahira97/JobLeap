@@ -21,9 +21,7 @@ const JobDescription = (props) => {
       method: "POST",
       body: JSON.stringify({
         message:
-       `Important Only Enhance experience part in resume to match the job description:
-       Job description : ${description}
-       Resume: ${resume}.` 
+       `Enhance only the experience in resume to match the job.Job description: ${description} resume:${resume}.Important: Do not include salutations and no headings.only in points.` 
       }),
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +31,9 @@ const JobDescription = (props) => {
       const response = await fetch('http://localhost:8080/completions', options)
       const data = await response.json()
       console.log(data.choices[0].message.content)
-      setMessage(data.choices[0].message.content)
+      const receivedMessage = data.choices[0].message.content
+      setMessage(receivedMessage)
+      localStorage.setItem("message", receivedMessage)
     }
     catch(error) {
       console.log(error)
@@ -76,7 +76,7 @@ return <div className="job-description">
     <button class="btn btn-primary" type="submit">Apply using old resume</button>
     </div>
     <div className="modify-mutton">
-   <Link to="/"><button class="btn btn-primary" type="submit" onClick={getMessages}> Modify resume</button></Link>
+   <Link to="/modify-resume"><button class="btn btn-primary" type="submit" onClick={getMessages}> Modify resume</button></Link>
     {/* <div>
       <input value={value} onChange={(e)=>setValue(e.target.value)}></input>
     </div> */}
