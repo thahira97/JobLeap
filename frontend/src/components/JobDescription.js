@@ -7,20 +7,23 @@ import Card from "./Card";
 
 const JobDescription = (props) => {
 
-  const { jobDescription ,setJobDescription } = useContext(ResumeContext);
+  const { jobDescription ,setJobDescription, myExperience } = useContext(ResumeContext);
  
-  const [value, setValue] = useState(null);
+  // const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
-  const [previousChats, setPreviousChats ] = useState([ ])
-
-
+  // const [previousChats, setPreviousChats ] = useState([ ])
 
   const getMessages = async() => {
     setJobDescription(props.description)
+    const description = JSON.stringify(jobDescription)
+    const resume = JSON.stringify(myExperience)
     const options = {
       method: "POST",
       body: JSON.stringify({
-        message: value
+        message: 
+       `Important Only Enhance experience part in resume to match the job description in brief:
+       Job description : ${description}
+       Resume: ${resume}.` 
       }),
       headers: {
         "Content-Type": "application/json"
@@ -29,7 +32,8 @@ const JobDescription = (props) => {
     try {
       const response = await fetch('http://localhost:8080/completions', options)
       const data = await response.json()
-      setMessage(data.choices[0].message)
+      console.log(data.choices[0].message.content)
+      // setMessage(data.choices[0].message)
     }
     catch(error) {
       console.log(error)
@@ -49,6 +53,7 @@ boxShadow: "none"
 
 useEffect(() => {
 console.log("+++++",jobDescription)
+console.log("----", JSON.stringify(myExperience))
 }, [jobDescription])
 console.log("MESSAGE",message)
 
@@ -72,9 +77,9 @@ return <div className="job-description">
     </div>
     <div className="modify-mutton">
     <button class="btn btn-primary" type="submit" onClick={getMessages}>Modify resume</button>
-    <div>
+    {/* <div>
       <input value={value} onChange={(e)=>setValue(e.target.value)}></input>
-    </div>
+    </div> */}
     </div>
   </div>
 </div>

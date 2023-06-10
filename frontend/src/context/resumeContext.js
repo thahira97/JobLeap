@@ -27,24 +27,20 @@ export const ResumeContextProvider = ({ children }) => {
     }
   }, [myExperience]);
   
-  useEffect(() => {
-    const storedDescription = localStorage.getItem('jobDescription');
-    if (storedDescription) {
-      setJobDescription(JSON.parse(storedDescription));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedDescription = localStorage.getItem('jobDescription');
+  //   if (storedDescription) {
+  //     setJobDescription(JSON.parse(storedDescription));
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (jobDescription) {
-      localStorage.setItem('myExperience', JSON.stringify(jobDescription));
-    }
-  }, [jobDescription]);
+  // useEffect(() => {
+  //   if (jobDescription) {
+  //     localStorage.setItem('myExperience', JSON.stringify(jobDescription));
+  //   }
+  // }, [jobDescription]);
   
-  // console.log(myExperience)
 
-  // window.localStorage.setItem("RESUME", JSON.stringify(myExperience))
- 
-  // setMyExperience(JSON.parse(window.localStorage.getItem("RESUME")));
 
   return (
     <ResumeContext.Provider value={contextValue}>
