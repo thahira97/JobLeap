@@ -23,12 +23,13 @@ const Typewriter = ({ text, speed }) => {
 
   return<div className="chat-box">
     <p>Modified-Resume</p>
+    <span >  <h4 >{myExperience.name}</h4></span>
      <span >  <h4 >About Me</h4><p className="typo-ani" >{myExperience.aboutMe}</p></span>
-     <span >  <h4>Experience</h4> <ul>
+     <span >  <h4>Skills</h4> <ul>
           {displayText.split("\n").map((point, index) => (
             <li key={index}>{point}</li>
           ))}
-        </ul></span>;
+        </ul></span>
   </div> 
  
     

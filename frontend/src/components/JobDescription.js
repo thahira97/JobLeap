@@ -16,12 +16,13 @@ const JobDescription = (props) => {
   const getMessages = async() => {
     setJobDescription(props.description)
     const description = JSON.stringify(jobDescription)
-    const resume = JSON.stringify(myExperience)
+    const resume = JSON.stringify(myExperience.aboutMe)
+    const experience = JSON.stringify(myExperience.experience)
     const options = {
       method: "POST",
       body: JSON.stringify({
         message:
-       `Enhance only the experience in resume to match the job.Job description: ${description} resume:${resume}.Important: Do not include salutations and no headings.only in points.` 
+       `Enhance only the experience in resume to match the job.Job description: ${description} resume:${resume} and experience: ${experience}.Important: Do not include salutations and no headings.only in points.` 
       }),
       headers: {
         "Content-Type": "application/json"

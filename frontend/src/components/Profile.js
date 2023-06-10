@@ -34,17 +34,27 @@ function Profile() {
 
   useEffect(() => {
     const textResume = {
+      name: resume.name,
+      image: resume.user_img,
+      job: resume.present_job,
+      positionCompany: resume.position_company,
       aboutMe: resume.summary,
       experience: resume.experience,
-      // skills: resume.skills,
-      // project_description: resume.project_description,
+      skills: resume.skills,
+      education: resume.education,
+      project_description: resume.project_description,
     };
     setMyExperience(textResume);
   }, [
+    resume.name,
+    resume.user_img,
+    resume.present_job,
+    resume.position_company,
     resume.summary,
     resume.experience,
-    // resume.skills,
-    // resume.project_description,
+    resume.education,
+    resume.skills,
+    resume.project_description,
     setMyExperience,
   ]);
 
