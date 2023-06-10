@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect,useContext } from "react";
 import { ResumeContext } from '../context/resumeContext';
-
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./JobDescription.css";
 import Card from "./Card";
 
@@ -20,8 +20,8 @@ const JobDescription = (props) => {
     const options = {
       method: "POST",
       body: JSON.stringify({
-        message: 
-       `Important Only Enhance experience part in resume to match the job description in brief:
+        message:
+       `Important Only Enhance experience part in resume to match the job description:
        Job description : ${description}
        Resume: ${resume}.` 
       }),
@@ -33,7 +33,7 @@ const JobDescription = (props) => {
       const response = await fetch('http://localhost:8080/completions', options)
       const data = await response.json()
       console.log(data.choices[0].message.content)
-      // setMessage(data.choices[0].message)
+      setMessage(data.choices[0].message.content)
     }
     catch(error) {
       console.log(error)
@@ -76,7 +76,7 @@ return <div className="job-description">
     <button class="btn btn-primary" type="submit">Apply using old resume</button>
     </div>
     <div className="modify-mutton">
-    <button class="btn btn-primary" type="submit" onClick={getMessages}>Modify resume</button>
+   <Link to="/"><button class="btn btn-primary" type="submit" onClick={getMessages}> Modify resume</button></Link>
     {/* <div>
       <input value={value} onChange={(e)=>setValue(e.target.value)}></input>
     </div> */}
