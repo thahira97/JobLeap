@@ -1,44 +1,39 @@
-import {React,useState} from "react";
+import React, { useState } from 'react';
 import Nav from "./Nav"
 import axios from "axios";
 
 function ResumeSelect(){
   const [editMode, setEditMode] = useState(false)
+ 
+  const [input, setInput] = useState({
+    present_job:"",
+    location:"",
+    summary:"",
+    user_img:"",
+    skills:"",
+    phone_number:""
+  });
 
   function handleEditClick(){ 
     setEditMode((true))
   }
 
-  function handleSaveClick(tableName,section,filter,valueOne,valueTwo){ 
+  function handleChange(e){
+    setInput(prev => ({...prev, [e.target.name]: e.target.value}))
+  }
   
+  async function handleSaveClick(e){ 
+    e.preventDefault();
+    console.log('saving')
     setEditMode((false))
-
-    const resumeLocation = document.getElementById('resumeLocation');
-
-    // if (resumeLocation.id === 'resumeLocation') { 
-    //   tableName = "resumes"
-    //   section = "location"
-    //   valueOne = "Montreal"
-    //   filter = "user.id"
-    //   valueTwo = "1"
-    // }
-
-     axios.put("http://localhost:8080//api/resumes", {
-     
-    
-     }).then(() =>
-     { 
-       
-     }) 
-
-
-    //create a post route in express server that calls the get resume function 
-    //test route make sure we can update information in the database that we send it to
-    //create a save button which makes an axios call and updates the state 
-    //axios call to the route where the data is hardcoded and verify that it is still updating in the database
-    //modify existing axios call to ensure that it can be used with dynamic data
-    //check that modified axios call works
-    //update state to reflect the data that has been modified in the database
+    console.log("input",input)
+    try {
+      const response = await axios.patch("http://localhost:8080/api/resumes", input);
+      console.log(response);
+    }
+    catch { 
+      console.log("error")
+    }
   
   
   }
@@ -46,23 +41,29 @@ function ResumeSelect(){
   return (
     <div>
       <Nav/>
-      <div class="mb-3">
-
-        <label for="formGroupExampleInput" className="form-label">Example label</label>
-
-        <input type="text" className={editMode ? "form-control" : "form-control-plaintext"} id="formGroupExampleInput" placeholder="Example input placeholder" />
-        
+      <form onSubmit={handleSaveClick}> 
+      <div className="mb-3">
+  
+        <input
+              type="text"
+              className={editMode ? "form-control" : "form-control-plaintext"}
+              placeholder="Location"
+              name="location"
+              onChange={handleChange}
+              required
+            />
       </div>
   
       <button onClick={() => handleEditClick()} type="button" className="btn btn-info">
         edit
       </button>
 
-      <button onClick={() => handleSaveClick()} id='resumeLocation' type="button"   className="btn btn-info">
+      <button id='resumeLocation' type="submit"   className="btn btn-info">
         save
       </button>
 
-    </div>
+      </form>
+      </div>
   );
 }
 export default ResumeSelect;

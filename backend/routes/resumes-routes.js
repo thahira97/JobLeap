@@ -5,12 +5,5 @@ const { getResumes, getResume, createResume, updateResume } = require('../db/que
 router.get("/", getResumes);
 router.get("/user/:id", getResume);
 router.post('/', createResume);
-router.put('/', (req, res) => {
-  updateResume("resumes", "location", "user.id", 1, 2)
-    .then((data) => res.json(data.rows))
-    .catch((err) => res.json({
-      error: err.message
-    }));
-});
-
+router.patch('/', updateResume);
 module.exports = router;
