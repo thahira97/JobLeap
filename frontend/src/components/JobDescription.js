@@ -12,7 +12,7 @@ const JobDescription = (props) => {
   // const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
   // const [previousChats, setPreviousChats ] = useState([ ])
-
+  
   const getMessages = async() => {
     setJobDescription(props.description)
     const description = JSON.stringify(jobDescription)

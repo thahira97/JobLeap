@@ -26,7 +26,7 @@ const Login = () => {
     try {
       await login(input);
       await axios.post("http://localhost:8080/api/auth/login", input);
-      history.push("/");
+      history.push("/profile");
     } catch(err) {
       setError(err.response.data);
     }

@@ -7,12 +7,15 @@ const Typewriter = ({ text, speed }) => {
   const { myExperience } = useContext(ResumeContext);
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (currentIndex < text.length) {
         setDisplayText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
+      } else {
+        setIsLoading(false)
       }
     }, speed);
 
