@@ -45,13 +45,13 @@ const updateResume = (req, res) =>{
                 RETURNING *;
                 `,
         [
-          req.body.present_job,
-          req.body.location,
-          req.body.summary,
-          req.body.user_img,
-          req.body.skills,
-          req.body.phone_number,
-          req.body.user_id,
+          present_job,
+          location,
+          summary,
+         user_img,
+          skills,
+          phone_number,
+         user_id,
         ],
         (err, data) =>
         {
