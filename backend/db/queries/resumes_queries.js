@@ -28,7 +28,7 @@ const createResume = () => {
 const updateResume = (req, res) =>{
 
   db.query(
-             `SELECT * FROM users`,
+    `SELECT * FROM users`,
     [],
     (err, data) =>
     {
@@ -36,6 +36,7 @@ const updateResume = (req, res) =>{
       const user_id = jwt.verify(token, "jwtkey").id;
       const { present_job, location, summary, user_img, skills, phone_number } =
         req.body;
+      
       db.query(
               `
                 update resumes 
