@@ -24,12 +24,12 @@ function ResumeSelect(){
   
   async function handleSaveClick(e){ 
     e.preventDefault();
-    console.log('saving')
+    // console.log('saving')
     setEditMode((false))
-    console.log("input",input)
+    // console.log("input",input)
     try {
-      const response = await axios.patch("http://localhost:8080/api/resumes", input);
-      console.log(response);
+      const response = await axios.put("http://localhost:8080/api/resumes", input);
+      console.log(response,"RESPONSE");
     }
     catch { 
       console.log("error")
