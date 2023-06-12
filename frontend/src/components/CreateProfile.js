@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useState, useRef } from "react";
+import axios from "axios";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import "./CreateProfile.css";
@@ -23,6 +23,11 @@ function CreateProfile() {
     phone_number: "",
   });
 
+  const [userData, setUserData] = useState({});
+  const [errorMessages, setErrorMessages] = useState({});
+  const userImageInput = useRef(null);
+  const projectImageInput = useRef(null);
+
   const handleInputChange = (e) => {
     setResume({
       ...resume,
@@ -36,7 +41,10 @@ function CreateProfile() {
     reader.onloadend = () => {
       setResume((prevResume) => ({
         ...prevResume,
-        [field]: reader.result,
+        [field]: {
+          preview: reader.result,
+          file,
+        },
       }));
     };
     reader.readAsDataURL(file);
@@ -46,24 +54,66 @@ function CreateProfile() {
     handleImageUpload(e, "user_img");
   };
 
+  const handleRemoveUserImage = () => {
+    setResume((prevResume) => ({
+      ...prevResume,
+      user_img: "",
+    }));
+    // Reset the input value to an empty string
+    if (userImageInput.current) {
+      userImageInput.current.value = "";
+    }
+  };
+
   const handleProjectImageUpload = (e) => {
     handleImageUpload(e, "project_img");
   };
 
+  const handleRemoveProjectImage = () => {
+    setResume((prevResume) => ({
+      ...prevResume,
+      project_img: "",
+    }));
+    // Reset the input value to an empty string
+    if (projectImageInput.current) {
+      projectImageInput.current.value = "";
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const requiredFields = ["name", "phone_number", "present_job", "location", "skills", "summary", "company", "start_date", "end_date", "project_name", "project_description", "degree", "university_name"];
-    const emptyFields = requiredFields.filter(field => !resume[field]);
-  
+    const requiredFields = [
+      "name",
+      "phone_number",
+      "present_job",
+      "location",
+      "skills",
+      "summary",
+      "company",
+      "start_date",
+      "end_date",
+      "project_name",
+      "project_description",
+      "degree",
+      "university_name",
+    ];
+    const emptyFields = requiredFields.filter((field) => !resume[field]);
+
     if (emptyFields.length > 0) {
-      // Display an error message for empty fields
-      alert(`Please fill in the following fields: ${emptyFields.join(", ")}`);
+      const errorMessage = {};
+      emptyFields.forEach((field) => {
+        errorMessage[field] = "This field is required";
+      });
+      setErrorMessages(errorMessage);
       return;
     }
 
+    setErrorMessages({});
+
     try {
-      const { 
+      const {
         user_img,
         summary,
         location,
@@ -77,12 +127,12 @@ function CreateProfile() {
         project_description,
         project_img,
         degree,
-        university_name
+        university_name,
       } = resume;
 
       const resumeData = {
-      //user_id,
-        user_img, 
+        user_id: userData.user_id,
+        user_img,
         summary,
         location,
         skills,
@@ -95,170 +145,188 @@ function CreateProfile() {
         project_description,
         project_img,
         degree,
-        university_name
+        university_name,
       };
-  
+
       await axios.post("http://localhost:8080/api/resumes", resumeData);
-    } catch (err) { 
+    } catch (err) {
       console.error(err);
     }
   };
-  
-  
 
   return (
     <div>
       <Nav />
       <div className="container">
         <div className="outline"></div>
-          <h4>Create Your Profile</h4>
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <div className="row">
-              <div className="col-3">
-                <div className="card border-0">
-                  <div className="card-body">
-                    <h5>Profile Image</h5>
-                    <p className="card-text">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleUserImageUpload}
+        <h4>Create Your Profile</h4>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="row">
+            <div className="col-3">
+              <div className="card border-0">
+                <div className="card-body">
+                  <h5>Profile Image</h5>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleUserImageUpload}
+                    ref={userImageInput}
+                  />
+                  {resume.user_img && (
+                    <div className="image-container">
+                      <img
+                        src={resume.user_img && resume.user_img.preview}
+                        alt="User"
+                        className="uploaded-image"
                       />
-                      {resume.user_img && (
-                        <div className="image-container">
-                          <img src={resume.user_img} alt="User" className="uploaded-image" />
-                        </div>
-                      )}
-                    </p>
+                      <button
+                      type="button"
+                      className="btn btn-danger remove-image-button"
+                      onClick={handleRemoveUserImage}
+                      >
+                      Remove
+                      </button>
                     </div>
-                  </div>
+                  )}
+                </div>
+              </div>
 
               <div className="card border-0">
-              <div className="card-body">
-                <h5>Name</h5>
-                <p className="card-text">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="name"
-                  value={resume.name}
-                  onChange={handleInputChange}
-                  placeholder="Full Name"
-                  />
-                </p>
-                <br></br>
-                <h5>Contact Number</h5>
-                <p className="card-text">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="phone_number"
-                  value={resume.phone_number}
-                  onChange={handleInputChange}
-                  placeholder="Phone number"
-                  />
-                </p>
-                <br></br>
-                <h5>Current Position</h5>
-                <p className="card-text">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="present_job"
-                  value={resume.present_job}
-                  onChange={handleInputChange}
-                  placeholder="Your Current Position"
-                  />
-                </p>
-              </div>
-            </div>
-            <div className="card border-0">
-              <div className="card-body">
-                <h5>Location</h5>
-                <p className="card-text">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="location"
-                  value={resume.location}
-                  onChange={handleInputChange}
-                  placeholder="Your Current Location"
-                />
-                </p>
-              </div>
-            </div>
-            <div className="card border-0">
-              <div className="card-body">
-                <h5>Skills</h5>
-                <p className="card-text">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="skills"
-                  value={resume.skills}
-                  onChange={handleInputChange}
-                  placeholder="List your skills"
-                />
-                </p>
-              </div>
-            </div>
-          </div>          
-          <div className="col-9">
-            <div className="card border-0">
-              <div className="card-body">
-                <h5 className="summary">About Me</h5>
-                <p className="card-text summary">
-                <input
-                  type="text"
-                  className="card-text editable-input"
-                  name="summary"
-                  value={resume.summary}
-                  onChange={handleInputChange}
-                  placeholder="Tell me about yourself"
-                  />
-                </p>
-              </div>
-            </div>
-            <div className="card border-0">
-              <div className="card-body ">
-                <h5 className="expirience"> Experience</h5>
-                <p className="card-text expirience">
-                <div>
+                <div className="card-body">
                   <input
                     type="text"
                     className="card-text editable-input"
-                    name="company"
-                    value={resume.company}
+                    name="name"
+                    value={resume.name}
                     onChange={handleInputChange}
-                    placeholder="Company Name"
+                    placeholder="Full Name"
                   />
+                  {errorMessages.name && (
+                    <p className="error-message">{errorMessages.name}</p>
+                  )}
                   <br />
                   <input
                     type="text"
                     className="card-text editable-input"
-                    name="start_date"
-                    value={resume.start_date}
+                    name="phone_number"
+                    value={resume.phone_number}
                     onChange={handleInputChange}
-                    placeholder="Start Date"
+                    placeholder="Phone number"
                   />
-                  -
+                  {errorMessages.phone_number && (
+                    <p className="error-message">
+                      {errorMessages.phone_number}
+                    </p>
+                  )}
+                  <br />
                   <input
                     type="text"
                     className="card-text editable-input"
-                    name="end_date"
-                    value={resume.end_date}
+                    name="present_job"
+                    value={resume.present_job}
                     onChange={handleInputChange}
-                    placeholder="End Date"
+                    placeholder="Your Current Position"
                   />
+                  {errorMessages.present_job && (
+                    <p className="error-message">
+                      {errorMessages.present_job}
+                    </p>
+                  )}
                 </div>
-                </p>
+              </div>
+              <div className="card border-0">
+                <div className="card-body">
+                  <input
+                    type="text"
+                    className="card-text editable-input"
+                    name="location"
+                    value={resume.location}
+                    onChange={handleInputChange}
+                    placeholder="Your Current Location"
+                  />
+                  {errorMessages.location && (
+                    <p className="error-message">{errorMessages.location}</p>
+                  )}
+                </div>
+              </div>
+              <div className="card border-0">
+                <div className="card-body">
+                  <input
+                    type="text"
+                    className="card-text editable-input"
+                    name="skills"
+                    value={resume.skills}
+                    onChange={handleInputChange}
+                    placeholder="List your skills"
+                  />
+                  {errorMessages.skills && (
+                    <p className="error-message">{errorMessages.skills}</p>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="card border-0">
-              <div className="card-body ">
-                <h5 className="expirience"> Projects</h5>
-                <p className="card-text projects">
-                <input
+            <div className="col-9">
+              <div className="card border-0">
+                <div className="card-body">
+                  <h5 className="summary">About Me</h5>
+                  <textarea
+                    className="card-text editable-input"
+                    name="summary"
+                    value={resume.summary}
+                    onChange={handleInputChange}
+                    placeholder="Tell me about yourself"
+                  />
+                  {errorMessages.summary && (
+                    <p className="error-message">{errorMessages.summary}</p>
+                  )}
+                </div>
+              </div>
+              <div className="card border-0">
+                <div className="card-body">
+                  <h5 className="expirience">Experience</h5>
+                  <div>
+                    <input
+                      type="text"
+                      className="card-text editable-input"
+                      name="company"
+                      value={resume.company}
+                      onChange={handleInputChange}
+                      placeholder="Company Name"
+                    />
+                    {errorMessages.company && (
+                      <p className="error-message">{errorMessages.company}</p>
+                    )}
+                    <br />
+                    <input
+                      type="text"
+                      className="card-text editable-input"
+                      name="start_date"
+                      value={resume.start_date}
+                      onChange={handleInputChange}
+                      placeholder="Start Date"
+                    />
+                    {errorMessages.start_date && (
+                      <p className="error-message">{errorMessages.start_date}</p>
+                    )}
+                    -
+                    <input
+                      type="text"
+                      className="card-text editable-input"
+                      name="end_date"
+                      value={resume.end_date}
+                      onChange={handleInputChange}
+                      placeholder="End Date"
+                    />
+                    {errorMessages.end_date && (
+                      <p className="error-message">{errorMessages.end_date}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="card border-0">
+                <div className="card-body">
+                  <h5 className="projects">Projects</h5>
+                  <input
                     type="text"
                     className="card-text editable-input"
                     name="project_name"
@@ -266,62 +334,88 @@ function CreateProfile() {
                     onChange={handleInputChange}
                     placeholder="Project Name"
                   />
-                  <br></br>
-                  <input
-                    type="text"
+                  {errorMessages.project_name && (
+                    <p className="error-message">
+                      {errorMessages.project_name}
+                    </p>
+                  )}
+                  <br />
+                  <textarea
                     className="card-text editable-input"
                     name="project_description"
                     value={resume.project_description}
                     onChange={handleInputChange}
                     placeholder="More about the project"
                   />
-                  <br></br>
-                  <h8>Project Image </h8>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleProjectImageUpload}
+                  {errorMessages.project_description && (
+                    <p className="error-message">
+                      {errorMessages.project_description}
+                    </p>
+                  )}
+                  <br />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleProjectImageUpload}
+                    ref={projectImageInput}
+                  />
+                  {resume.project_img && (
+                    <div className="image-container-project">
+                      <img
+                        src={resume.project_img && resume.project_img.preview}
+                        alt="Project"
+                        className="uploaded-image"
                       />
-                      {resume.project_img && (
-                        <div className="image-container-project">
-                          <img src={resume.project_img} alt="Project" className="uploaded-image" />
-                        </div>
-                      )}
-                 <img alt=""/>
-                </p>
+                      <button
+                      type="button"
+                      className="btn btn-danger remove-image-button"
+                      onClick={handleRemoveProjectImage}
+                      >
+                      Remove
+                    </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="card border-0">
-              <div className="card-body ">
-                <h5 className="expirience">Education</h5>
-                <p className="card-text education">
-                <input
+              <div className="card border-0">
+                <div className="card-body">
+                  <h5 className="expirience">Education</h5>
+                  <input
                     type="text"
                     className="card-text editable-input"
                     name="university_name"
                     value={resume.university_name}
                     onChange={handleInputChange}
                     placeholder="School Name"
-                  />             
-                   <br></br>
-                   <input
+                  />
+                  {errorMessages.university_name && (
+                    <p className="error-message">
+                      {errorMessages.university_name}
+                    </p>
+                  )}
+                  <br />
+                  <input
                     type="text"
                     className="card-text editable-input"
                     name="degree"
                     value={resume.degree}
                     onChange={handleInputChange}
                     placeholder="Degree"
-                  />  
-                </p>
+                  />
+                  {errorMessages.degree && (
+                    <p className="error-message">{errorMessages.degree}</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="button-control d-flex justify-content-center">
-          <button type="submit" className="btn btn-primary" >Submit</button>
-        </div>
-      </form>
-      <br></br>
+          <div className="button-control d-flex justify-content-center">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+        <br />
         <div className="outline"></div>
       </div>
       <Footer />
