@@ -20,7 +20,58 @@ const getResume = (req, res) => {
   });
 };
 
-const createResume = () => {
+const createResume = (req, res) => {
+  try {
+    const resumeData = req.body;
+
+    db.query(
+      `INSERT INTO resumes (user_id, user_img, summary, location, skills, present_job, phone_number) 
+      VALUES ($1, $2, $3, $4, $5, $6)`,
+      [
+        resumeData.user_img,
+        resumeData.summary,
+        resumeData.location,
+        resumeData.skills,
+        resumeData.present_job,
+        resumeData.phone_number,
+        resumeData.user_id
+      ]
+    );
+
+    db.query(
+      `INSERT INTO experiences (resume_id, company, start_date, end_date) 
+      VALUES ((SELECT id FROM resumes ORDER BY id DESC LIMIT 1), $1, $2, $3)`,
+      [
+        resumeData.company,
+        resumeData.start_date,
+        resumeData.end_date
+      ]
+    );
+
+    db.query(
+      `INSERT INTO projects (resume_id, project_name, project_description, project_img) 
+      VALUES ((SELECT id FROM resumes ORDER BY id DESC LIMIT 1), $1, $2, $3)`,
+      [
+        resumeData.project_name,
+        resumeData.project_description,
+        resumeData.project_img
+      ]
+    );
+
+    db.query(
+      `INSERT INTO education (resume_id, degree, university_name) 
+      VALUES ((SELECT id FROM resumes ORDER BY id DESC LIMIT 1), $1, $2)`,
+      [
+        resumeData.degree,
+        resumeData.university_name
+      ]
+    );
+
+    return res.status(201).json({ message: "Resume created successfully" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
 };
 
 const updateResume = () => {
