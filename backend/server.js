@@ -41,7 +41,10 @@ app.use('/api/resumes', resumesRoutes);
 ////////////////////////////////////////////////////////////
 // Listener
 ////////////////////////////////////////////////////////////
-app.post('/completions', async(req, res)=> {
+app.post('/completions', async (req, res) => {
+  // const { jobDescription, myExperience, aboutMe } = req.body;
+  const { something} = req.body; 
+//  console.log("asdasdas", message)
   const options = {
     method: 'POST',
     headers: {
@@ -49,24 +52,21 @@ app.post('/completions', async(req, res)=> {
       "Content-Type" : "application/json"
     },
     body: JSON.stringify({
-      model : "gpt-3.5-turbo",
-      messages: [{ role: 'user', content: JSON.stringify({
-        query: "Modify only the experience according to the job description",
-        description: jobDescription,
-        resume: myExperience
-      })}],
-      max_tokens: 4000,
+      model: "gpt-3.5-turbo",
+      messages: [{role: 'user', content: something}],
+      max_tokens: 3000,
     })
-  }
+  };
+
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', options)
-    const data = await response.json()
-    res.send(data)
+    const response = await fetch('https://api.openai.com/v1/chat/completions', options);
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.log(error);
   }
-  catch(error) {
-    console.log(error)
-  }
-})
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

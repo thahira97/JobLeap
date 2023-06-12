@@ -570,6 +570,8 @@ import { ResumeContext } from '../context/resumeContext';
 const JobSearch = (props) => {
   // const [job, setJob] = useState([]);
   // const [apiData, setApiData] = useState([]);
+  const { myExperience, jobDescription } = useContext(ResumeContext);
+  console.log("ghfjsgdfhjgsdhf", jobDescription )
   const [arrayList, setArrayList] = useState([]);
 
   const inputValueTitle = JSON.parse(

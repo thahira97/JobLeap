@@ -13,33 +13,42 @@ const JobDescription = (props) => {
   const [message, setMessage] = useState(null);
   // const [previousChats, setPreviousChats ] = useState([ ])
   
-  const getMessages = async() => {
-    setJobDescription(props.description)
-    const description = JSON.stringify(jobDescription)
-    const resume = JSON.stringify(myExperience.aboutMe)
-    const experience = JSON.stringify(myExperience.experience)
-    const options = {
-      method: "POST",
-      body: JSON.stringify({
-        message:
-       `Enhance only the experience in resume to match the job.Job description: ${description} resume:${resume} and experience: ${experience}.Important: Do not include salutations and no headings.only in points.` 
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-    try {
-      const response = await fetch('http://localhost:8080/completions', options)
-      const data = await response.json()
-      console.log(data.choices[0].message.content)
-      const receivedMessage = data.choices[0].message.content
-      setMessage(receivedMessage)
-      localStorage.setItem("message", receivedMessage)
-    }
-    catch(error) {
-      console.log(error)
-    }
+useEffect(()=> {
+setJobDescription(props.description)
+},[])
+
+const getMessages = async () => {
+  const description = JSON.stringify(jobDescription);
+  const experience = JSON.stringify(myExperience.experience);
+
+  const options = {
+    method: "POST",
+    body: JSON.stringify({
+      something: `Enhance only the experience in resume to match the job. Job description: ${description} and experience: ${experience}. Important: Do not include salutations and no headings. Only in points.`,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await fetch('http://localhost:8080/completions', options);
+    const data = await response.json();
+    console.log(data); // Check the entire data object
+    console.log(data.choices); // Check the choices array
+    console.log(data.choices[0]); // Check the first choice object
+    console.log(data.choices[0].message); // Check the message object
+    console.log(data.choices[0].message.content); // Check the content property
+
+    const receivedMessage = data.choices[0].message.content;
+    setMessage(receivedMessage);
+    localStorage.setItem("message", receivedMessage);
+  } catch (error) {
+    console.log(error);
   }
+};
+
+
 const moneyIconStyle={
   color: "#5a8774",
 };
@@ -53,8 +62,9 @@ boxShadow: "none"
 }
 
 useEffect(() => {
+  console.log("fhjhfjsdh",props.description)
 console.log("+++++",jobDescription)
-console.log("----", JSON.stringify(myExperience))
+console.log("----", JSON.stringify(myExperience.experience))
 }, [jobDescription])
 console.log("MESSAGE",message)
 
