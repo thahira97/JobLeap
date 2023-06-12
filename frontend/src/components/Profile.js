@@ -87,60 +87,75 @@ const educationList = resume.education && resume.education.map((item, index) => 
   return (
     <div>
       <Nav />
-      <div className="container">
-        <div className="outline"></div>
-        <div className="row">
-          <div className="col-3">
-            <div className="card border-0">
-                <img src={resume.user_img} className="img-thumbnail" alt={resume.name}></img>
+      <div className="main-container">
+        <div className="card">
+         <div className="top-container">
+        <img src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw" alt="back-img"/>
+        
+      </div>
+      <div className="user-info">
+        <img src={resume.user_img} alt={resume.name}/>
+      </div>
+      <div className="user-information">
+        <div className="name-info">
+          <div>
+            <h2>{resume.name}</h2>
+        <h4>{resume.present_job}</h4> 
+          </div>
+        <div className="job-img">
+          <img src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg" width="50px" />
+          </div>
+        </div>
+        <div className="contact">
+          <div className="location">
+             <i class="fa-sharp fa-solid fa-location-dot"></i>  {resume.location}
+          </div>
+          <div className="email">
+          <i class="fa-sharp fa-solid fa-envelope"></i> {resume.email} 
+          </div>
+          <div className="phone">
+          <i class="fa-solid fa-phone"></i> {resume.phone_number}
+          </div>
+        </div>
+      </div>
+      {/* <div className="more-about">
                 <h4>About me</h4>
                 <p className="card-text">
                   {resume.summary}
                 </p>
-            </div>
-            <div className="card border-0">
+              </div> */}
+
+      </div>
+      <div className="middle-container">
+      <div className="about-container">
+      <div className="card border-0">
               <div className="card-body">
-                <h5>Location</h5>
-                <p className="card-text">{resume.location}</p>
-              </div>
-            </div>
-            <div className="card border-0">
-              <div className="card-body">
-                <h5>Skills</h5>
+                <h4>About me</h4>
                 <p className="card-text">
-              {resume.skills}
+                  {resume.summary}
                 </p>
               </div>
             </div>
-            <div className="card border-0">
-              <div className="card-body">
-                <h5>Contact</h5>
-                <p className="card-text">
-              {resume.email}
-              <br></br>
-              {resume.phone_number}
-                </p>
-              </div>
-            </div>
-          </div>          
-          <div className="col-9">
-            <div className="card border-0">
-              <div className="card-body title">
-                <h1>{resume.name}</h1>
-                <h4>{resume.present_job}</h4>
-              </div>
-            </div>
-            <div className="card border-0">
+
+      </div>
+      <div className="experience-container">
+      <div className="card border-0">
               <div className="card-body ">
                 <h5 className="expirience"> Experience</h5>
-              {resume.position_company} 
-              <br></br>
-              {resume.years_worked}
-              <br></br>
-              {resume.experience}
+                <p className="card-text expirience">
+               <b> {resume.position_company}- {resume.years_worked}</b>
+                <div>
+                {resume.experience}
+                </div>
+      
+                </p>
               </div>
             </div>
-            <div className="card border-0">
+
+      </div>
+      </div>
+      <div className="projects-container">
+      <div className="card border-0">
               <div className="card-body ">
                 <h5 className="expirience"> Projects</h5>
                 <p className="card-text expirience">
@@ -152,7 +167,10 @@ const educationList = resume.education && resume.education.map((item, index) => 
                 </p>
               </div>
             </div>
-            <div className="card border-0">
+
+      </div>
+      <div className="education-container">
+      <div className="card border-0">
               <div className="card-body ">
                 <h5 className="expirience">Education</h5>
                 <p className="card-text expirience">
@@ -161,11 +179,20 @@ const educationList = resume.education && resume.education.map((item, index) => 
                 </p>
               </div>
             </div>
-            
-          </div>
-        </div>
-        <div className="outline"></div>
       </div>
+      <div className="skills-container">
+      <div className="card border-0">
+              <div className="card-body">
+                <h5>Skills</h5>
+                <p className="card-text">
+              {resume.skills}
+                </p>
+              </div>
+            </div>
+      </div>
+      </div>
+      
+     
       <Footer />
     </div>
   );
