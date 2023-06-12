@@ -30,12 +30,14 @@ const updateResume = (req, res) =>{
   db.query(
     `SELECT * FROM users`,
     [],
-    (err, data) => {
+    (err, data) =>
+    {
       const token = jwt.sign({ id: data.rows[0].id }, "jwtkey");
       const user_id = jwt.verify(token, "jwtkey").id;
       const { present_job, location, summary, user_img, skills, phone_number } =
         req.body;
       console.log(user_id, "user_id");
+
       db.query(
 `
   update resumes 
@@ -45,7 +47,7 @@ const updateResume = (req, res) =>{
   `,
         [
           present_job,
-          location,
+          req.body.location,
           summary,
           user_img,
           skills,
