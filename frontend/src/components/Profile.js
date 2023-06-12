@@ -88,7 +88,7 @@ const educationList = resume.education && resume.education.map((item, index) => 
     <div>
       <Nav />
       <div className="main-container">
-        <div className="card">
+        <div className="card main">
          <div className="top-container">
         <img src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw" alt="back-img"/>
         
@@ -126,9 +126,10 @@ const educationList = resume.education && resume.education.map((item, index) => 
               </div> */}
 
       </div>
-      <div className="middle-container">
+    
+      <div className="middle-container" >
       <div className="about-container">
-      <div className="card border-0">
+      <div className="card border-0" style={{ padding: 0, marginLeft:0 }}>
               <div className="card-body">
                 <h4>About me</h4>
                 <p className="card-text">
@@ -139,8 +140,8 @@ const educationList = resume.education && resume.education.map((item, index) => 
 
       </div>
       <div className="experience-container">
-      <div className="card border-0">
-              <div className="card-body ">
+      <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
+              <div className="card-body">
                 <h5 className="expirience"> Experience</h5>
                 <p className="card-text expirience">
                <b> {resume.position_company}- {resume.years_worked}</b>
@@ -154,9 +155,10 @@ const educationList = resume.education && resume.education.map((item, index) => 
 
       </div>
       </div>
-      <div className="projects-container">
-      <div className="card border-0">
-              <div className="card-body ">
+      <div className="bottom-container">
+      <div className="projects-container" >
+      <div className="card border-0" style={{ padding: 0 , marginLeft:0}}>
+              <div className="card-body">
                 <h5 className="expirience"> Projects</h5>
                 <p className="card-text expirience">
                  {resume.project_name}
@@ -170,8 +172,8 @@ const educationList = resume.education && resume.education.map((item, index) => 
 
       </div>
       <div className="education-container">
-      <div className="card border-0">
-              <div className="card-body ">
+      <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
+              <div className="card-body">
                 <h5 className="expirience">Education</h5>
                 <p className="card-text expirience">
                 <ul>{educationList}</ul>
@@ -181,7 +183,7 @@ const educationList = resume.education && resume.education.map((item, index) => 
             </div>
       </div>
       <div className="skills-container">
-      <div className="card border-0">
+      <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
               <div className="card-body">
                 <h5>Skills</h5>
                 <p className="card-text">
@@ -190,8 +192,8 @@ const educationList = resume.education && resume.education.map((item, index) => 
               </div>
             </div>
       </div>
+</div>
       </div>
-      
      
       <Footer />
     </div>

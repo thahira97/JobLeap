@@ -30,10 +30,11 @@ p{
 }
 
 
-.card {
+.card.main {
   padding: 0;
  margin: 0;
 }
+
 .top-container {
   width: 100%;
   height: 15rem;
@@ -92,25 +93,11 @@ p{
   margin-left: 500px;
 }
 
-.about-container{
-  padding-top: 20px;
-  font-size: large;
-}
-.experience-container {
-  padding-top: 20px;
+.middle-container {
+  width: 100%;
   font-size: large;
   
 }
-.projects-container {
-  padding-top: 20px;
-  font-size: large;
-}
-
-.education-container{
-  padding-top: 20px;
-  font-size: large;
-}
-.skills-container{
-  padding-top: 20px;
+.bottom-container {
   font-size: large;
 }
