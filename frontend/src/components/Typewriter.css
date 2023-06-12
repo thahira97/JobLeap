@@ -1,0 +1,12 @@
+.chat-box{
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  height: 90%;
+  padding: 30px;
+  margin: 50px;
+  text-align: center;
+  position: absolute;
+  background-color: #f9f6f6;
+}
+

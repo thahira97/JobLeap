@@ -1,10 +1,45 @@
 import React from "react";
-
+import { useState, useEffect,useContext } from "react";
+import { ResumeContext } from '../context/resumeContext';
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./JobDescription.css";
 import Card from "./Card";
 
 const JobDescription = (props) => {
 
+  const { jobDescription ,setJobDescription, myExperience } = useContext(ResumeContext);
+ 
+  // const [value, setValue] = useState(null);
+  const [message, setMessage] = useState(null);
+  // const [previousChats, setPreviousChats ] = useState([ ])
+  
+  const getMessages = async() => {
+    setJobDescription(props.description)
+    const description = JSON.stringify(jobDescription)
+    const resume = JSON.stringify(myExperience.aboutMe)
+    const experience = JSON.stringify(myExperience.experience)
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        message:
+       `Enhance only the experience in resume to match the job.Job description: ${description} resume:${resume} and experience: ${experience}.Important: Do not include salutations and no headings.only in points.` 
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    try {
+      const response = await fetch('http://localhost:8080/completions', options)
+      const data = await response.json()
+      console.log(data.choices[0].message.content)
+      const receivedMessage = data.choices[0].message.content
+      setMessage(receivedMessage)
+      localStorage.setItem("message", receivedMessage)
+    }
+    catch(error) {
+      console.log(error)
+    }
+  }
 const moneyIconStyle={
   color: "#5a8774",
 };
@@ -16,6 +51,12 @@ backgroundColor: "#FFDEB9",
 border: "1px",
 boxShadow: "none"
 }
+
+useEffect(() => {
+console.log("+++++",jobDescription)
+console.log("----", JSON.stringify(myExperience))
+}, [jobDescription])
+console.log("MESSAGE",message)
 
 return <div className="job-description">
   <div className="description-header">
@@ -36,7 +77,10 @@ return <div className="job-description">
     <button class="btn btn-primary" type="submit">Apply using old resume</button>
     </div>
     <div className="modify-mutton">
-    <button class="btn btn-primary" type="submit">Modify resume</button>
+   <Link to="/modify-resume"><button class="btn btn-primary" type="submit" onClick={getMessages}> Modify resume</button></Link>
+    {/* <div>
+      <input value={value} onChange={(e)=>setValue(e.target.value)}></input>
+    </div> */}
     </div>
   </div>
 </div>

@@ -2,6 +2,5 @@ DROP TABLE IF EXISTS education CASCADE;
 CREATE TABLE education (
   id SERIAL PRIMARY KEY NOT NULL,
   resume_id INTEGER REFERENCES resumes(id) ON DELETE CASCADE,
-  degree VARCHAR(255) NOT NULL,
-  university_name VARCHAR(255) NOT NULL
+  univ_degree VARCHAR(255) NOT NULL
 );
