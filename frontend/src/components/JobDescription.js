@@ -56,7 +56,6 @@ const computerIconStyle={
   color: "#7ba4d1",
 };
 const cardStyling={
-backgroundColor: "#FFDEB9",
 border: "1px",
 boxShadow: "none"
 }
@@ -70,17 +69,17 @@ console.log("MESSAGE",message)
 
 return <div className="job-description">
   <div className="description-header">
-      <Card style={cardStyling}><p>{props.name}</p>
-  <span>{props.title}</span></Card>
+      <Card style={cardStyling}><h1>{props.name}</h1>
+  <span><h2>{props.title}</h2></span></Card>
   </div>
-
-  <aside><b>About the job</b></aside>
+  <Card><aside><b>Job details</b></aside>
   <p>{props.description} </p>
   <ul className="detailed-list">
   <li>Schedule: <i class="fa-solid fa-suitcase"></i> {props.schedule}</li>  
   <li>FlexTime: <i className="fa-solid fa-computer"style={computerIconStyle}></i> {props.flextime}</li>
   <li>Salary: <i className="fa-solid fa-money-check-dollar"style={moneyIconStyle}></i> {props.salary}</li>
   </ul>
+  </Card>
   
   <div className="main-buttons">
     <div className="apply-button">
