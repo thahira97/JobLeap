@@ -43,7 +43,7 @@ app.use('/api/resumes', resumesRoutes);
 ////////////////////////////////////////////////////////////
 app.post('/completions', async (req, res) => {
   // const { jobDescription, myExperience, aboutMe } = req.body;
-  const { something} = req.body; 
+  const { query} = req.body; 
 //  console.log("asdasdas", message)
   const options = {
     method: 'POST',
@@ -53,7 +53,7 @@ app.post('/completions', async (req, res) => {
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
-      messages: [{role: 'user', content: something}],
+      messages: [{role: 'user', content: query}],
       max_tokens: 3000,
     })
   };

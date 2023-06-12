@@ -24,7 +24,7 @@ const getMessages = async () => {
   const options = {
     method: "POST",
     body: JSON.stringify({
-      something: `Enhance only the experience in resume to match the job. Job description: ${description} and experience: ${experience}. Important: Do not include salutations and no headings. Only in points.`,
+      query: `Enhance only the experience in resume to match the job. Job description: ${description} and experience: ${experience}. Important: Do not include salutations and no headings. Only in points.`,
     }),
     headers: {
       "Content-Type": "application/json",
