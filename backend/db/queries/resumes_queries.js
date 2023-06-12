@@ -26,7 +26,7 @@ const createResume = (req, res) => {
 
     db.query(
       `INSERT INTO resumes (user_id, user_img, summary, location, skills, present_job, phone_number) 
-      VALUES ($1, $2, $3, $4, $5, $6)`,
+      VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
         resumeData.user_img,
         resumeData.summary,

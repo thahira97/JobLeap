@@ -63,8 +63,40 @@ function CreateProfile() {
     }
 
     try {
-      const { user_img, summary, location, skills, phone_number } = resume;
-      const resumeData = { user_img, summary, location, skills, phone_number, };
+      const { 
+        user_img,
+        summary,
+        location,
+        skills,
+        present_job,
+        phone_number,
+        company,
+        start_date,
+        end_date,
+        project_name,
+        project_description,
+        project_img,
+        degree,
+        university_name
+      } = resume;
+
+      const resumeData = {
+      //user_id,
+        user_img, 
+        summary,
+        location,
+        skills,
+        present_job,
+        phone_number,
+        company,
+        start_date,
+        end_date,
+        project_name,
+        project_description,
+        project_img,
+        degree,
+        university_name
+      };
   
       await axios.post("http://localhost:8080/api/resumes", resumeData);
     } catch (err) { 
@@ -80,7 +112,7 @@ function CreateProfile() {
       <div className="container">
         <div className="outline"></div>
           <h4>Create Your Profile</h4>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div className="row">
               <div className="col-3">
                 <div className="card border-0">
@@ -266,7 +298,7 @@ function CreateProfile() {
                 <input
                     type="text"
                     className="card-text editable-input"
-                    name="university_named"
+                    name="university_name"
                     value={resume.university_name}
                     onChange={handleInputChange}
                     placeholder="School Name"
