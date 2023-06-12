@@ -22,7 +22,49 @@ const getResume = (req, res) => {
   });
 };
 
-const createResume = () => {
+const createResume = (req, res) => {
+  const {
+    user_id,
+    present_job,
+    location,
+    summary,
+    user_img,
+    skills,
+    position_company,
+    years_worked,
+    experience,
+    phone_number,
+    project_name,
+    project_img,
+    project_description,
+    is_original
+  } = req.body.resume;
+  
+  const query = `INSERT INTO resumes (user_id, present_job, location, summary, user_img, skills, position_company, years_worked, experience, phone_number, project_name, project_img, project_description, is_original)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+    RETURNING *;`;
+
+  const values = [
+    user_id,
+    present_job,
+    location,
+    summary,
+    user_img,
+    skills,
+    position_company,
+    years_worked,
+    experience,
+    phone_number,
+    project_name,
+    project_img,
+    project_description,
+    is_original
+  ];
+
+  db.query(query, values, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(201).json(data.rows[0]);
+  });
 };
 
 const updateResume = () => {
