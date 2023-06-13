@@ -120,7 +120,8 @@ function Profile() {
             >
               <div className="card-body">
                 <div className="top-body">
-                  <h4>About me</h4> <i class="fa-solid fa-pencil"></i>
+                  <h4>About me</h4> 
+                  <button type="button" className="btn btn-primary">Edit</button>
                 </div>
                 <div className="bottom-body">
                   <p className="card-text">{resume.summary}</p>
