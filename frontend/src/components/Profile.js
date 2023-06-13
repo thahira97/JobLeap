@@ -60,9 +60,9 @@ function Profile() {
 
 console.log("^^^^^^^",myExperience)
   
-const educationList = resume.education && resume.education.map((item, index) => (
-  <div key={index}>{item}</div>
-));
+// const educationList = resume.education && resume.education.map((item, index) => (
+//   <div key={index}>{item}</div>
+// ));
 
 
 
@@ -175,9 +175,8 @@ const educationList = resume.education && resume.education.map((item, index) => 
       <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
               <div className="card-body">
                 <h5 className="expirience">Education</h5>
-                <p className="card-text expirience">
-                <ul>{educationList}</ul>
-                   <br></br>
+                <p className="card-text">
+                  {resume.education}
                 </p>
               </div>
             </div>

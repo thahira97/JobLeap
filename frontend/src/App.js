@@ -9,7 +9,6 @@ import Home from "./components/Home";
 import JobSearch from "./components/JobSearch";
 import Profile from "./components/Profile";
 import CreateProfile from "./components/CreateProfile";
-import Resumes from "./components/Resumes";
 import Signup from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
@@ -67,9 +66,6 @@ function App() {
         </Route>
         <Route path="/forgot-password" exact>
           <ForgotPassword />
-        </Route>
-        <Route path="/resumes" exact>
-          <Resumes />
         </Route>
         <Redirect to="/" />
       </Switch>

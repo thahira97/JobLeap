@@ -1,3 +1,36 @@
+.create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.create-container .create-panel {
+  margin-top: 32px;
+  width: 760px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-container .form-group {
+  margin-top: 24px;
+}
+
+.create-container label {
+  margin-bottom: 8px;
+}
+
+.create-container .btn {
+  width: 100%;
+  margin-top: 32px;
+}
+
+/* 
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -88,4 +121,4 @@ h4 {
   .container {
     padding: 10px;
   }
-}
+} */

@@ -1,120 +1,379 @@
-import React, { useState, useRef } from "react";
-import axios from "axios";
+// import React, { useState, useRef } from "react";
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../context/authContext';
 import Nav from "./Nav";
 import Footer from "./Footer";
 import "./CreateProfile.css";
 
 function CreateProfile() {
-  const [resume, setResume] = useState({
-    user_id: "",
+
+  const { currentUser } = useContext(AuthContext);
+  const userID = currentUser.id;
+
+  const [input, setInput] = useState({
+    user_id: userID,
     present_job: "",
+    phone_number: "",
     location: "",
-    summary: "",
     user_img: "",
+    summary: "",
+    education: "",
     skills: "",
     position_company: "",
     years_worked: "",
     experience: "",
-    phone_number: "",
     project_name: "",
-    project_img: "",
     project_description: "",
+    project_img: "",
+    is_original: true
   });
+  const [error, setError] = useState(null);
+  const history = useHistory();
 
-  const [errorMessages, setErrorMessages] = useState({});
-  const userImageInput = useRef(null);
-  const projectImageInput = useRef(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const handleChange = e => {
+    setInput(prev => ({...prev, [e.target.name]: e.target.value}))
+  }
 
-  const handleInputChange = (e) => {
-    setResume({
-      ...resume,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleImageUpload = (e, field) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setResume((prevResume) => ({
-        ...prevResume,
-        [field]: {
-          preview: reader.result,
-          file,
-        },
-      }));
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleUserImageUpload = (e) => {
-    handleImageUpload(e, "user_img");
-  };
-
-  const handleRemoveUserImage = () => {
-    setResume((prevResume) => ({
-      ...prevResume,
-      user_img: "",
-    }));
-    // Reset the input value to an empty string
-    if (userImageInput.current) {
-      userImageInput.current.value = "";
-    }
-  };
-
-  const handleProjectImageUpload = (e) => {
-    handleImageUpload(e, "project_img");
-  };
-
-  const handleRemoveProjectImage = () => {
-    setResume((prevResume) => ({
-      ...prevResume,
-      project_img: "",
-    }));
-    // Reset the input value to an empty string
-    if (projectImageInput.current) {
-      projectImageInput.current.value = "";
-    }
-  };
-
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("user_id", resume.user_id);
-      formData.append("present_job", resume.present_job);
-      formData.append("location", resume.location);
-      formData.append("summary", resume.summary);
-      formData.append("user_img", resume.user_img.file);
-      formData.append("skills", resume.skills);
-      formData.append("position_company", resume.position_company);
-      formData.append("years_worked", resume.years_worked);
-      formData.append("experience", resume.experience);
-      formData.append("phone_number", resume.phone_number);
-      formData.append("project_name", resume.project_name);
-      formData.append("project_img", resume.project_img.file);
-      formData.append("project_description", resume.project_description);
-      formData.append("is_original", true); // Assuming is_original is a boolean field
-  
-      await axios.post("http://localhost:8080/api/resumes", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      setIsSubmitted(true);
-    } catch (err) {
-      console.error(err);
-      setErrorMessages(err.response.data.errors);
+      await axios.post("http://localhost:8080/api/resumes", input);
+      history.push("/profile");
+    } catch(err) {
+      setError(err.response.data);
     }
   };
+  // const [resume, setResume] = useState({
+  //   user_id: "",
+  //   present_job: "",
+  //   location: "",
+  //   summary: "",
+  //   user_img: "",
+  //   skills: "",
+  //   position_company: "",
+  //   years_worked: "",
+  //   experience: "",
+  //   phone_number: "",
+  //   project_name: "",
+  //   project_img: "",
+  //   project_description: "",
+  // });
+
+  // const [errorMessages, setErrorMessages] = useState({});
+  // const userImageInput = useRef(null);
+  // const projectImageInput = useRef(null);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // const handleInputChange = (e) => {
+  //   setResume({
+  //     ...resume,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const handleImageUpload = (e, field) => {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => {
+  //     setResume((prevResume) => ({
+  //       ...prevResume,
+  //       [field]: {
+  //         preview: reader.result,
+  //         file,
+  //       },
+  //     }));
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
+
+  // const handleUserImageUpload = (e) => {
+  //   handleImageUpload(e, "user_img");
+  // };
+
+  // const handleRemoveUserImage = () => {
+  //   setResume((prevResume) => ({
+  //     ...prevResume,
+  //     user_img: "",
+  //   }));
+  //   // Reset the input value to an empty string
+  //   if (userImageInput.current) {
+  //     userImageInput.current.value = "";
+  //   }
+  // };
+
+  // const handleProjectImageUpload = (e) => {
+  //   handleImageUpload(e, "project_img");
+  // };
+
+  // const handleRemoveProjectImage = () => {
+  //   setResume((prevResume) => ({
+  //     ...prevResume,
+  //     project_img: "",
+  //   }));
+  //   // Reset the input value to an empty string
+  //   if (projectImageInput.current) {
+  //     projectImageInput.current.value = "";
+  //   }
+  // };
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("user_id", resume.user_id);
+  //     formData.append("present_job", resume.present_job);
+  //     formData.append("location", resume.location);
+  //     formData.append("summary", resume.summary);
+  //     formData.append("user_img", resume.user_img.file);
+  //     formData.append("skills", resume.skills);
+  //     formData.append("position_company", resume.position_company);
+  //     formData.append("years_worked", resume.years_worked);
+  //     formData.append("experience", resume.experience);
+  //     formData.append("phone_number", resume.phone_number);
+  //     formData.append("project_name", resume.project_name);
+  //     formData.append("project_img", resume.project_img.file);
+  //     formData.append("project_description", resume.project_description);
+  //     formData.append("is_original", true); // Assuming is_original is a boolean field
+  
+  //     await axios.post("http://localhost:8080/api/resumes", formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+  //     setIsSubmitted(true);
+  //   } catch (err) {
+  //     console.error(err);
+  //     setErrorMessages(err.response.data.errors);
+  //   }
+  // };
   
 
   return (
-    <div>
+    <div className="create-page">
       <Nav />
-      <div className="container">
+      <div className="create-container">
+        <h3>Create Profile</h3>
+        <form>
+          
+          <div className="create-panel">
+            <h4>Profile Summary</h4>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={currentUser.name}
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Current role</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. Web Developer"
+                    name="present_job"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Profile picture</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Upload image"
+                    name="user_img"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>About me</label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Write a 2-3 line summary about your professional experience."
+                    name="summary"
+                    onChange={handleChange}
+                    rows="3">
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="create-panel">
+            <h4>Contact Information</h4>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={currentUser.email}
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Phone number</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. 416-123-4567"
+                    name="phone_number"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Location</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. Toronto, ON"
+                    name="location"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="create-panel">
+            <h4>Educational Background</h4>
+            <div className="row">
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Education</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. Bachelor of Science - University Name"
+                    name="education"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Skills</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. HTML, CSS"
+                    name="skills"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="create-panel">
+            <h4>Work Experience</h4>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Job Title</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. Web Developer - ABC Inc."
+                    name="position_company"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Years</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. 2010-2015"
+                    name="years_worked"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Responsibilities</label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Write about your responsibilities and key achievements in this role."
+                    name="experience"
+                    onChange={handleChange}
+                    rows="3">
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="create-panel">
+            <h4>Projects</h4>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Project Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="eg. E-commerce Website"
+                    name="project_name"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Project Image</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Upload image"
+                    name="project_img"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Project Description</label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Write about your key contributions to this project."
+                    name="project_description"
+                    onChange={handleChange}
+                    rows="3">
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {error &&
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          }
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+            Save profile
+          </button>
+
+        </form>
+      </div>
+      {/* <div className="container">
         <div className="outline"></div>
         <h4>Create Your Profile</h4>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -344,7 +603,7 @@ function CreateProfile() {
         </form>
         <br />
         <div className="outline"></div>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );
