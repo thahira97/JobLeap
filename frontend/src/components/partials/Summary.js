@@ -125,17 +125,15 @@ function Summary() {
               id="exampleFormControlTextarea1"
               rows="4"
             ></textarea>
-          <button
-            onClick={() => handleEditClick()}
-            type="button"
-            className="btn btn-info"
-          >
-            edit
-          </button>
+              <button
+                onClick={() => handleEditClick()}
+                type="button">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
 
-          <button type="submit" className="btn btn-info">
-            save
-          </button>
+            <button type="submit">
+              <i class="fa-regular fa-floppy-disk"></i>
+              </button>
         </div>
       </form>
     </div>
