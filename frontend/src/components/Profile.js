@@ -59,11 +59,30 @@ function Profile() {
     setMyExperience,
   ]);
 
-  console.log("^^^^^^^", myExperience);
+console.log("^^^^^^^",myExperience)
+  
+// const educationList = resume.education && resume.education.map((item, index) => (
+//   <div key={index}>{item}</div>
+// ));
 
-  const educationList =
-    resume.education &&
-    resume.education.map((item, index) => <div key={index}>{item}</div>);
+
+
+// const experienceArr = Array.from(
+//   new Map(
+//     (resume.experiences || []).map((experience) => [
+//       JSON.stringify(experience.id),
+//       JSON.stringify(experience.company),
+//       JSON.stringify(experience.description)
+//     ])
+//   ).values()
+// );
+
+// const experienceDivs = experienceArr.map(([id, company, description], index) => (
+//   <div key={index}>
+//     <div>{company}</div>
+//     <div>{description}</div>
+//   </div>
+// ));
 
   return (
     <div>
@@ -166,9 +185,8 @@ function Profile() {
             >
               <div className="card-body">
                 <h5 className="expirience">Education</h5>
-                <p className="card-text expirience">
-                  <ul>{educationList}</ul>
-                  <br></br>
+                <p className="card-text">
+                  {resume.education}
                 </p>
               </div>
             </div>
