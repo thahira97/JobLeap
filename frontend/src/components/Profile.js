@@ -7,6 +7,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import "./Profile.css";
 import Location from "./partials/Location";
+import Summary from "./partials/Summary";
 
 function Profile() {
   const [editMode, setEditMode] = useState(false);
@@ -163,7 +164,8 @@ function Profile() {
             <div className="card-body">
               <h4>About me</h4>
               <p className="card-text">
-                {resume.summary}
+                {/* {resume.summary} */}
+                <Summary/>
               </p>
             </div>
           </div>
