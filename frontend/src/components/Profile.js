@@ -68,36 +68,6 @@ function Profile() {
     resume.education &&
     resume.education.map((item, index) => <div key={index}>{item}</div>);
 
-  const [input, setInput] = useState({
-    present_job: "",
-    location: "",
-    summary: "",
-    user_img: "",
-    skills: "",
-    phone_number: "",
-  });
-
-  function handleEditClick() {
-    setEditMode(true);
-  }
-
-  function handleChange(e) {
-    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-  async function handleSaveClick(e) {
-    e.preventDefault();
-    setEditMode(false);
-    try {
-      const response = await axios.put(
-        `http://localhost:8080/api/resumes/${userID}`,
-        input
-      );
-      console.log(response, "RESPONSE");
-    } catch {
-      console.log("error");
-    }
-  }
-
   // const experienceArr = Array.from(
   //   new Map(
   //     (resume.experiences || []).map((experience) => [
