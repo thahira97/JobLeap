@@ -33,6 +33,7 @@ const ModifiedResume = (props) => {
           {message && messageBox}
           {!message && (
             <div className="typewriter-box">
+              <div className="ring"></div>
               <h1 className="loading-animation">Loading...</h1>
             </div>
           )}

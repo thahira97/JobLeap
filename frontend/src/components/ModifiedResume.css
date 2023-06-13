@@ -14,21 +14,50 @@
   margin: 50px;
   background-color: #f9f6f6;
 }
-.loading-animation {
-  animation-name: moveAnimation;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+
+.ring {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  animation: ring 2s linear infinite;
 }
 
-@keyframes moveAnimation {
+@keyframes ring {
   0% {
-    transform: translateX(0);
+    transform: rotate(0deg);
+    box-shadow: 1px 5px 2px #e65c00;
   }
-  50% {
-    transform: translateX(10px);
+  0% {
+    transform: rotate(180deg);
+    box-shadow: 1px 5px 2px #18b201;
   }
-  100% {
-    transform: translateX(0);
+  0% {
+    transform: rotate(360deg);
+    box-shadow: 1px 5px 2px #0456c8;
+  }
+}
+
+.ring:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 5px rgba(255,255,255,.3);
+}
+
+.loading-animation{
+  color: #737373;
+  font-size: 20x;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 200px;
+  animation: text 3s ease-in-out infinite;
+}
+@keyframes text {
+  50%{
+    color: inherit black;
   }
 }
