@@ -137,7 +137,7 @@ function Profile() {
                 <div className="bottom-body">
                   {editMode ? (
                   <textarea 
-                  value={resume.summary} 
+                  defaultValue={resume.summary}
                   onChange={inputChangeHandler} 
                   style={{ width:'100%', border: '0px'}} />) : (
                      <p className="card-text">{resume.summary}</p>
