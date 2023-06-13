@@ -25,35 +25,33 @@ const getResume = (req, res) => {
 const createResume = () => {
 };
 
-const updateResume = () =>
+const updateResume = (req,res) =>
 {
-  
   db.query(
     `SELECT * FROM users`,
     [],
     (err, data) =>
     {
-      const { currentUser } = useContext(AuthContext);
-      const userID = currentUser.id;
+      // const { currentUser } = useContext(AuthContext);
+      // const userID = currentUser.id;
       const { present_job, location, summary, user_img, skills, phone_number} =
         req.body;
       
-      db.query(
-              `
-                update resumes 
+      db.query(`update resumes 
                 SET present_job =$1, location=$2, summary=$3, user_img=$4, skills=$5, phone_number=$6
                 WHERE user_id = $7
                 RETURNING *;
                 `,
         [
-          req.body.present_job,
-          req.body.location,
-          req.body.summary,
-          req.body.user_img,
-          req.body.skills,
-          req.body.phone_number,
-          userID
+         present_job,
+          location,
+          summary,
+          user_img,
+          skills,
+          phone_number,
+          req.params.id
         ],
+        
         (err, data) =>
         {
           if (err) return res.json(err);

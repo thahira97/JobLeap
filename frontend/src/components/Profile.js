@@ -6,6 +6,7 @@ import { ResumeContext } from "../context/resumeContext";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import "./Profile.css";
+import Location from "./partials/Location";
 
 function Profile() {
   const [editMode, setEditMode] = useState(false);
@@ -87,7 +88,7 @@ function Profile() {
     setEditMode(false);
     try {
       const response = await axios.put(
-        "http://localhost:8080/api/resumes",
+        `http://localhost:8080/api/resumes/${userID}`,
         input
       );
       console.log(response, "RESPONSE");
@@ -114,185 +115,119 @@ function Profile() {
   // ));
 
   // console.log(experienceArr)
-  return (
-    <div>
-      <Nav />
-      <div className="main-container">
-        <div className="card main">
-          <div className="top-container">
-            <img
-              src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw"
-              alt="back-img"
-            />
-          </div>
-          <div className="user-info">
-            <img src={resume.user_img} alt={resume.name} />
-          </div>
-          <div className="user-information">
-            <div className="name-info">
-              <div>
-                <form onSubmit={handleSaveClick}>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className={
-                        editMode ? "form-control" : "form-control-plaintext"
-                      }
-                      placeholder={resume.name}
-                      name="name"
-                      onChange={handleChange}
-                      required
-                    />
-                    <button
-                      onClick={() => handleEditClick()}
-                      type="button"
-                      className="btn btn-info"
-                    >
-                      edit
-                    </button>
-
-                    <button type="submit" className="btn btn-info">
-                      save
-                    </button>
-                  </div>
-                </form>
-                {/* <h4>{resume.present_job}</h4> */}
-                <form onSubmit={handleSaveClick}>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className={
-                        editMode ? "form-control" : "form-control-plaintext"
-                      }
-                      placeholder={resume.present_job}
-                      name="present_job"
-                      onChange={handleChange}
-                      required
-                    />
-                    <button
-                      onClick={() => handleEditClick()}
-                      type="button"
-                      className="btn btn-info"
-                    >
-                      edit
-                    </button>
-
-                    <button type="submit" className="btn btn-info">
-                      save
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div className="job-img">
-                <img
-                  src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg"
-                  width="50px"
-                />
-              </div>
-            </div>
-            <div className="contact">
-              <div className="location">
-                <i class="fa-sharp fa-solid fa-location-dot"></i>{" "}
-                {resume.location}
-              </div>
-              <div className="email">
-                <i class="fa-sharp fa-solid fa-envelope"></i> {resume.email}
-              </div>
-              <div className="phone">
-                <i class="fa-solid fa-phone"></i> {resume.phone_number}
-              </div>
-            </div>
-          </div>
-          {/* <div className="more-about">
-                <h4>About me</h4>
-                <p className="card-text">
-                  {resume.summary}
-                </p>
-              </div> */}
+  return ( <div>
+    <Nav />
+    <div className="main-container">
+      <div className="card main">
+       <div className="top-container">
+      <img src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw" alt="back-img"/>
+      
+    </div>
+    <div className="user-info">
+      <img src={resume.user_img} alt={resume.name}/>
+    </div>
+    <div className="user-information">
+      <div className="name-info">
+        <div>
+          <h2>{resume.name}</h2>
+      <h4>{resume.present_job}</h4> 
         </div>
-
-        <div className="middle-container">
-          <div className="about-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <h4>About me</h4>
-                <p className="card-text">{resume.summary}</p>
-              </div>
-            </div>
-          </div>
-          <div className="experience-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <h5 className="expirience"> Experience</h5>
-                <p className="card-text expirience">
-                  <b>
-                    {" "}
-                    {resume.position_company}- {resume.years_worked}
-                  </b>
-                  <div>{resume.experience}</div>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bottom-container">
-          <div className="projects-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <h5 className="expirience"> Projects</h5>
-                <p className="card-text expirience">
-                  {resume.project_name}
-                  <br></br>
-                  {resume.project_description}
-                  <br></br> <br></br>
-                  <img
-                    src={resume.project_img}
-                    alt={resume.project_name}
-                    width="200px"
-                  />
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="education-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <h5 className="expirience">Education</h5>
-                <p className="card-text expirience">
-                  <ul>{educationList}</ul>
-                  <br></br>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="skills-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <h5>Skills</h5>
-                <p className="card-text">{resume.skills}</p>
-              </div>
-            </div>
-          </div>
+      <div className="job-img">
+        <img src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg" width="50px" />
         </div>
       </div>
-
-      <Footer />
+      <div className="contact">
+        <div className="location">
+           <i class="fa-sharp fa-solid fa-location-dot"></i>  <Location/>
+        </div>
+        <div className="email">
+        <i class="fa-sharp fa-solid fa-envelope"></i> {resume.email} 
+        </div>
+        <div className="phone">
+        <i class="fa-solid fa-phone"></i> {resume.phone_number}
+        </div>
+      </div>
     </div>
+    {/* <div className="more-about">
+              <h4>About me</h4>
+              <p className="card-text">
+                {resume.summary}
+              </p>
+            </div> */}
+
+    </div>
+  
+    <div className="middle-container" >
+    <div className="about-container">
+    <div className="card border-0" style={{ padding: 0, marginLeft:0 }}>
+            <div className="card-body">
+              <h4>About me</h4>
+              <p className="card-text">
+                {resume.summary}
+              </p>
+            </div>
+          </div>
+
+    </div>
+    <div className="experience-container">
+    <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
+            <div className="card-body">
+              <h5 className="expirience"> Experience</h5>
+              <p className="card-text expirience">
+             <b> {resume.position_company}- {resume.years_worked}</b>
+              <div>
+              {resume.experience}
+              </div>
+    
+              </p>
+            </div>
+          </div>
+
+    </div>
+    </div>
+    <div className="bottom-container">
+    <div className="projects-container" >
+    <div className="card border-0" style={{ padding: 0 , marginLeft:0}}>
+            <div className="card-body">
+              <h5 className="expirience"> Projects</h5>
+              <p className="card-text expirience">
+               {resume.project_name}
+                <br></br>
+                {resume.project_description}
+                <br></br>  <br></br>
+               <img src={resume.project_img} alt={resume.project_name} width="200px" />
+              </p>
+            </div>
+          </div>
+
+    </div>
+    <div className="education-container">
+    <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
+            <div className="card-body">
+              <h5 className="expirience">Education</h5>
+              <p className="card-text expirience">
+              <ul>{educationList}</ul>
+                 <br></br>
+              </p>
+            </div>
+          </div>
+    </div>
+    <div className="skills-container">
+    <div className="card border-0" style={{ padding: 0, marginLeft:0}}>
+            <div className="card-body">
+              <h5>Skills</h5>
+              <p className="card-text">
+            {resume.skills}
+              </p>
+            </div>
+          </div>
+    </div>
+</div>
+    </div>
+   
+    <Footer />
+  </div>
+
   );
 }
 
