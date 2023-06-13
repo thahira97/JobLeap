@@ -68,9 +68,9 @@ function Summary() {
     present_job: "",
     location: "",
     summary: "",
-    user_img: "",
+    experience: "",
     skills: "",
-    phone_number: "",
+    project_description: "",
   });
 
   function handleEditClick() {

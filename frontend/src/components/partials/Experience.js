@@ -70,7 +70,7 @@ function Experience() {
     summary: "",
     experience: "",
     skills: "",
-    phone_number: "",
+    project_description: "",
   });
 
   function handleEditClick() {
