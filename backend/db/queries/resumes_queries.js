@@ -34,7 +34,7 @@ const updateResume = (req,res) =>
     {
       // const { currentUser } = useContext(AuthContext);
       // const userID = currentUser.id;
-      const { present_job, location, summary, user_img, skills, phone_number} =
+      const { present_job, location, summary, experience, skills, phone_number} =
         req.body;
       
       db.query(`update resumes 
@@ -46,7 +46,7 @@ const updateResume = (req,res) =>
          present_job,
           location,
           summary,
-          user_img,
+          experience,
           skills,
           phone_number,
           req.params.id

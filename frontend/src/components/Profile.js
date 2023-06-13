@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import "./Profile.css";
 import Location from "./partials/Location";
 import Summary from "./partials/Summary";
+import Experience from "./partials/Experience";
 
 function Profile() {
   const [editMode, setEditMode] = useState(false);
@@ -148,7 +149,7 @@ function Profile() {
               <p className="card-text expirience">
              <b> {resume.position_company}- {resume.years_worked}</b>
               <div>
-              {resume.experience}
+             <Experience/>
               </div>
     
               </p>
