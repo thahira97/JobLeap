@@ -73,6 +73,13 @@ function Profile() {
   const inputChangeHandler= (event) => {
     setCardContent(event.target.value)
   }
+   const editHandler = () => {
+    setEditMode(true)
+   }
+   
+   const saveHandler = () => {
+    setEditMode(false)
+   }
 
   return (
     <div>
