@@ -22,8 +22,8 @@ const JobSearch = (props) => {
   ).location;
 
   const defaultState = {
-    jobTitle : props.data.job_title || inputValueTitle,
-    location: props.data.location || inputValueLocation,
+    jobTitle : "",
+    location: "",
     datePosted: "",
     schedule: "",
     flexTime: "",
