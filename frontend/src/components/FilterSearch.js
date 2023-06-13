@@ -4,52 +4,6 @@ import axios from "axios";
 import "./FilterSearch.css";
 
 const FilterSearch = (props) => {
- 
-
-  // const defaultState = {
-  //   location: "",
-  //   datePosted: "",
-  //   schedule: "",
-  //   flexTime: "",
-  //   salary: "",
-  // };
-
-  // const [arrayList, setArrayList] = useState([]);
-  // const [filterValues, setFilterValues] = useState(defaultState);
-  // const [filteredList, setFilteredList] = useState([]);
-
-  // useEffect(() => {
-  //   setFilterValues(props.apiData);
-  //   setFilteredList(props.apiData);
-  // }, []);
-  
-  // const props.handleFilterChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFilterValues(prevState => ({
-  //     ...prevState,
-  //     [name]: value
-  //   }));
-  //   filterArray(filterValues); // Call the filterArray function with updated filter values
-  // };
-
-  // const filterArray = (filterValues) => {
-  //   let filteredArray = [...arrayList];
-  
-  //   Object.entries(filterValues).forEach(([filterName, filterValue]) => {
-  //     if (filterValue !== '') {
-  //       filteredArray = filteredArray.filter(item =>
-  //         item[filterName] === filterValue
-  //       );
-  //     }
-  //   });
-  
-  //   setFilteredList(filteredArray);
-  // };
-  
-  // const searchHandler= ()=> {
-  //   setFilteredState(selectedState)
-  //   console.log(filteredState)
-  // }
   
   return (
     <div className="search-filter">
@@ -142,11 +96,6 @@ const FilterSearch = (props) => {
                 <option value="$70,000">$90,000+</option>
               </select>
             </div>
-            {/* <div className="col">
-              <button type="button" className="btn btn-primary" onClick={searchHandler}>
-                Search
-              </button>
-            </div> */}
           </div>
         </form>
       </div>

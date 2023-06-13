@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-import JobDescription from "../components/JobDescription";
 
 export const ResumeContext = createContext();
 
@@ -27,21 +26,6 @@ export const ResumeContextProvider = ({ children }) => {
     }
   }, [myExperience]);
   
-  // useEffect(() => {
-  //   const storedDescription = localStorage.getItem('jobDescription');
-  //   if (storedDescription) {
-  //     setJobDescription(JSON.parse(storedDescription));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (jobDescription) {
-  //     localStorage.setItem('myExperience', JSON.stringify(jobDescription));
-  //   }
-  // }, [jobDescription]);
-  
-
-
   return (
     <ResumeContext.Provider value={contextValue}>
       {children}
