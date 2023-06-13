@@ -133,9 +133,15 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h4>About me</h4>
-                <p className="card-text">{resume.summary}</p>
+                <div className="top-body">
+                      <h4>About me</h4>   <i class="fa-solid fa-pencil"></i>
+                </div>
+                <div className="bottom-body">
+                    <p className="card-text">{resume.summary}</p>
+                </div>
+              
               </div>
+            
             </div>
           </div>
           <div className="experience-container">

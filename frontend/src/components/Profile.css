@@ -101,3 +101,8 @@ p{
 .bottom-container {
   font-size: large;
 }
+
+.top-body {
+  display: flex;
+ justify-content: space-between;
+}
