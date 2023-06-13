@@ -9,6 +9,7 @@ import "./Profile.css";
 import Location from "./partials/Location";
 import Summary from "./partials/Summary";
 import Experience from "./partials/Experience";
+import ProjectDesc from "./partials/ProjectDesc";
 
 function Profile() {
   const [editMode, setEditMode] = useState(false);
@@ -166,7 +167,7 @@ function Profile() {
               <p className="card-text expirience">
                {resume.project_name}
                 <br></br>
-                {resume.project_description}
+                <ProjectDesc/>
                 <br></br>  <br></br>
                <img src={resume.project_img} alt={resume.project_name} width="200px" />
               </p>

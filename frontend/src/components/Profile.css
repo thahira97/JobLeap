@@ -101,3 +101,9 @@ p{
 .bottom-container {
   font-size: large;
 }
+textarea::placeholder{
+color: black;
+}
+input::placeholder{
+color: black;
+}

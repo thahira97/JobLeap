@@ -34,11 +34,11 @@ const updateResume = (req,res) =>
     {
       // const { currentUser } = useContext(AuthContext);
       // const userID = currentUser.id;
-      const { present_job, location, summary, experience, skills, phone_number} =
+      const { present_job, location, summary, experience, skills, project_description} =
         req.body;
       
       db.query(`update resumes 
-                SET present_job =$1, location=$2, summary=$3, user_img=$4, skills=$5, phone_number=$6
+                SET present_job =$1, location=$2, summary=$3, experience=$4, skills=$5, project_description=$6
                 WHERE user_id = $7
                 RETURNING *;
                 `,
@@ -48,7 +48,7 @@ const updateResume = (req,res) =>
           summary,
           experience,
           skills,
-          phone_number,
+          project_description,
           req.params.id
         ],
         
