@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect,useContext } from "react";
 import { ResumeContext } from '../context/resumeContext';
+import { MessageContext } from '../context/messageContext';
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./JobDescription.css";
 import Card from "./Card";
@@ -8,13 +9,13 @@ import Card from "./Card";
 const JobDescription = (props) => {
 
   const { jobDescription ,setJobDescription, myExperience } = useContext(ResumeContext);
- 
-  // const [value, setValue] = useState(null);
-  const [message, setMessage] = useState(null);
-  // const [previousChats, setPreviousChats ] = useState([ ])
-  
+
+  const { setMessage } = useContext(MessageContext);
+
 useEffect(()=> {
 setJobDescription(props.description)
+setMessage(null)
+window.localStorage.removeItem("message");
 },[])
 
 const getMessages = async () => {
@@ -65,7 +66,7 @@ useEffect(() => {
 console.log("+++++",jobDescription)
 console.log("----", JSON.stringify(myExperience.experience))
 }, [jobDescription])
-console.log("MESSAGE",message)
+// console.log("MESSAGE",message)
 
 return <div className="job-description">
   <div className="description-header">

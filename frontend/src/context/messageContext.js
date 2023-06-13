@@ -12,11 +12,6 @@ export const MessageContextProvider = ({ children }) => {
     }
   }, []);
 
-  // Update message and store in localStorage
-  // const updateMessage = (newMessage) => {
-  //   setMessage(newMessage);
-  //   localStorage.setItem('message', newMessage);
-  // };
   const contextValue = {
     message,
     setMessage
