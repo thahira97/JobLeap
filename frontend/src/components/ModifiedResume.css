@@ -14,4 +14,21 @@
   margin: 50px;
   background-color: #f9f6f6;
 }
+.loading-animation {
+  animation-name: moveAnimation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 
+@keyframes moveAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
