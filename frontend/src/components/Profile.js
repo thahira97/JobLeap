@@ -132,10 +132,21 @@ function Profile() {
               <div className="card-body">
                 <div className="top-body">
                   <h4>About me</h4> 
-                  <button type="button" className="btn btn-primary">Edit</button>
+                  <button type="button" className="btn btn-primary" onClick={editHandler}>Edit</button>
                 </div>
                 <div className="bottom-body">
-                  <p className="card-text">{resume.summary}</p>
+                  {editMode ? (
+                  <textarea 
+                  value={resume.summary} 
+                  onChange={inputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.summary}</p>
+                  )}
+                 {editMode && (
+                <button className="btn btn-primary" onClick={saveHandler}>
+                  Save
+                </button>
+              )}
                 </div>
               </div>
             </div>
