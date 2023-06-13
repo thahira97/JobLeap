@@ -108,6 +108,7 @@ function Profile() {
         </div>
 
         <div className="middle-container">
+          <form className="edit-submit">
           <div className="about-container">
             <div
               className="card border-0"
@@ -116,6 +117,8 @@ function Profile() {
               <div className="card-body">
                 <h4>About me</h4>
                 <p className="card-text">{resume.summary}</p>
+                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Save</button>
               </div>
             </div>
           </div>
@@ -136,6 +139,7 @@ function Profile() {
               </div>
             </div>
           </div>
+          </form>
         </div>
         <div className="bottom-container">
           <div className="projects-container">
