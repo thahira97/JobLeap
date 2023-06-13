@@ -70,6 +70,10 @@ function Profile() {
     projects: resume.project_name,
   });
 
+  const inputChangeHandler= (event) => {
+    setCardContent(event.target.value)
+  }
+
   return (
     <div>
       <Nav />
