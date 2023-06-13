@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import "./Profile.css";
 
 function Profile() {
+  const [editMode, setEditMode] = useState(false);
   const [resume, setResume] = useState({});
   const { currentUser } = useContext(AuthContext);
   const { setMyExperience, myExperience } = useContext(ResumeContext);
@@ -59,42 +60,15 @@ function Profile() {
     setMyExperience,
   ]);
 
-console.log("^^^^^^^",myExperience)
-  
-// const educationList = resume.education && resume.education.map((item, index) => (
-//   <div key={index}>{item}</div>
-// ));
-
-const [editMode, setEditMode] = useState({
-  jobTitle: resume.present_job,
-  aboutMe: resume.aboutMe,
-  experience: resume.experience,
-  location: resume.location,
-  phoneNumber: resume.phone_number,
-  skills: resume.skills,
-  projects: resume.project_name
-})
-
-const editHandler = (e) => {
-  setEditMode(e.target.value)
-}
-
-// const experienceArr = Array.from(
-//   new Map(
-//     (resume.experiences || []).map((experience) => [
-//       JSON.stringify(experience.id),
-//       JSON.stringify(experience.company),
-//       JSON.stringify(experience.description)
-//     ])
-//   ).values()
-// );
-
-// const experienceDivs = experienceArr.map(([id, company, description], index) => (
-//   <div key={index}>
-//     <div>{company}</div>
-//     <div>{description}</div>
-//   </div>
-// ));
+  const [cardContent, setCardContent] = useState({
+    jobTitle: resume.present_job,
+    aboutMe: resume.aboutMe,
+    experience: resume.experience,
+    location: resume.location,
+    phoneNumber: resume.phone_number,
+    skills: resume.skills,
+    projects: resume.project_name,
+  });
 
   return (
     <div>
@@ -146,14 +120,12 @@ const editHandler = (e) => {
             >
               <div className="card-body">
                 <div className="top-body">
-                      <h4>About me</h4>  <button type="button" className="btn-btn-primary" onClick={editHandler}><i className="fa-solid fa-pencil"></i></button> 
+                  <h4>About me</h4> <i class="fa-solid fa-pencil"></i>
                 </div>
                 <div className="bottom-body">
-                    <p className="card-text">{resume.summary}</p>
+                  <p className="card-text">{resume.summary}</p>
                 </div>
-              
               </div>
-            
             </div>
           </div>
           <div className="experience-container">
@@ -203,9 +175,7 @@ const editHandler = (e) => {
             >
               <div className="card-body">
                 <h5 className="expirience">Education</h5>
-                <p className="card-text">
-                  {resume.education}
-                </p>
+                <p className="card-text">{resume.education}</p>
               </div>
             </div>
           </div>
