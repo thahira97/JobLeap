@@ -70,7 +70,7 @@ function Profile() {
     projects: resume.project_name,
   });
 
-  const inputChangeHandler= (event) => {
+  const aboutInputChangeHandler= (event) => {
     console.log(event.target.value)
     setCardContent((prevContent) => ({
       ...prevContent,
@@ -81,7 +81,7 @@ function Profile() {
     setEditMode(true)
    }
    
-   const saveHandler = () => {
+   const aboutSaveHandler = () => {
     setEditMode(false)
     setResume((prevResume) => ({
       ...prevResume,
@@ -161,12 +161,12 @@ function Profile() {
                   <textarea 
                   name="aboutMe"
                   defaultValue={resume.summary}
-                  onChange={inputChangeHandler} 
+                  onChange={aboutInputChangeHandler} 
                   style={{ width:'100%', border: '0px'}} />) : (
                      <p className="card-text">{resume.summary}</p>
                   )}
                  {editMode && (
-                <button className="btn btn-primary" onClick={saveHandler}>
+                <button className="btn btn-primary" onClick={aboutSaveHandler}>
                   Save
                 </button>
               )}
