@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import "./Profile.css";
 
 function Profile() {
-  const [editMode, setEditMode] = useState(false);
+  const [aboutEditMode, setAboutEditMode] = useState(false);
   const [resume, setResume] = useState({});
   const { currentUser } = useContext(AuthContext);
   const { setMyExperience, myExperience } = useContext(ResumeContext);
@@ -77,12 +77,12 @@ function Profile() {
       aboutMe: event.target.value
     }));
   }
-   const editHandler = () => {
-    setEditMode(true)
+   const aboutEditHandler = () => {
+    setAboutEditMode(true)
    }
    
    const aboutSaveHandler = () => {
-    setEditMode(false)
+    setAboutEditMode(false)
     setResume((prevResume) => ({
       ...prevResume,
       summary: cardContent.aboutMe
@@ -153,11 +153,11 @@ function Profile() {
               <div className="card-body">
                 <div className="top-body">
                   <h4>About me</h4> 
-                  <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={editHandler}></i>
+                  <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={aboutEditHandler}></i>
                   {/* <button type="button" className="btn btn-primary" onClick={editHandler}>Edit</button> */}
                 </div>
                 <div className="bottom-body">
-                  {editMode ? (
+                  {aboutEditMode ? (
                   <textarea 
                   name="aboutMe"
                   defaultValue={resume.summary}
@@ -165,7 +165,7 @@ function Profile() {
                   style={{ width:'100%', border: '0px'}} />) : (
                      <p className="card-text">{resume.summary}</p>
                   )}
-                 {editMode && (
+                 {aboutEditMode && (
                 <button className="btn btn-primary" onClick={aboutSaveHandler}>
                   Save
                 </button>
