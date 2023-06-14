@@ -71,7 +71,11 @@ function Profile() {
   });
 
   const inputChangeHandler= (event) => {
-    setCardContent(event.target.value)
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      aboutMe: event.target.value
+    }));
   }
    const editHandler = () => {
     setEditMode(true)
@@ -79,7 +83,26 @@ function Profile() {
    
    const saveHandler = () => {
     setEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      summary: cardContent.aboutMe
+    }));
    }
+  //  useEffect(() => {
+  //   const updateData = async () => {
+  //     try {
+  //       const response = await axios.put(`/api/resumes/user/${userID}`);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   updateData();
+  // }, []);
+  //  useEffect(()=>{
+  //   setCardContent(resume.summary)
+  //  },[resume.summary])
+
 
   return (
     <div>
@@ -137,6 +160,7 @@ function Profile() {
                 <div className="bottom-body">
                   {editMode ? (
                   <textarea 
+                  name="aboutMe"
                   defaultValue={resume.summary}
                   onChange={inputChangeHandler} 
                   style={{ width:'100%', border: '0px'}} />) : (
