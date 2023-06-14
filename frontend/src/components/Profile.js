@@ -243,13 +243,6 @@ function Profile() {
                 </button>
               )}
                 </div>
-                {/* <p className="card-text expirience">
-                  <b>
-                    {" "}
-                    {resume.position_company}- {resume.years_worked}
-                  </b>
-                  <div>{resume.experience}</div>
-                </p> */}
               </div>
             </div>
           </div>
@@ -280,9 +273,7 @@ function Profile() {
                 <button className="btn btn-primary" onClick={projectsSaveHandler}>
                   Save
                 </button>
-              )}
-                  {/* {resume.project_description} */}
-                 
+              )} 
                   <img
                     src={resume.project_img}
                     alt={resume.project_name}
@@ -298,7 +289,10 @@ function Profile() {
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h5 className="expirience">Education</h5>
+                <div className="top-body">
+                   <h5 className="expirience">Education</h5>
+                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
+                </div>
                 <p className="card-text">{resume.education}</p>
               </div>
             </div>
@@ -309,7 +303,10 @@ function Profile() {
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h5>Skills</h5>
+                <div className="top-body">
+                   <h5>Skills</h5>
+                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
+                </div>
                 <p className="card-text">{resume.skills}</p>
               </div>
             </div>
