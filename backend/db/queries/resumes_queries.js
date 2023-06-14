@@ -43,7 +43,14 @@ const createResume = (req, res) => {
   });
 };
 
-const updateResume = () => {
+const updateResume = (req, res) => {
+
+  db.query(`UPDATE resumes 
+  SET summary=$1
+  WHERE user_id=$2`, [req.body.summary, req.params.id ], (err, data)=> {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data.rows[0]);
+  })
 };
 
 module.exports = { getResumes, getResume, createResume, updateResume };

@@ -88,22 +88,20 @@ function Profile() {
       summary: cardContent.aboutMe
     }));
    }
-  //  useEffect(() => {
-  //   const updateData = async () => {
-  //     try {
-  //       const response = await axios.put(`/api/resumes/user/${userID}`);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
 
-  //   updateData();
-  // }, []);
-  //  useEffect(()=>{
-  //   setCardContent(resume.summary)
-  //  },[resume.summary])
+   useEffect(() => {
+    const updateData = async () => {
+      try {
+        const response = await axios.put(`/api/resumes/${userID}`, resume)
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-
+    updateData();
+  }, [resume]);
+ 
   return (
     <div>
       <Nav />
