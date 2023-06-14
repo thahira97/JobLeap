@@ -9,6 +9,7 @@ import "./Profile.css";
 
 function Profile() {
   const [aboutEditMode, setAboutEditMode] = useState(false);
+  const [experienceEditMode, setExperienceEditMode ] = useState(false)
   const [resume, setResume] = useState({});
   const { currentUser } = useContext(AuthContext);
   const { setMyExperience, myExperience } = useContext(ResumeContext);
@@ -70,6 +71,7 @@ function Profile() {
     projects: resume.project_name,
   });
 
+  ///For handling about container
   const aboutInputChangeHandler= (event) => {
     console.log(event.target.value)
     setCardContent((prevContent) => ({
@@ -86,6 +88,26 @@ function Profile() {
     setResume((prevResume) => ({
       ...prevResume,
       summary: cardContent.aboutMe
+    }));
+   }
+  
+  //For experience container
+  const experienceInputChangeHandler= (event) => {
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      experience: event.target.value
+    }));
+  }
+   const experienceEditHandler = () => {
+    setExperienceEditMode(true)
+   }
+   
+   const experienceSaveHandler = () => {
+    setExperienceEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      experience: cardContent.experience
     }));
    }
 
@@ -154,7 +176,6 @@ function Profile() {
                 <div className="top-body">
                   <h4>About me</h4> 
                   <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={aboutEditHandler}></i>
-                  {/* <button type="button" className="btn btn-primary" onClick={editHandler}>Edit</button> */}
                 </div>
                 <div className="bottom-body">
                   {aboutEditMode ? (
@@ -180,14 +201,34 @@ function Profile() {
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
+              <div className="top-body">
                 <h5 className="expirience"> Experience</h5>
-                <p className="card-text expirience">
+                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={experienceEditHandler}></i>
+                </div>
+
+                <div className="bottom-body">
+              <b>{resume.position_company}- {resume.years_worked}</b>  
+                  {experienceEditMode ? (
+                  <textarea 
+                  name="experience"
+                  defaultValue={resume.experience}
+                  onChange={experienceInputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.experience}</p>
+                  )}
+                 {experienceEditMode && (
+                <button className="btn btn-primary" onClick={experienceSaveHandler}>
+                  Save
+                </button>
+              )}
+                </div>
+                {/* <p className="card-text expirience">
                   <b>
                     {" "}
                     {resume.position_company}- {resume.years_worked}
                   </b>
                   <div>{resume.experience}</div>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
