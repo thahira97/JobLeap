@@ -10,6 +10,7 @@ import "./Profile.css";
 function Profile() {
   const [aboutEditMode, setAboutEditMode] = useState(false);
   const [experienceEditMode, setExperienceEditMode ] = useState(false)
+  const [projectsEditMode, setProjectsEditMode] = useState(false)
   const [resume, setResume] = useState({});
   const { currentUser } = useContext(AuthContext);
   const { setMyExperience, myExperience } = useContext(ResumeContext);
@@ -68,7 +69,7 @@ function Profile() {
     location: resume.location,
     phoneNumber: resume.phone_number,
     skills: resume.skills,
-    projects: resume.project_name,
+    projects: resume.project_description,
   });
 
   ///For handling about container
@@ -110,6 +111,26 @@ function Profile() {
       experience: cardContent.experience
     }));
    }
+
+  // For projects container
+  const projectsInputChangeHandler= (event) => {
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      projects: event.target.value
+    }));
+  }
+   const projectsEditHandler = () => {
+    setProjectsEditMode(true)
+   }
+   
+   const projectsSaveHandler = () => {
+    setProjectsEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      project_description: cardContent.projects
+    }));
+  }
 
    useEffect(() => {
     const updateData = async () => {
@@ -240,18 +261,34 @@ function Profile() {
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
+              <div className="top-body">
                 <h5 className="expirience"> Projects</h5>
-                <p className="card-text expirience">
-                  {resume.project_name}
-                  <br></br>
-                  {resume.project_description}
-                  <br></br> <br></br>
+                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={projectsEditHandler}></i>
+                                      </div>
+                  <div className="bottom-body">                
+                   {resume.project_name}
+
+                   {projectsEditMode ? (
+                  <textarea 
+                  name="projects"
+                  defaultValue={resume.project_description}
+                  onChange={projectsInputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.project_description}</p>
+                  )}
+                  {projectsEditMode && (
+                <button className="btn btn-primary" onClick={projectsSaveHandler}>
+                  Save
+                </button>
+              )}
+                  {/* {resume.project_description} */}
+                 
                   <img
                     src={resume.project_img}
                     alt={resume.project_name}
                     width="200px"
                   />
-                </p>
+              </div>    
               </div>
             </div>
           </div>

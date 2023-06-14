@@ -44,10 +44,10 @@ const createResume = (req, res) => {
 };
 
 const updateResume = (req, res) => {
-  console.log(req.body.summary)
+  console.log(req.body.project_description)
   db.query(`UPDATE resumes 
-  SET summary=$1, experience=$2
-  WHERE user_id=$3`, [req.body.summary, req.body.experience, req.params.id ], (err, data)=> {
+  SET summary=$1, experience=$2, project_description=$3
+  WHERE user_id=$4`, [req.body.summary, req.body.experience, req.body.project_description, req.params.id ], (err, data)=> {
     if (err) return res.status(500).json(err);
     return res.status(200).json(data.rows[0]);
   })
