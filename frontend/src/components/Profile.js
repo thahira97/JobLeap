@@ -160,17 +160,20 @@ function Profile() {
             <img src={resume.user_img} alt={resume.name} />
           </div>
           <div className="user-information">
+            <div className="main-info">
             <div className="name-info">
-              <div>
+              <span>
                 <h2>{resume.name}</h2>
                 <h4>{resume.present_job}</h4>
-              </div>
+              </span>
+               </div>
               <div className="job-img">
                 <img
                   src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg"
                   width="50px"
                 />
               </div>
+             
             </div>
             <div className="contact">
               <div className="location">
@@ -182,6 +185,9 @@ function Profile() {
               </div>
               <div className="phone">
                 <i class="fa-solid fa-phone"></i> {resume.phone_number}
+              </div>
+              <div className="edit-dots">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
               </div>
             </div>
           </div>
