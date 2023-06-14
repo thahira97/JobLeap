@@ -156,7 +156,7 @@ function Profile() {
               alt="back-img"
             />
           </div>
-          <div className="user-info">
+          <div className="user-img">
             <img src={resume.user_img} alt={resume.name} />
           </div>
           <div className="user-information">

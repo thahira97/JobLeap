@@ -51,7 +51,7 @@ p{
   border-top-right-radius: 10px;
   object-fit: cover;
 }
-.user-info {
+.user-img {
   margin-top: -110px;
   margin-left: 25px;
   position: sticky;
@@ -60,7 +60,7 @@ p{
   width: 200px;
   height: 200px;
 }
-.user-info img {
+.user-img img {
   width: 90%;
   height: 90%;
   border-radius: 50%;
