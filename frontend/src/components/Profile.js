@@ -153,7 +153,8 @@ function Profile() {
               <div className="card-body">
                 <div className="top-body">
                   <h4>About me</h4> 
-                  <button type="button" className="btn btn-primary" onClick={editHandler}>Edit</button>
+                  <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={editHandler}></i>
+                  {/* <button type="button" className="btn btn-primary" onClick={editHandler}>Edit</button> */}
                 </div>
                 <div className="bottom-body">
                   {editMode ? (
