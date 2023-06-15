@@ -61,3 +61,16 @@
     color: inherit black;
   }
 }
+
+.overlay{
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  width: fit-content; 
+  height: fit-content; 
+  overflow: auto; /* Enable scroll if needed */
+  background-color: white;
+}

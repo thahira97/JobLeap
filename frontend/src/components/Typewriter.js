@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { ResumeContext } from "../context/resumeContext";
-
 import "./Typewriter.css";
 
-const Typewriter = ({ text, speed }) => {
+const Typewriter = ({ text, speed, toggle }) => {
   const { myExperience } = useContext(ResumeContext);
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,6 +44,11 @@ const Typewriter = ({ text, speed }) => {
           ))}
         </ul>
       </span>
+            <br></br>
+            <br></br>
+            <button onClick={toggle}>
+              Apply with this cv
+            </button>
     </div>
   );
 };
