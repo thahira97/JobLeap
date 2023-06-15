@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./JobLists.css";
 import JobItem from "./JobItem";
 import Card from "./Card";
 
 const JobLists = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(delay);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="typewriter-box">
+       <div className="ring"></div>
+          <h1 className="loading-animation">Loading...</h1>
+      </div>
+    );
+  }
+
   if (props.jobs.length === 0) {
     return (
       <div className="center">

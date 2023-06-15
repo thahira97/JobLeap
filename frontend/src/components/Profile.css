@@ -51,7 +51,7 @@ p{
   border-top-right-radius: 10px;
   object-fit: cover;
 }
-.user-info {
+.user-img {
   margin-top: -110px;
   margin-left: 25px;
   position: sticky;
@@ -60,7 +60,7 @@ p{
   width: 200px;
   height: 200px;
 }
-.user-info img {
+.user-img img {
   width: 90%;
   height: 90%;
   border-radius: 50%;
@@ -75,9 +75,12 @@ p{
   width: 100%;
   margin-left: 200px;
 }
+.main-info{
+  display: flex;
+}
 .contact {
   margin-top: 30px;
-  width: 45%;
+  width: 55%;
   display: flex;
   justify-content: space-between;
 }
@@ -86,11 +89,9 @@ p{
   display: flex;
   justify-content: space-between;
 } */
-.name-info{
-  display: flex;
-}
+
 .job-img {
-  margin-left: 500px;
+ align-self: flex-end;
 }
 
 .middle-container {
@@ -100,4 +101,13 @@ p{
 }
 .bottom-container {
   font-size: large;
+}
+
+.top-body {
+  display: flex;
+ justify-content: space-between;
+}
+
+.edit-btn{
+  padding-left: 500px ;
 }

@@ -22,7 +22,7 @@ function Nav() {
               </li>
               {currentUser &&
               <li className="nav-item">
-                <a className="nav-link" href="/">My applications</a>
+               <Link to="/jobs" className="nav-link">My applications</Link> 
               </li>
               }
               {currentUser &&

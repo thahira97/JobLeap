@@ -8,9 +8,11 @@ import Footer from "./Footer";
 import "./Profile.css";
 
 function Profile() {
-  const [resume, setResume] = useState({});
+  const [aboutEditMode, setAboutEditMode] = useState(false);
+  const [experienceEditMode, setExperienceEditMode ] = useState(false)
+  const [projectsEditMode, setProjectsEditMode] = useState(false)
   const { currentUser } = useContext(AuthContext);
-  const { setMyExperience, myExperience } = useContext(ResumeContext);
+  const { setMyExperience, myExperience, resume, setResume } = useContext(ResumeContext);
   const userID = currentUser.id;
   const history = useHistory();
 
@@ -46,44 +48,90 @@ function Profile() {
       project_description: resume.project_description,
     };
     setMyExperience(textResume);
-  }, [
-    resume.name,
-    resume.user_img,
-    resume.present_job,
-    resume.position_company,
-    resume.summary,
-    resume.experience,
-    resume.education,
-    resume.skills,
-    resume.project_description,
-    setMyExperience,
-  ]);
+  }, [resume]);
 
-console.log("^^^^^^^",myExperience)
+  const [cardContent, setCardContent] = useState({
+    jobTitle: resume.present_job,
+    aboutMe: resume.aboutMe,
+    experience: resume.experience,
+    location: resume.location,
+    phoneNumber: resume.phone_number,
+    skills: resume.skills,
+    projects: resume.project_description,
+  });
+
+  ///For handling about container
+  const aboutInputChangeHandler= (event) => {
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      aboutMe: event.target.value
+    }));
+  }
+   const aboutEditHandler = () => {
+    setAboutEditMode(true)
+   }
+   
+   const aboutSaveHandler = () => {
+    setAboutEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      summary: cardContent.aboutMe
+    }));
+   }
   
-// const educationList = resume.education && resume.education.map((item, index) => (
-//   <div key={index}>{item}</div>
-// ));
+  //For experience container
+  const experienceInputChangeHandler= (event) => {
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      experience: event.target.value
+    }));
+  }
+   const experienceEditHandler = () => {
+    setExperienceEditMode(true)
+   }
+   
+   const experienceSaveHandler = () => {
+    setExperienceEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      experience: cardContent.experience
+    }));
+   }
 
+  // For projects container
+  const projectsInputChangeHandler= (event) => {
+    console.log(event.target.value)
+    setCardContent((prevContent) => ({
+      ...prevContent,
+      projects: event.target.value
+    }));
+  }
+   const projectsEditHandler = () => {
+    setProjectsEditMode(true)
+   }
+   
+   const projectsSaveHandler = () => {
+    setProjectsEditMode(false)
+    setResume((prevResume) => ({
+      ...prevResume,
+      project_description: cardContent.projects
+    }));
+  }
 
+   useEffect(() => {
+    const updateData = async () => {
+      try {
+        const response = await axios.put(`/api/resumes/${userID}`, resume)
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-// const experienceArr = Array.from(
-//   new Map(
-//     (resume.experiences || []).map((experience) => [
-//       JSON.stringify(experience.id),
-//       JSON.stringify(experience.company),
-//       JSON.stringify(experience.description)
-//     ])
-//   ).values()
-// );
-
-// const experienceDivs = experienceArr.map(([id, company, description], index) => (
-//   <div key={index}>
-//     <div>{company}</div>
-//     <div>{description}</div>
-//   </div>
-// ));
-
+    updateData();
+  }, [resume]);
+ 
   return (
     <div>
       <Nav />
@@ -95,21 +143,27 @@ console.log("^^^^^^^",myExperience)
               alt="back-img"
             />
           </div>
-          <div className="user-info">
+          <div className="user-img">
             <img src={resume.user_img} alt={resume.name} />
           </div>
           <div className="user-information">
+            <div className="main-info">
             <div className="name-info">
-              <div>
+              <span>
                 <h2>{resume.name}</h2>
                 <h4>{resume.present_job}</h4>
-              </div>
+              </span>
+               </div>
               <div className="job-img">
                 <img
                   src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg"
                   width="50px"
                 />
+              </div> 
+              <div className="edit-btn">
+              <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
               </div>
+             
             </div>
             <div className="contact">
               <div className="location">
@@ -133,8 +187,25 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h4>About me</h4>
-                <p className="card-text">{resume.summary}</p>
+                <div className="top-body">
+                  <h4>About me</h4> 
+                  <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={aboutEditHandler}></i>
+                </div>
+                <div className="bottom-body">
+                  {aboutEditMode ? (
+                  <textarea 
+                  name="aboutMe"
+                  defaultValue={resume.summary}
+                  onChange={aboutInputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.summary}</p>
+                  )}
+                 {aboutEditMode && (
+                <button className="btn btn-primary" onClick={aboutSaveHandler}>
+                  Save
+                </button>
+              )}
+                </div>
               </div>
             </div>
           </div>
@@ -144,14 +215,27 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
+              <div className="top-body">
                 <h5 className="expirience"> Experience</h5>
-                <p className="card-text expirience">
-                  <b>
-                    {" "}
-                    {resume.position_company}- {resume.years_worked}
-                  </b>
-                  <div>{resume.experience}</div>
-                </p>
+                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={experienceEditHandler}></i>
+                </div>
+
+                <div className="bottom-body">
+              <b>{resume.position_company}- {resume.years_worked}</b>  
+                  {experienceEditMode ? (
+                  <textarea 
+                  name="experience"
+                  defaultValue={resume.experience}
+                  onChange={experienceInputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.experience}</p>
+                  )}
+                 {experienceEditMode && (
+                <button className="btn btn-primary" onClick={experienceSaveHandler}>
+                  Save
+                </button>
+              )}
+                </div>
               </div>
             </div>
           </div>
@@ -163,18 +247,32 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
+              <div className="top-body">
                 <h5 className="expirience"> Projects</h5>
-                <p className="card-text expirience">
-                  {resume.project_name}
-                  <br></br>
-                  {resume.project_description}
-                  <br></br> <br></br>
+                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={projectsEditHandler}></i>
+                                      </div>
+                  <div className="bottom-body">                
+                   {resume.project_name}
+
+                   {projectsEditMode ? (
+                  <textarea 
+                  name="projects"
+                  defaultValue={resume.project_description}
+                  onChange={projectsInputChangeHandler} 
+                  style={{ width:'100%', border: '0px'}} />) : (
+                     <p className="card-text">{resume.project_description}</p>
+                  )}
+                  {projectsEditMode && (
+                <button className="btn btn-primary" onClick={projectsSaveHandler}>
+                  Save
+                </button>
+              )} 
                   <img
                     src={resume.project_img}
                     alt={resume.project_name}
                     width="200px"
                   />
-                </p>
+              </div>    
               </div>
             </div>
           </div>
@@ -184,10 +282,11 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h5 className="expirience">Education</h5>
-                <p className="card-text">
-                  {resume.education}
-                </p>
+                <div className="top-body">
+                   <h5 className="expirience">Education</h5>
+                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
+                </div>
+                <p className="card-text">{resume.education}</p>
               </div>
             </div>
           </div>
@@ -197,7 +296,10 @@ console.log("^^^^^^^",myExperience)
               style={{ padding: 0, marginLeft: 0 }}
             >
               <div className="card-body">
-                <h5>Skills</h5>
+                <div className="top-body">
+                   <h5>Skills</h5>
+                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
+                </div>
                 <p className="card-text">{resume.skills}</p>
               </div>
             </div>
