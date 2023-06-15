@@ -19,7 +19,7 @@ const JobLists = (props) => {
     return (
       <div className="typewriter-box">
        <div className="ring"></div>
-          <h1 className="loading-animation">Loading</h1>
+          <h1 className="loading-animation">Loading...</h1>
       </div>
     );
   }
