@@ -24,7 +24,7 @@ const ModifiedResume = (props) => {
   useEffect(() => {}, [message]);
   const messageBox = (
     <div className="typewriter-box">
-      <Typewriter text={message} speed={100} toggle={togglePopup} />
+      <Typewriter text={message} speed={30} toggle={togglePopup} />
     </div>
   );
 
