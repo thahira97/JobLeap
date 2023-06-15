@@ -1,5 +1,5 @@
 INSERT INTO job_listings (company_name,company_image, job_title, job_summary,job_description, salary, location ,schedule,flex_time, date_posted)
-VALUES ('TTEC','https://media.licdn.com/dms/image/C4E0BAQHYwbgJcJTxCg/company-logo_100_100/0/1600194010184?e=1694044800&v=beta&t=bFKOmOPvUcppHiNzK9qAFXfXpXKacNFa43Q3-UKFcO4','Full-Stack developer','Position Summary...Imagine working in an environment where one line of code can make life easier for hundreds of millions of people', 'As a Full Stack Web Developer, you should be comfortable around both front-end and back-end coding languages, and modern development frameworks. You should also be a team player with a knack for visual design and willingness to mentor others on rapidly-evolving web technology.', '$70,000','Toronto','Full-Time','Remote','1 week ago');
+VALUES ('Apple','https://media.licdn.com/dms/image/C560BAQHdAaarsO-eyA/company-logo_100_100/0/1595530301220?e=1694649600&v=beta&t=1pUaumdG6S6QdTeyfceCLIyVdU0PglkHtxSZhjvkQOw','Full-Stack developer','Position Summary...Imagine working in an environment where one line of code can make life easier for hundreds of millions of people', 'As a Full Stack Web Developer, you should be comfortable around both front-end and back-end coding languages, and modern development frameworks. You should also be a team player with a knack for visual design and willingness to mentor others on rapidly-evolving web technology.', '$60,000','Toronto','Full-Time','Remote','1 day ago');
 
 INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_description, salary, location, schedule,flex_time, date_posted)
 VALUES ('Simons','https://media.licdn.com/dms/image/C560BAQGUm3JLSio8uw/company-logo_100_100/0/1592510036576?e=1694044800&v=beta&t=DmTZoEABMIfaut3Nb0FrtiDzUjQK7pkb5PMsUn6_YWQ','Sales Associate','Every day, we’re empowered to work together to help our customers make fast, confident planning decisions' ,'Provide high-quality customer service to our clientele. Perform various tasks within the assigned department, such as merchandizing products. Enjoy fashion and interacting with people', '$65,000','Hamilton','Part-Time','On-site','3 days ago' );
@@ -21,7 +21,7 @@ Strong desire to learn about new technologies and systems
 Ability to be flexible and adaptable in a dynamic startup environment
 Bonus Points
 Experience writing automated tests for iOS applications
-Experience with accessibility features on iOS.', '$60,000', 'Toronto','Internship','Hybrid', '1 day ago');
+Experience with accessibility features on iOS.', '$60,000', 'Oakville','Internship','Hybrid', '1 day ago');
 
 
 INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_description, salary, location ,schedule,flex_time, date_posted)
@@ -40,4 +40,29 @@ INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_
 VALUES ('Dropbox', 'https://media.licdn.com/dms/image/C560BAQHjnNsmL5L2NA/company-logo_100_100/0/1654114493079?e=1694044800&v=beta&t=Dc_F3gUbW3XsAsRNfv0Sxt1ISBeARLo89ax6qkSyQuk', 'Full-Stack developer', 'Dropbox is a special place where we are all seeking to fulfill our mission to design a more enlightened way of working. We are looking for innovative talent to join us on our journey.', 'Own projects end to end, starting with data discovery, design, implementation, and deployment
 Develop customer-centric prototypes for new product explorations
 Proactively communicate your learnings and progress to your team and the leadership
-Own relationships with other engineering teams and collaborate with other functions within Dropbox', '$60,000', 'Windsor', 'Internship', 'Remote', '3 days ago');
+Own relationships with other engineering teams and collaborate with other functions within Dropbox', '$60,000', 'Toronto', 'Internship', 'Remote', '3 days ago');
+
+INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_description, salary, location ,schedule,flex_time, date_posted)
+VALUES('Procom', 'https://media.licdn.com/dms/image/C4E0BAQFyC83Q4C6XGQ/company-logo_100_100/0/1629146632268?e=1694649600&v=beta&t=HkZ-8jAuDl4cSOVpQzRzyG2faki1doUd4xdEZQ3o2_w', 'Full-Stack developer', 'Full stack role - 50%, 50%
+Contribute to development activities, planning and executing to meet sprint objectives as well as program/project milestones
+Write well designed, testable, efficient code by using best software development practices', 'Experience working with monorepo architecture
+Demonstrated experience working with Gitflow branching strategy
+Experience working with Trunk based branching strategy
+Canadian bootcamp experience an asset
+A Scrum certification would be an asset.3+ years of unit testing experience with both frontend and backend code
+3+ years of experience working with microservice architecture
+', '$60,000', 'Toronto', 'Part-Time', 'Hybrid', '1 day ago');
+
+INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_description, salary, location ,schedule,flex_time, date_posted)
+VALUES('Wipro', 'https://media.licdn.com/dms/image/C4E0BAQE0UPACNUrv3g/company-logo_100_100/0/1674757963152?e=1694649600&v=beta&t=lnzBhpdfFiWccC243MamoFQ4iVNNGiYNT1ZGGu08FNU', 'Full-Stack developer', 'In this role, you will work in an Agile Scrum team to develop our industry leading Applied Epic software product using C#, React, TypeScript, and SQL Server, as well as maintain or enhance legacy features using VB.NET. You will collaborate with Product Owners and Scrum team members to deliver high quality technical solutions', '1-3+ years professional experience creating enterprise software using C#, .NET, TypeScript, React or Angular or Vue, SQL Server, and Visual Studio
+Familiar with Agile frameworks, ideally Scrum or Kanban using tools like Jira and Confluence
+Experience in leveraging cloud environments (e.g., GCP, Azure) and open-source tools
+Ability to work with others in a team-oriented environment
+Possess an excellent work ethic and able to deliver solutions in committed timeframes', '$70,000', 'Toronto', 'Full-Time', 'Remote', '3 days ago');
+
+INSERT INTO job_listings (company_name,company_image, job_title,job_summary,job_description, salary, location ,schedule,flex_time, date_posted)
+VALUES('Walmart', 'https://media.licdn.com/dms/image/C560BAQHs5FN9hz6seQ/company-logo_100_100/0/1654192382941?e=1694649600&v=beta&t=tKQ-Oi-Qys_0q1VqeQGuwnIC9b6q0wiwGiXf6ukhfAA', 'Full-Stack developer', 'The purpose of this role is to design, test and maintain softwareprograms for operating systems or applications which needs to bedeployed at a client end and ensure its meet 100% quality assuranceparameters', 'Develop software solutions by studying information needs,studying systems flow, data usage and work processes
+Investigating problem areas followed by the software developmentlife cycle
+Facilitate root cause analysis of the system issues and problemstatement
+Identify ideas to improve system performance and impactavailability
+Analyze client requirements and convert requirements to feasibledesign', '$60,000', 'Windsor', 'Internship', 'Hybrid', '3 days ago');
