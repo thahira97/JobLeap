@@ -51,10 +51,10 @@
 .loading-animation{
   color: #737373;
   text-align: center;
-  font-size: 17px; /* Adjust the font size to fit the smaller ring */
+  font-size: 17px; 
   text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 100px; /* Adjust the line height to vertically center the text */
+  line-height: 100px; 
   animation: text 3s ease-in-out infinite;
 }
 
