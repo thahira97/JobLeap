@@ -11,9 +11,8 @@ function Profile() {
   const [aboutEditMode, setAboutEditMode] = useState(false);
   const [experienceEditMode, setExperienceEditMode ] = useState(false)
   const [projectsEditMode, setProjectsEditMode] = useState(false)
-  const [resume, setResume] = useState({});
   const { currentUser } = useContext(AuthContext);
-  const { setMyExperience, myExperience } = useContext(ResumeContext);
+  const { setMyExperience, myExperience, resume, setResume } = useContext(ResumeContext);
   const userID = currentUser.id;
   const history = useHistory();
 
@@ -49,18 +48,7 @@ function Profile() {
       project_description: resume.project_description,
     };
     setMyExperience(textResume);
-  }, [
-    resume.name,
-    resume.user_img,
-    resume.present_job,
-    resume.position_company,
-    resume.summary,
-    resume.experience,
-    resume.education,
-    resume.skills,
-    resume.project_description,
-    setMyExperience,
-  ]);
+  }, [resume]);
 
   const [cardContent, setCardContent] = useState({
     jobTitle: resume.present_job,
@@ -136,7 +124,6 @@ function Profile() {
     const updateData = async () => {
       try {
         const response = await axios.put(`/api/resumes/${userID}`, resume)
-        
       } catch (error) {
         console.log(error);
       }
