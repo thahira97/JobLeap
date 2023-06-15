@@ -2,11 +2,14 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { ResumeContext } from "../context/resumeContext";
 import { MessageContext } from "../context/messageContext";
+import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./JobDescription.css";
 import Card from "./Card";
 
 const JobDescription = (props) => {
+  const { currentUser } = useContext(AuthContext);
+
   const { jobDescription, setJobDescription, myExperience } =
     useContext(ResumeContext);
 
@@ -101,13 +104,13 @@ const JobDescription = (props) => {
         </ul>
       </Card>
 
-      <div className="main-buttons">
+     {currentUser && <div className="main-buttons">
         <div className="apply-button">
           <button class="btn btn-primary" type="submit">
             Apply using old resume
           </button>
         </div>
-        <div className="modify-mutton">
+        <div className="modify-button">
           <Link to="/modify-resume">
             <button class="btn btn-primary" type="submit" onClick={getMessages}>
               {" "}
@@ -115,7 +118,21 @@ const JobDescription = (props) => {
             </button>
           </Link>
         </div>
-      </div>
+      </div>} 
+      {!currentUser && <div className="main-buttons">
+        <div className="apply-button">
+        <Link to="/signup"> <button class="btn btn-primary" type="button">
+          Please Signup to continue
+          </button></Link> 
+        </div>
+        <div className="modify-button">
+          <Link to="/login">
+            <button class="btn btn-primary" type="button">
+            Please Login to continue
+            </button>
+          </Link>
+        </div>
+      </div> }
     </div>
   );
 };
