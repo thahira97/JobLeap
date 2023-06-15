@@ -70,7 +70,6 @@ p{
 }
 
 .user-information {
-  /* display: flex; */
   position: relative;
   top: -70px;
   width: 100%;
@@ -109,6 +108,6 @@ p{
  justify-content: space-between;
 }
 
-.edit-dots {
-  align-self: flex-start;
+.edit-btn{
+  padding-left: 500px ;
 }

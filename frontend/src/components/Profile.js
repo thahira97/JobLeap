@@ -172,6 +172,9 @@ function Profile() {
                   src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg"
                   width="50px"
                 />
+              </div> 
+              <div className="edit-btn">
+              <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
               </div>
              
             </div>
@@ -185,9 +188,6 @@ function Profile() {
               </div>
               <div className="phone">
                 <i class="fa-solid fa-phone"></i> {resume.phone_number}
-              </div>
-              <div className="edit-dots">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
               </div>
             </div>
           </div>
