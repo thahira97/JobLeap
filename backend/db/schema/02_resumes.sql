@@ -5,7 +5,7 @@ CREATE TABLE resumes (
   present_job VARCHAR(255),
   phone_number VARCHAR(255),
   location VARCHAR(255),
-  user_img VARCHAR,
+  user_img TEXT,
   summary VARCHAR,
   education VARCHAR(255),
   skills VARCHAR(255),
