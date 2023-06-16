@@ -39,12 +39,14 @@ function CreateProfile() {
 
   const handleImageChange = (e, type) => {
     const file = e.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    console.log(imageUrl)
     if (type === 'profile') {
-      setProfileImage(file);
-      setInput(prev => ({ ...prev, user_img: file }));
+      setProfileImage(imageUrl);
+      setInput(prev => ({ ...prev, user_img: imageUrl }));
     } else if (type === 'project') {
       setProjectImage(file);
-      setInput(prev => ({ ...prev, project_img: file }));
+      setInput(prev => ({ ...prev, project_img: imageUrl }));
     }
   };
 
@@ -107,7 +109,7 @@ function CreateProfile() {
                 <label>Profile picture</label>
                   {profileImage ? (
                     <div>
-                      <img src={URL.createObjectURL(profileImage)} alt="Profile" className="profile-image-preview" />
+                      <img src={profileImage} alt="Profile" className="profile-image-preview" />
                       <button type="button" className="btn btn-danger" onClick={() => handleRemoveImage('profile')}>
                         Remove Image
                       </button>
