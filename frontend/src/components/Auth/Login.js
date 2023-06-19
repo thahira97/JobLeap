@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/authContext';
-import Nav from '../Nav';
-import Footer from '../Footer';
 import './Auth.css';
 
 const Login = () => {
@@ -25,7 +23,6 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(input);
-      await axios.post("http://localhost:8080/api/auth/login", input);
       history.push("/profile");
     } catch(err) {
       setError(err.response.data);
@@ -34,7 +31,6 @@ const Login = () => {
 
   return (
     <div className="auth-page">
-      <Nav />
       <div className="auth-container">
         <form className="auth-form">
           <div className="form-header">
@@ -69,6 +65,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
             Log in
           </button>
+          <Link to="/" className="btn btn-outline-primary" role="button">Cancel</Link>
           {error &&
           <div className="alert alert-danger" role="alert">
             {error}
@@ -76,10 +73,9 @@ const Login = () => {
           }
         </form>
         <div className="switch-auth-page">
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

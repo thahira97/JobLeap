@@ -7,3 +7,11 @@
   background-image: linear-gradient(to right top,#fe7062,#1a0f91);
   color: #fff;
 }
+
+.how-it-works h2 {
+  margin-bottom: 32px;
+} 
+
+.how-it-works img {
+  width: 80%;
+}

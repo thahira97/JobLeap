@@ -17,25 +17,24 @@ const JobLists = (props) => {
 
   if (isLoading) {
     return (
-      <div className="typewriter-box">
-       <div className="ring"></div>
-          <h1 className="loading-animation">Loading...</h1>
+      <div className="text-center spinner">
+        <div className="spinner-border" style={{width: 48, height: 48}} role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       </div>
     );
   }
 
   if (props.jobs.length === 0) {
     return (
-      <div className="center">
-        <Card>
-          <h1>No jobs Found</h1>
-        </Card>
+      <div className="text-center no-jobs">
+        <p>No jobs found</p>
       </div>
     );
   }
   return (
     <React.Fragment>
-      <ul className="job-lists">
+      <ul className="job-lists list-unstyled row card-deck">
         {props.jobs.map((job) => {
           return (
             <JobItem

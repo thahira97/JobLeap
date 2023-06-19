@@ -1,113 +1,60 @@
-/* 
-h4{
-  padding-top: 12px;
-  text-align: center;
-}
-
-p{
-  text-align: center;
-}
-
-.card{
-  text-align: center;
-}
-
-.title{
-  margin-top: 8px;
-  height: 170px;
-} 
-
-.outline{
-  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
-  height:5px;
-} */
-.main-container {
-  width: 70%;
+.profile-container {
   display: flex;
-  margin-left: 200px;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
+  padding: 56px;
 }
 
+.profile-panel {
+  margin-top: 32px;
+  width: 70%;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-.card.main {
+.summary-panel {
+  width: 70%;
   padding: 0;
- margin: 0;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.top-container {
-  width: 100%;
-  height: 15rem;
-  position: relative !important;
-  z-index: 0;
-  overflow: hidden;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
 .top-container img {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
+
+.summary-panel .row {
+  padding: 24px 40px;
+}
+
 .user-img {
-  margin-top: -110px;
-  margin-left: 25px;
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  margin-top: -96px;
   width: 200px;
-  height: 200px;
-}
-.user-img img {
-  width: 90%;
-  height: 90%;
+  height: 200px !important;
   border-radius: 50%;
   object-fit: cover;
-  overflow: hidden;
-  margin: 0;
 }
 
-.user-information {
-  position: relative;
-  top: -70px;
-  width: 100%;
-  margin-left: 200px;
-}
-.main-info{
-  display: flex;
-}
-.contact {
-  margin-top: 30px;
-  width: 55%;
+.panel-header {
   display: flex;
   justify-content: space-between;
-}
-/* .middle-container {
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-} */
-
-.job-img {
- align-self: flex-end;
+  margin-bottom: 16px;
 }
 
-.middle-container {
-  width: 100%;
-  font-size: large;
-  
-}
-.bottom-container {
-  font-size: large;
+.form-control {
+  margin-bottom: 16px;
 }
 
-.top-body {
-  display: flex;
- justify-content: space-between;
+.profile-panel p {
+  margin-bottom: 0;
 }
 
-.edit-btn{
-  padding-left: 500px ;
+.profile-panel img {
+  border-radius: 6px;
 }

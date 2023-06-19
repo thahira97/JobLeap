@@ -38,14 +38,20 @@ function Profile() {
   useEffect(() => {
     const textResume = {
       name: resume.name,
+      email: resume.email,
       image: resume.user_img,
       job: resume.present_job,
+      phone: resume.phone_number,
+      location: resume.location,
       positionCompany: resume.position_company,
+      years: resume.years_worked,
       aboutMe: resume.summary,
       experience: resume.experience,
       skills: resume.skills,
       education: resume.education,
+      project_name: resume.project_name,
       project_description: resume.project_description,
+      project_img: resume.project_img,
     };
     setMyExperience(textResume);
   }, [resume]);
@@ -62,7 +68,6 @@ function Profile() {
 
   ///For handling about container
   const aboutInputChangeHandler= (event) => {
-    console.log(event.target.value)
     setCardContent((prevContent) => ({
       ...prevContent,
       aboutMe: event.target.value
@@ -82,7 +87,6 @@ function Profile() {
   
   //For experience container
   const experienceInputChangeHandler= (event) => {
-    console.log(event.target.value)
     setCardContent((prevContent) => ({
       ...prevContent,
       experience: event.target.value
@@ -102,7 +106,6 @@ function Profile() {
 
   // For projects container
   const projectsInputChangeHandler= (event) => {
-    console.log(event.target.value)
     setCardContent((prevContent) => ({
       ...prevContent,
       projects: event.target.value
@@ -135,176 +138,98 @@ function Profile() {
   return (
     <div>
       <Nav />
-      <div className="main-container">
-        <div className="card main">
+
+      <div className="profile-container">
+
+        <div className="summary-panel">
           <div className="top-container">
-            <img
-              src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw"
-              alt="back-img"
+            <img src="https://media.licdn.com/dms/image/C5616AQGIhqexxrnssA/profile-displaybackgroundimage-shrink_350_1400/0/1643125960150?e=1692230400&v=beta&t=tktSWlPzG4s005tMwBrAg1XP8BkM6nkIGeqRjFGNpGw" alt="back-img" className="img-fluid"
             />
           </div>
-          <div className="user-img">
-            <img src={resume.user_img} alt={resume.name} />
-          </div>
-          <div className="user-information">
-            <div className="main-info">
-            <div className="name-info">
-              <span>
-                <h2>{resume.name}</h2>
-                <h4>{resume.present_job}</h4>
-              </span>
-               </div>
-              <div className="job-img">
-                <img
-                  src="https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg"
-                  width="50px"
-                />
-              </div> 
-              <div className="edit-btn">
-              <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
-              </div>
-             
+          <div className="row">
+            <div className="col-md-3"><img src={resume.user_img} alt={resume.name} className="img-fluid user-img"/></div>
+            <div className="col-md-8">
+              <h2>{resume.name}</h2>
+              <h5>{resume.present_job}</h5>
             </div>
-            <div className="contact">
-              <div className="location">
-                <i class="fa-sharp fa-solid fa-location-dot"></i>{" "}
-                {resume.location}
-              </div>
-              <div className="email">
-                <i class="fa-sharp fa-solid fa-envelope"></i> {resume.email}
-              </div>
-              <div className="phone">
-                <i class="fa-solid fa-phone"></i> {resume.phone_number}
-              </div>
-            </div>
+            <div className="col-md-1 text-end"><button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen"></i></button></div>
+            <div className="col-md-3"></div>
+            <div className="col-md-3"><i className="fa-sharp fa-solid fa-envelope"></i> {resume.email}</div>
+            <div className="col-md-3"><i className="fa-solid fa-phone"></i> {resume.phone_number}</div>
+            <div className="col-md-3"><i className="fa-sharp fa-solid fa-location-dot"></i> {resume.location}</div>
           </div>
         </div>
 
-        <div className="middle-container">
-          <div className="about-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <div className="top-body">
-                  <h4>About me</h4> 
-                  <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={aboutEditHandler}></i>
+        <div className="about profile-panel">
+          <div className="panel-header">
+            <h4>About</h4>
+            <button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen" onClick={aboutEditHandler}></i></button>
+          </div>
+          {aboutEditMode ? (
+            <div>
+              <textarea className="form-control" name="aboutMe" defaultValue={resume.summary} onChange={aboutInputChangeHandler} rows="5"></textarea>
+              <button className="btn btn-primary" onClick={aboutSaveHandler}>Save changes</button>
+            </div>
+          ) : (
+            <p>{resume.summary}</p>
+          )}
+        </div>
+
+        <div className="experience profile-panel">
+          <div className="panel-header">
+            <h4>Experience</h4>
+            <button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen" onClick={experienceEditHandler}></i></button>
+          </div>
+          <h5>{resume.position_company} ({resume.years_worked})</h5>
+          {experienceEditMode ? (
+            <div>
+              <textarea className="form-control" name="experience" defaultValue={resume.experience} onChange={experienceInputChangeHandler} rows="5"></textarea>
+              <button className="btn btn-primary" onClick={experienceSaveHandler}>Save changes</button>
+            </div>
+          ) : (
+            <p>{resume.experience}</p>
+          )}
+        </div>
+
+        <div className="projects profile-panel">
+          <div className="panel-header">
+            <h4>Projects</h4>
+            <button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen" onClick={projectsEditHandler}></i></button>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <img src={resume.project_img}  alt={resume.project_name} className="img-fluid"/>
+            </div>
+            <div className="col-md-8 my-auto">
+              <h5>{resume.project_name}</h5>
+              {projectsEditMode ? (
+                <div>
+                  <textarea className="form-control" name="projects" defaultValue={resume.project_description} onChange={projectsInputChangeHandler} rows="5"></textarea>
+                  <button className="btn btn-primary" onClick={projectsSaveHandler}>Save changes</button>
                 </div>
-                <div className="bottom-body">
-                  {aboutEditMode ? (
-                  <textarea 
-                  name="aboutMe"
-                  defaultValue={resume.summary}
-                  onChange={aboutInputChangeHandler} 
-                  style={{ width:'100%', border: '0px'}} />) : (
-                     <p className="card-text">{resume.summary}</p>
-                  )}
-                 {aboutEditMode && (
-                <button className="btn btn-primary" onClick={aboutSaveHandler}>
-                  Save
-                </button>
+              ) : (
+                <p>{resume.project_description}</p>
               )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="experience-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-              <div className="top-body">
-                <h5 className="expirience"> Experience</h5>
-                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={experienceEditHandler}></i>
-                </div>
-
-                <div className="bottom-body">
-              <b>{resume.position_company}- {resume.years_worked}</b>  
-                  {experienceEditMode ? (
-                  <textarea 
-                  name="experience"
-                  defaultValue={resume.experience}
-                  onChange={experienceInputChangeHandler} 
-                  style={{ width:'100%', border: '0px'}} />) : (
-                     <p className="card-text">{resume.experience}</p>
-                  )}
-                 {experienceEditMode && (
-                <button className="btn btn-primary" onClick={experienceSaveHandler}>
-                  Save
-                </button>
-              )}
-                </div>
-              </div>
             </div>
           </div>
         </div>
-        <div className="bottom-container">
-          <div className="projects-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-              <div className="top-body">
-                <h5 className="expirience"> Projects</h5>
-                <i className="fas fa-pen" style={{ color: "#165ad0" }} onClick={projectsEditHandler}></i>
-                                      </div>
-                  <div className="bottom-body">                
-                   {resume.project_name}
 
-                   {projectsEditMode ? (
-                  <textarea 
-                  name="projects"
-                  defaultValue={resume.project_description}
-                  onChange={projectsInputChangeHandler} 
-                  style={{ width:'100%', border: '0px'}} />) : (
-                     <p className="card-text">{resume.project_description}</p>
-                  )}
-                  {projectsEditMode && (
-                <button className="btn btn-primary" onClick={projectsSaveHandler}>
-                  Save
-                </button>
-              )} 
-                  <img
-                    src={resume.project_img}
-                    alt={resume.project_name}
-                    width="200px"
-                  />
-              </div>    
-              </div>
-            </div>
+        <div className="education profile-panel">
+          <div className="panel-header">
+            <h4>Education</h4>
+            <button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen"></i></button>
           </div>
-          <div className="education-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <div className="top-body">
-                   <h5 className="expirience">Education</h5>
-                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
-                </div>
-                <p className="card-text">{resume.education}</p>
-              </div>
-            </div>
-          </div>
-          <div className="skills-container">
-            <div
-              className="card border-0"
-              style={{ padding: 0, marginLeft: 0 }}
-            >
-              <div className="card-body">
-                <div className="top-body">
-                   <h5>Skills</h5>
-                   <i className="fas fa-pen" style={{ color: "#165ad0" }}></i>
-                </div>
-                <p className="card-text">{resume.skills}</p>
-              </div>
-            </div>
-          </div>
+          <p>{resume.education}</p>
         </div>
+
+        <div className="skills profile-panel">
+          <div className="panel-header">
+            <h4>Skills</h4>
+            <button type="button" className="btn btn-link btn-sm"><i className="fas fa-pen"></i></button>
+          </div>
+          <p>{resume.skills}</p>
+        </div>
+      
       </div>
 
       <Footer />

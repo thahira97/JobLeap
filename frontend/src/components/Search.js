@@ -23,7 +23,7 @@ function Search(props) {
               <input 
                 type="text" 
                 name="location"
-                placeholder="Ontario"
+                placeholder="Toronto, ON"
                 onChange={props.onChange}
                 ></input>
                  <Link to="/jobs" >

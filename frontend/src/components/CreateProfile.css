@@ -3,9 +3,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
+  padding: 56px;
+}
+
+.create-container .heading {
+  text-align: center;
+  color: #fff;
 }
 
 .create-container .create-panel {
@@ -25,9 +29,12 @@
   margin-bottom: 8px;
 }
 
-.create-container .btn {
-  width: 100%;
-  margin-top: 32px;
+.profile-image, .project-image {
+  text-align: center;
+}
+
+.profile-image .btn, .project-image .btn {
+  margin-top: 16px;
 }
 
 .profile-image-preview {
@@ -35,11 +42,14 @@
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 16px;
 }
 
 .project-image-preview {
   width: 100%;
   object-fit: cover;
-  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.submit-section {
+  text-align: center;
 }

@@ -10,18 +10,16 @@ function Home(props) {
       <div className="section header">
         <div className="container">
           <h1>Welcome to JobLeap!</h1>
-          <p>
-            Find jobs and create optimized resumes based on the job description
-          </p>
+          <p>Find jobs and create optimized resumes based on the job description</p>
           <Search 
             onChange={props.onChange} 
             onSubmit={props.onSubmit}
             data={props.data}/>
         </div>
       </div>
-      <div className="section how-it-works">
+      <div className="section how-it-works" id="how-it-works">
         <div className="container">
-          <h2>How it Works</h2>
+          <h2>How It Works</h2>
           <div className="row">
             <div className="col-md-4">
               <img src="1-profile.jpg" className="img-fluid" alt=""></img>
@@ -35,7 +33,7 @@ function Home(props) {
               <img src="2-generate.jpg" className="img-fluid" alt=""></img>
               <h5>2. Generate optimized resume</h5>
               <p>
-                Unlock the power of a resume optimized to the job listing that
+                Unlock the power of a resume tailored to the job listing that
                 maximizes your chances of landing your dream job.
               </p>
             </div>

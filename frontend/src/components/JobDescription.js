@@ -6,6 +6,7 @@ import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./JobDescription.css";
 import Card from "./Card";
+import Avatar from "./Avatar"
 
 const JobDescription = (props) => {
   const { currentUser } = useContext(AuthContext);
@@ -51,16 +52,16 @@ const JobDescription = (props) => {
     }
   };
 
-  const moneyIconStyle = {
-    color: "#5a8774",
-  };
-  const computerIconStyle = {
-    color: "#7ba4d1",
-  };
-  const cardStyling = {
-    border: "1px",
-    boxShadow: "none",
-  };
+  // const moneyIconStyle = {
+  //   color: "#5a8774",
+  // };
+  // const computerIconStyle = {
+  //   color: "#7ba4d1",
+  // };
+  // const cardStyling = {
+  //   border: "1px",
+  //   boxShadow: "none",
+  // };
 
   useEffect(() => {
     console.log("fhjhfjsdh", props.description);
@@ -71,64 +72,45 @@ const JobDescription = (props) => {
 
   return (
     <div className="job-description">
-      <div className="description-header">
-        <Card style={cardStyling}>
-          <h1>{props.name}</h1>
-          <span>
-            <h2>{props.title}</h2>
-          </span>
-        </Card>
-      </div>
-      <Card>
-        <aside>
-          <b>Job details</b>
-        </aside>
-        <p>{props.description} </p>
-        <ul className="detailed-list">
-          <li>
-            Schedule: <i class="fa-solid fa-suitcase"></i> {props.schedule}
-          </li>
-          <li>
-            FlexTime:{" "}
-            <i className="fa-solid fa-computer" style={computerIconStyle}></i>{" "}
-            {props.flextime}
-          </li>
-          <li>
-            Salary:{" "}
-            <i
-              className="fa-solid fa-money-check-dollar"
-              style={moneyIconStyle}
-            ></i>{" "}
-            {props.salary}
-          </li>
-        </ul>
-      </Card>
-
-     {currentUser && <div className="main-buttons">
-        <div className="apply-button">
-          <button class="btn btn-primary" type="submit">
-            Apply using old resume
-          </button>
+      <div className="row heading">
+        <div className="col-md-1">
+          <Avatar image={props.image} alt={props.title} />
         </div>
+        <div className="col-md-11 my-auto">
+          <h3 className="card-title">{props.name}</h3>
+          <h4 className="card-subtitle mb-2 text-muted">{props.title}</h4>
+        </div>
+      </div>
+      {/* <h3>{props.name}</h3>
+      <h5>{props.title}</h5> */}
+      <div className="row">
+        <div className="col-md-8">
+          <p><strong>Job description</strong></p>
+          <p>{props.description}</p>
+        </div>
+        <div className="col-md-4">
+          <p><strong>Job details</strong></p>
+          <p><i className="fa-solid fa-location-dot"></i> Location: {props.location}</p>
+          <p><i className="fa-solid fa-suitcase"></i> Schedule: {props.schedule}</p>
+          <p><i className="fa-solid fa-computer"></i> FlexTime: {props.flextime}</p>
+          <p><i className="fa-solid fa-money-check-dollar"></i> Salary: {props.salary}</p>          
+        </div>
+      </div>
+     {currentUser && <div className="main-buttons">
         <div className="modify-button">
           <Link to="/modify-resume">
-            <button class="btn btn-primary" type="submit" onClick={getMessages}>
+            <button className="btn btn-primary" type="submit" onClick={getMessages}>
               {" "}
-              Modify resume
+              Apply now
             </button>
           </Link>
         </div>
       </div>} 
       {!currentUser && <div className="main-buttons">
-        <div className="apply-button">
-        <Link to="/signup"> <button class="btn btn-primary" type="button">
-          Please Signup to continue
-          </button></Link> 
-        </div>
         <div className="modify-button">
           <Link to="/login">
-            <button class="btn btn-primary" type="button">
-            Please Login to continue
+            <button className="btn btn-primary" type="button">
+            Please log in to continue
             </button>
           </Link>
         </div>

@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/authContext';
-import Nav from "./Nav";
-import Footer from "./Footer";
 import "./CreateProfile.css";
 
 function CreateProfile() {
@@ -16,7 +14,7 @@ function CreateProfile() {
     present_job: "",
     phone_number: "",
     location: "",
-    user_img: "",
+    user_img: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
     summary: "",
     education: "",
     skills: "",
@@ -25,7 +23,7 @@ function CreateProfile() {
     experience: "",
     project_name: "",
     project_description: "",
-    project_img: "",
+    project_img: "https://github.com/thahira97/Food-Pickup-App/raw/master/docs/Menu%20page.png",
     is_original: true
   });
   const [error, setError] = useState(null);
@@ -40,13 +38,13 @@ function CreateProfile() {
   const handleImageChange = (e, type) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
-    console.log(imageUrl)
+    console.log(imageUrl);
     if (type === 'profile') {
       setProfileImage(imageUrl);
-      setInput(prev => ({ ...prev, user_img: imageUrl }));
+      // setInput(prev => ({ ...prev, user_img: imageUrl }));
     } else if (type === 'project') {
-      setProjectImage(file);
-      setInput(prev => ({ ...prev, project_img: imageUrl }));
+      setProjectImage(imageUrl);
+      // setInput(prev => ({ ...prev, project_img: imageUrl }));
     }
   };
 
@@ -70,68 +68,51 @@ function CreateProfile() {
     }
   };
 
-
   return (
     <div className="create-page">
-      <Nav />
       <div className="create-container">
-        <h3>Create Profile</h3>
+        
+        <div className="heading">
+          <h3>Welcome aboard, {currentUser.name.split(' ').slice(0, -1).join(' ')}!</h3>
+          <p>Now let's set up your career profile.</p>
+        </div>
+        
         <form>
-          
           <div className="create-panel">
             <h4>Profile Summary</h4>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <div className="form-group">
-                  <label>Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={currentUser.name}
-                    disabled
-                  />
+                  <label>Profile photo</label>
+                  { profileImage ? (
+                  <div className="profile-image">
+                    <img src={profileImage} alt="Profile" className="profile-image-preview" />
+                    <br/>
+                    <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => handleRemoveImage('profile')}>
+                      <i className="fa-solid fa-trash-can"></i> Remove
+                    </button>
+                  </div>
+                  ) : (
+                  <input type="file" accept="image/*" className="form-control" onChange={e => handleImageChange(e, 'profile')} />
+                  )}
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Current role</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. Web Developer"
-                    name="present_job"
-                    onChange={handleChange}
-                  />
+                  <label>Full name</label>
+                  <input type="text" className="form-control" value={currentUser.name} disabled />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Current position</label>
+                  <input type="text" className="form-control" placeholder="eg. Web Developer" name="present_job" onChange={handleChange} />
                 </div>
               </div>
               <div className="col-md-12">
                 <div className="form-group">
-                <label>Profile picture</label>
-                  {profileImage ? (
-                    <div>
-                      <img src={profileImage} alt="Profile" className="profile-image-preview" />
-                      <button type="button" className="btn btn-danger" onClick={() => handleRemoveImage('profile')}>
-                        Remove Image
-                      </button>
-                    </div>
-                  ) : (
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="form-control"
-                      onChange={e => handleImageChange(e, 'profile')}
-                    />
-                  )}
-                </div>
-                <div className="form-group">
                   <label>About me</label>
-                  <textarea
-                    className="form-control"
-                    placeholder="Write a 2-3 line summary about your professional experience."
-                    name="summary"
-                    onChange={handleChange}
-                    rows="3">
-                  </textarea>
+                  <textarea className="form-control" placeholder="Write a 2-3 line summary about your skills, experience, or previous achievements." name="summary" onChange={handleChange} rows="5"></textarea>
                 </div>
               </div>
             </div>
@@ -143,106 +124,65 @@ function CreateProfile() {
               <div className="col-md-6">
                 <div className="form-group">
                   <label>Email</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={currentUser.email}
-                    disabled
-                  />
+                  <input type="text" className="form-control" value={currentUser.email} disabled />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Phone number</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. 416-123-4567"
-                    name="phone_number"
-                    onChange={handleChange}
-                  />
+                  <label>Phone</label>
+                  <input type="text" className="form-control" placeholder="eg. 416-123-4567" name="phone_number" onChange={handleChange} />
                 </div>
               </div>
               <div className="col-md-12">
                 <div className="form-group">
                   <label>Location</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. Toronto, ON"
-                    name="location"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" placeholder="eg. Toronto, ON" name="location" onChange={handleChange} />
                 </div>
               </div>
             </div>
           </div>
 
           <div className="create-panel">
-            <h4>Educational Background</h4>
+            <h4>Education</h4>
             <div className="row">
               <div className="col-md-12">
                 <div className="form-group">
-                  <label>Education</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. Bachelor of Science - University Name"
-                    name="education"
-                    onChange={handleChange}
-                  />
+                  <label>Degree</label>
+                  <input type="text" className="form-control" placeholder="eg. Bachelor of Science - University Name" name="education" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label>Skills</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. HTML, CSS"
-                    name="skills"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" placeholder="eg. HTML, CSS" name="skills" onChange={handleChange} />
                 </div>
               </div>
             </div>
           </div>
 
           <div className="create-panel">
-            <h4>Work Experience</h4>
+            <h4>Experience</h4>
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Job Title</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. Web Developer - ABC Inc."
-                    name="position_company"
-                    onChange={handleChange}
-                  />
+                  <label>Title</label>
+                  <input type="text" className="form-control" placeholder="eg. Web Developer - ABC Inc." name="position_company" onChange={handleChange} />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Years</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. 2010-2015"
-                    name="years_worked"
-                    onChange={handleChange}
+                  <label>Duration</label>
+                  <input type="text" className="form-control" placeholder="eg. 2010 - 2015" name="years_worked" onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="col-md-12">
                 <div className="form-group">
-                  <label>Responsibilities</label>
-                  <textarea
-                    className="form-control"
-                    placeholder="Write about your responsibilities and key achievements in this role."
-                    name="experience"
-                    onChange={handleChange}
-                    rows="3">
-                  </textarea>
+                  <label>Description</label>
+                  <textarea className="form-control" placeholder="Write about your responsibilities and key achievements in this role." name="experience" onChange={handleChange} rows="5"></textarea>
+                </div>
+              </div>
+              <div className="col-md-12 text-center">
+                <div className="form-group">
+                  <button type="button" className="btn btn-outline-primary"><i className="fa-solid fa-plus"></i> Add more experience</button>
                 </div>
               </div>
             </div>
@@ -251,65 +191,59 @@ function CreateProfile() {
           <div className="create-panel">
             <h4>Projects</h4>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <div className="form-group">
-                  <label>Project Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="eg. E-commerce Website"
-                    name="project_name"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                <label>Project Image</label>
-                  {projectImage ? (
-                    <div>
-                      <img src={URL.createObjectURL(projectImage)} alt="Project" className="project-image-preview" />
-                      <button type="button" className="btn btn-danger" onClick={() => handleRemoveImage('project')}>
-                        Remove Image
-                      </button>
-                    </div>
-                  ) : (
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="form-control"
-                      onChange={e => handleImageChange(e, 'project')}
-                    />
-                  )}
+                  <label>Project name</label>
+                  <input type="text" className="form-control" placeholder="eg. E-commerce Website" name="project_name" onChange={handleChange} />
                 </div>
               </div>
               <div className="col-md-12">
                 <div className="form-group">
-                  <label>Project Description</label>
-                  <textarea
-                    className="form-control"
-                    placeholder="Write about your key contributions to this project."
-                    name="project_description"
-                    onChange={handleChange}
-                    rows="3">
-                  </textarea>
+                  <label>Description</label>
+                  <textarea className="form-control" placeholder="Write about your key contributions to this project." name="project_description" onChange={handleChange} rows="5"></textarea>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label>Project thumbnail</label>
+                  { projectImage ? (
+                  <div className="project-image">
+                    <img src={projectImage} alt="Project" className="project-image-preview" />
+                    <br/>
+                    <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => handleRemoveImage('project')}>
+                      <i className="fa-solid fa-trash-can"></i> Remove
+                    </button>
+                  </div>
+                  ) : (
+                  <input type="file" accept="image/*" className="form-control" onChange={e => handleImageChange(e, 'project')} />
+                  )}
+                </div>
+              </div>
+              <div className="col-md-12 text-center">
+                <div className="form-group">
+                  <button type="button" className="btn btn-outline-primary"><i className="fa-solid fa-plus"></i> Add more projects</button>
                 </div>
               </div>
             </div>
           </div>
-
-          {error &&
-            <div className="alert alert-danger" role="alert">
-              {error}
+          
+          <div className="create-panel">
+            <div className="row submit-section">
+              <div className="col-md-2"></div>
+              <div className="col-md-8">
+                <h4>Review & Submit</h4>
+                <p>Don't stress about leaving a few blanks in your profile. You can always return and edit it whenever you're ready.</p>
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>I'm ready to view my profile</button>
+                  {error &&
+                  <div className="alert alert-danger" role="alert">{error}</div>
+                  }
+                </div>                
+              </div>
             </div>
-          }
-          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-            Save Profile
-          </button>
-
+          </div>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }

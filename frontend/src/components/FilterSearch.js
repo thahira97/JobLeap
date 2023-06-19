@@ -19,7 +19,7 @@ const FilterSearch = (props) => {
                 onChange={props.handleFilterChange}
               >
                 <option value="">Job Title</option>
-                <option value="Full-Stack developer">Web developer</option>
+                <option value="Full-Stack developer">Web Developer</option>
                 <option value="Sales Associate">Sales Associate</option>
                 <option value="Administrative Assistant">Administrative Assistant</option>
               </select>
@@ -47,7 +47,7 @@ const FilterSearch = (props) => {
                 value={props.filterValues.datePosted}
                 onChange={props.handleFilterChange}
               >
-                <option value="">Date-Posted</option>
+                <option value="">Date posted</option>
                 <option value="1 day ago">Past day</option>
                 <option value="3 days ago">Past 3 days</option>
                 <option value="1 week ago">Past week</option>

@@ -9,6 +9,7 @@ const Avatar = props => {
         src={props.image}
         alt={props.alt}
         style={{ width: props.width, height: props.width }}
+        className='card-img-top'
       />
     </div>
   );

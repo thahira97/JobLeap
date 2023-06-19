@@ -23,7 +23,7 @@ const Button = (props) => {
   return (
   <React.Fragment>
     <div className="button-comp">
-    <button type="button" class="btn btn-outline-primary" onClick={clickHandler}>Read more</button>
+    <button type="button" className="btn btn-outline-primary btn-sm" onClick={clickHandler}>Learn more</button>
     {description && <Backdrop onClick={closeDescription} />}
     {description && <JobDescription 
          key={props.id}
@@ -34,6 +34,7 @@ const Button = (props) => {
          location={props.location}
          schedule={props.schedule}
          flextime={props.flextime}
+         image={props.image}
           />}
   </div>
   </React.Fragment>

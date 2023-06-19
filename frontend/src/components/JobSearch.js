@@ -132,7 +132,7 @@ const JobSearch = (props) => {
           </div>
         </div>
         <FilterSearch handleFilterChange={handleFilterChange} filterValues={filterValues}/>
-        <div className="job-container">
+        <div className="container job-container">
           <JobLists jobs={filteredList} />
         </div>
       </div>

@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
+  height: 100vh;
+  background-image: linear-gradient(to right top,#fe7062,#1a0f91);
   padding: 40px;
 }
   
@@ -48,4 +49,9 @@
 .auth-page .switch-auth-page {
   margin-top: 32px;
   text-align: center;
+  color: #fff;
+}
+
+.auth-page .switch-auth-page a {
+  color: #fff !important;
 }

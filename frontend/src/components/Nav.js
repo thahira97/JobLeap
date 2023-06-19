@@ -8,52 +8,44 @@ function Nav() {
   const { currentUser, logout } = useContext(AuthContext);
 
   return (
-    <nav className="navbar navbar-expand-lg" aria-label="Tenth navbar example">
+    <nav className="navbar navbar-expand-lg">
       <div className="container">
         <a className="navbar-brand" href="/">JobLeap</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
-        <div className="collapse navbar-collapse justify-content-md-center" id="navbar">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/">Find jobs</a>
-              </li>
-              {currentUser &&
-              <li className="nav-item">
-               <Link to="/jobs" className="nav-link">My applications</Link> 
-              </li>
-              }
-              {currentUser &&
-              <li className="nav-item">
-               <Link to="/profile" className="nav-link">My profile</Link> 
-              </li>
-              }
-            </ul>
+        <div className="justify-content-md-center" id="navbar">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#how-it-works">How it works</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/jobs">Find jobs</a>
+            </li>
+          </ul>
         </div>
 
         <div className="d-flex">
-            {
-              currentUser ?
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <span className="nav-link">Logged in as {currentUser.name}</span>
-                </li>
-                <li className="nav-item">
-                  <Link to="/" className="nav-link" onClick={logout}>Log out</Link>
-                </li>
-              </ul>
-              :
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link to="/signup" className="nav-link">Sign up</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link">Log in</Link>
-                </li>
-              </ul>
-            }
+          <ul className="navbar-nav">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa-solid fa-circle-user"></i> {currentUser && currentUser.name}</a>
+              {
+                currentUser ?
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><Link to="/profile" className="dropdown-item">View profile</Link></li>
+                  <li><Link to="/jobs" className="dropdown-item">My applications</Link></li>
+                  <li><hr className="dropdown-divider"></hr></li>
+                  <li><Link to="/" className="dropdown-item" onClick={logout}>Log out</Link></li>
+                </ul>
+                :
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><Link to="/login" className="dropdown-item">Log in</Link></li>
+                  <li><Link to="/signup" className="dropdown-item">Sign up</Link></li>
+                </ul>                
+              }
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

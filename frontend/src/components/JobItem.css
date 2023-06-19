@@ -1,4 +1,7 @@
-.jobs-item {
+.job-items {
+  margin-bottom: 32px;
+}
+/* .jobs-item {
   margin: 1rem;
   width: calc(45% - 2rem);
   min-width: 17.5rem;
@@ -56,4 +59,4 @@
 
 .company-summary {
   overflow-wrap: break-word;
-}
+} */

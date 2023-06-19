@@ -6,6 +6,7 @@ import { AuthContextProvider } from "./context/authContext";
 import { ResumeContextProvider } from "./context/resumeContext";
 import { MessageContextProvider } from "./context/messageContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

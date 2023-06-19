@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Nav from '../Nav';
-import Footer from '../Footer';
+import { AuthContext } from '../../context/authContext';
 import './Auth.css';
 
 const Signup = () => {
@@ -13,7 +12,9 @@ const Signup = () => {
     password: ""
   });
   const [error, setError] = useState(null);
+  const { signup } = useContext(AuthContext);
   const history = useHistory();
+  axios.defaults.withCredentials = true;
 
   const handleChange = e => {
     setInput(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -22,8 +23,8 @@ const Signup = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/auth/signup", input);
-      history.push("/login");
+      await signup(input);
+      history.push("/profile/new");
     } catch(err) {
       setError(err.response.data);
     }
@@ -31,7 +32,6 @@ const Signup = () => {
 
   return (
     <div className="auth-page">
-      <Nav />
       <div className="auth-container">
         <form className="auth-form">
           <div className="form-header">
@@ -39,7 +39,7 @@ const Signup = () => {
             <p>Create an account and build your impressive resume today!</p>
           </div>
           <div className="form-group">
-            <label>Name</label>
+            <label>Full name</label>
             <input
               type="text"
               className="form-control"
@@ -74,6 +74,7 @@ const Signup = () => {
           <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
             Sign up
           </button>
+          <Link to="/" className="btn btn-outline-primary" role="button">Cancel</Link>
           {error &&
           <div className="alert alert-danger" role="alert">
             {error}
@@ -81,10 +82,9 @@ const Signup = () => {
           }
         </form>
         <div className="switch-auth-page">
-          Already have an account? <Link to="/login">Log in</Link>
+          <p>Already have an account? <Link to="/login">Log in</Link></p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

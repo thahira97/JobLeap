@@ -19,7 +19,28 @@ a.navbar-brand {
 }
 
 .btn-primary:hover {
-  background-color: #fff !important;
-  border-color: #ffbeba !important;
+  /* background-color: #fff !important;
+  border-color: #fe7062 !important;
+  color: #fe7062 !important; */
+}
+
+.btn-outline-primary {
+  border-color: #fe7062 !important;
   color: #fe7062 !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #fff !important;
+}
+
+.btn-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+}
+
+.btn-secondary:hover {
+  /* background-color: #fff !important;
+  border-color: #fe7062 !important;
+  color: #fe7062 !important; */
 }
