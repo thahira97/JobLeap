@@ -71,3 +71,6 @@ cd frontend
 npm install
 npm start
 ```
+
+Checkout out JobLeap at: http://localhost:3000/ 
+
