@@ -36,3 +36,13 @@ To integrate the ChatGPT API for resume modification, the job description and us
 ![ChatGPT](./docs/ChatGPT.gif)
 
 ---
+
+### Project-Stack
+
+- React
+- React-router
+- Express.js
+- Node.js
+- PostgreSQL
+- OpenAI API
+
