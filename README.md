@@ -90,5 +90,23 @@ npm start
     react-transition-group: ^4.4.5,
     web-vitals: ^2.1.4
 ```
+
+### Back-end
+
+```
+    bcrypt: ^5.1.0,
+    chalk: ^2.4.2,
+    cookie-parser: ^1.4.6,
+    cors: ^2.8.5,
+    cross-fetch: ^3.1.6,
+    dotenv: ^16.0.3,
+    express: ^4.18.2,
+    fs: ^0.0.1-security,
+    jsonwebtoken: ^9.0.0,
+    morgan: ^1.10.0,
+    node-fetch: ^3.3.1,
+    pg: ^8.11.0,
+    pg-pool: ^3.6.0
+```
 Checkout out JobLeap at: http://localhost:3000/ 
 
