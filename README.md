@@ -28,3 +28,7 @@ Our platform provides users with the ability to create and edit their profiles, 
 We provide an enhanced job search experience, offering users refined search options to tailor their preferences. Our platform allows users to narrow down job listings based on factors such as location, date posted, schedule (full-time, part-time, internship), and onsite/remote options (on-site, remote, hybrid). Additionally, users can filter by salary range. Once users find a job that aligns with their criteria, they can easily access a detailed description for a comprehensive understanding of the opportunity. 
 
 ![Refined-Search](./docs/Filtered-search.gif)
+
+## ChatGPT API Integration for Resume Modification
+
+To integrate the ChatGPT API for resume modification, the job description and user's resume are sent via a POST request to the API. The API generates a modified version of the resume based on the job description, which is then presented to the user in a professional format. The user is given the option to compare and choose between the original and modified resumes. Once the user has made their selection, the chosen resume is submitted for the job application. 
