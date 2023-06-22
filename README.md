@@ -14,7 +14,7 @@ This is our signup page, where users can effortlessly create an account by provi
 
 ![Signup-page](./docs/Signup-page.png)
 
-#### Create Profile and Profile page of user
+## Create Profile and Profile page of user
 
 ![Profile-page](./docs/Profile.gif)
 
