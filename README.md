@@ -15,3 +15,5 @@ This is our signup page, where users can effortlessly create an account by provi
 ## More-refined search
 
 We provide an enhanced job search experience, offering users refined search options to tailor their preferences. Our platform allows users to narrow down job listings based on factors such as location, date posted, schedule (full-time, part-time, internship), and onsite/remote options (on-site, remote, hybrid). Additionally, users can filter by salary range. Once users find a job that aligns with their criteria, they can easily access a detailed description for a comprehensive understanding of the opportunity. 
+
+![Refined-Search](./docs/Filtered-search.gif)
