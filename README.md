@@ -48,7 +48,7 @@ To integrate the ChatGPT API for resume modification, the job description and us
 
 ---
 
-## Setup
+## Project Setup
 
 1. Clone the repository using this command in terminal: 
 
@@ -62,5 +62,12 @@ git@github.com:thahira97/JobLeap.git
 cd backend
 npm install
 npm run db:reset
+npm start
+```
+3. Install dependencies for front-end and start the web server:
+
+```
+cd frontend
+npm install
 npm start
 ```
