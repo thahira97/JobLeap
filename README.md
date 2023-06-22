@@ -18,7 +18,8 @@ This is our signup page, where users can effortlessly create an account by provi
 
 ![Profile-page](./docs/Profile.gif)
 
-The profile is editable and the changes will be saved in DB.
+Our platform provides users with the ability to create and edit their profiles, ensuring a personalized experience. Any changes made to the profile are securely saved in our database, guaranteeing the integrity of the user's information. The dynamic nature of our platform ensures that any modifications to the profile are accurately reflected in real-time. With this seamless edit functionality, users can effortlessly maintain an up-to-date and professional profile, aligning it with their evolving skills and qualifications. 
+
 ![Edit](./docs/Edit-profile.png)
 
 
