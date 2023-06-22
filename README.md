@@ -110,3 +110,6 @@ npm start
 ```
 Checkout out JobLeap at: http://localhost:3000/ 
 
+### Conclusion
+
+We encourage you to explore the code, documentation, and resources provided. Feel free to contribute and provide feedback. Thank you for your interest and support!
