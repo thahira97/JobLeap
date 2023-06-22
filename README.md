@@ -18,6 +18,9 @@ This is our signup page, where users can effortlessly create an account by provi
 
 ![Profile-page](./docs/Profile.gif)
 
+The profile is editable and the changes will be saved in DB.
+![Edit](./docs/Edit-profile.png)
+
 
 ## More-refined search
 
