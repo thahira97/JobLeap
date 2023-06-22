@@ -34,3 +34,5 @@ We provide an enhanced job search experience, offering users refined search opti
 To integrate the ChatGPT API for resume modification, the job description and user's resume are sent via a POST request to the API. The API generates a modified version of the resume based on the job description, which is then presented to the user in a professional format. The user is given the option to compare and choose between the original and modified resumes. Once the user has made their selection, the chosen resume is submitted for the job application. 
 
 ![ChatGPT](./docs/ChatGPT.gif)
+
+---
