@@ -55,3 +55,12 @@ To integrate the ChatGPT API for resume modification, the job description and us
 ```
 git@github.com:thahira97/JobLeap.git
 ```
+
+2. Install dependencies for back-end, seed the database and run the back-end server:
+
+```
+cd backend
+npm install
+npm run db:reset
+npm start
+```
