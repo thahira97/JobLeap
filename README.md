@@ -46,3 +46,12 @@ To integrate the ChatGPT API for resume modification, the job description and us
 - PostgreSQL
 - OpenAI API
 
+---
+
+## Setup
+
+1. Clone the repository using this command in terminal: 
+
+```
+git@github.com:thahira97/JobLeap.git
+```
